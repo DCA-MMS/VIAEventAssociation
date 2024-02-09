@@ -1,5 +1,6 @@
 ﻿```mermaid
 classDiagram
+    direction LR
     
     Location "1" --> "*" Booking : Has
     Guest "1" --> "*" Request : Makes
@@ -12,7 +13,7 @@ classDiagram
     Request "1" --> "1" Event : To?
     Creator "1" --> "*" Request : Handle
     
-    class Event  {
+    class Event {
         Title
         Desc
         Start
