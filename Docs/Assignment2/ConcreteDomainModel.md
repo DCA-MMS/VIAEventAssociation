@@ -1,38 +1,37 @@
 ﻿```mermaid
 classDiagram
-    direction RL
-
     %%Event
-    Event "1" --> "1" EventTitle : Title
-    Event "1" --> "1" EventDescription : Description
+    EventTitle "1" <-- "1" Event : Title
+    EventDescription "1" <-- "1" Event : Description
     Event "1" --> "1" EventVisibility : Visibility
     Event "1" --> "1" EventStatus : Status
     Event "1" *--> "1" TimeRange : Duration
     Event "1" *--> "1" Capacity : MaxGuest
-    Event "1" *--> "0..*" Request : Requests
-    Event "1" *--> "0..*" Invitation : Invitations 
-    Event "1" ..> "1" User : Creator
-    
+    Event "1" --> "1" Location : Location
+    Request "1" <--* "0..*" Event : Requests
+    Invitation "1" <--* "0..*" Event : Invitations 
+    User "1" <.. "1" Event : Creator
+
+    %%Invitation
+    Invitation "1" --> "1" InvitationStatus : Status
+    User "1" <.. "1" Invitation : Guest
+
     %%Location
     Location "1" --> "1" LocationName : Name
     Location "1" --> "1" LocationType : Type
     Location "1" --> "1" Capacity : Capacity
     Location "1" *--> "0..*" Booking : Bookings
-    
+
     %%Booking
     Booking "1" --> "1" TimeRange : Duration
 
     %%User
-    User "1" --> "1" FullName : FullName
-    User "1" --> "1" Mail : Mail
-    
+    FullName "1" <-- "1" User : FullName
+    Mail "1" <-- "1" User : Mail
+
     %%Request
     Request "1" --> "1" RequestStatus : Status
     Request "1" ..> "1" User : Guest
-    
-    %%Invitation
-    Invitation "1" --> "1" InvitationStatus : Status
-    Invitation "1" ..> "1" User : Guest
 
     class TimeRange {
         <<Value>>
@@ -100,7 +99,6 @@ classDiagram
         }
     }
 
-    
     namespace USER {
         class User {
             <<Entity>>
@@ -152,6 +150,4 @@ classDiagram
             + Rejected
         }   
     }
-
-
 ```
