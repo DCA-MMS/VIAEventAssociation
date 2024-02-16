@@ -4,7 +4,7 @@ classDiagram
     
     Location "1" --> "*" Booking : Has
     Guest "1" --> "*" Request : Makes
-    Event "1" --> "1" Location : Held at
+    Event "*" --> "1" Location : Held at
     Event "1" --> "1" Booking : Has
     Creator "1" --> "*" Event : Makes
     Event "*" <-- "1" Guest : Participates
