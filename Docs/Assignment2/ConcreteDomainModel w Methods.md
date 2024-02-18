@@ -12,15 +12,33 @@ classDiagram
     Invitation "1" <--* "0..*" Event : Invitations 
     User "1" <.. "1" Event : Creator
 
+    Event : +createEvent()
+    Event : +updateTitle(string title)
+    Event : +updateDescription(string description)
+    Event : +updateDateTime(DateTime start, DateTime end)
+    Event : +setVisibility(EventVisibility visibility)
+    Event : +setMaxGuests(int number)
+    Event : +readyEvent()
+    Event : +activateEvent()
+
     %%Invitation
     Invitation "1" --> "1" InvitationStatus : Status
     User "1" <.. "1" Invitation : Guest
+
+    Invitation : +inviteGuest(User guest)
+    Invitation : +acceptInvitation()
+    Invitation : +declineInvitation()
 
     %%Location
     Location "1" --> "1" LocationName : Name
     Location "1" --> "1" LocationType : Type
     Location "1" --> "1" Capacity : Capacity
     Location "1" *--> "0..*" Booking : Bookings
+
+    Location : +addLocation(string name, LocationType type, int capacity)
+    Location : +updateName(string name)
+    Location : +setCapacity(int capacity)
+    Location : +setAvailabilityInterval(DateTime start, DateTime end)
 
     %%Booking
     Booking "1" --> "1" TimeRange : Duration
@@ -29,9 +47,15 @@ classDiagram
     FullName "1" <-- "1" User : FullName
     Mail "1" <-- "1" User : Mail
 
+    User : +register(string email, string firstName, string lastName)
+
     %%Request
     Request "1" --> "1" RequestStatus : Status
     Request "1" ..> "1" User : Guest
+
+    Request : +requestToJoin(string reason)
+    Request : +approveRequest()
+    Request : +declineRequest()
 
     class TimeRange {
         <<Value>>
@@ -152,4 +176,9 @@ classDiagram
             + Rejected
         }   
     }
+
+
+
+
+
 ```
