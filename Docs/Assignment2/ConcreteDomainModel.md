@@ -51,7 +51,6 @@ classDiagram
         class Event {
             <<Aggregate>>
             +[get] IsLocked : bool
-            %% +CreateEvent() ???
             +UpdateTitle(title : EventTitle)
             +UpdateDescription(description : EventDescription)
             +UpdateDuration(duration : TimeRange)
@@ -99,11 +98,9 @@ classDiagram
     namespace LOCATION {
         class Location {
             <<Aggregate>>
-            %% +AddLocation(name : string, type : LocationType, capacity : int) ???
             +UpdateName(name : LocationName)
             +SetCapacity(capacity : Capacity)
             +SetAvailability(interval : TimeRange)
-            %% +Book(timeRange : TimeRange, event : Event)
         }
 
         class LocationType {
@@ -127,7 +124,6 @@ classDiagram
     namespace USER {
         class User {
             <<Entity>>
-            %% +Register(fullName : FullName, email : Email)
         }
 
         class Email {
