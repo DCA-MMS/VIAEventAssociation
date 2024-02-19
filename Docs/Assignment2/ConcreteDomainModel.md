@@ -33,6 +33,30 @@ classDiagram
     %%Request
     Request "1" --> "1" RequestStatus : Status
     Request "1" ..> "1" User : Guest
+    
+    %% Styling
+%%    style Event fill:#cdffb4
+%%    style Location fill:#cdffb4
+%%    style Request fill:#dae8fc
+%%    style User fill:#dae8fc
+%%    style Invitation fill:#dae8fc
+%%    style Booking fill:#dae8fc
+%%    style RequestReason fill:#ffffcc
+%%    style FullName fill:#ffffcc
+%%    style Email fill:#ffffcc
+%%    style EventTitle fill:#ffffcc
+%%    style EventDescription fill:#ffffcc
+%%    style Capacity fill:#ffffcc
+%%    style TimeRange fill:#ffffcc
+%%    style LocationName fill:#ffffcc
+%%    style RequestStatus fill:#e0d0ff
+%%    style InvitationStatus fill:#e0d0ff
+%%    style EventStatus fill:#e0d0ff
+%%    style EventVisibility fill:#e0d0ff
+%%    style LocationType fill:#e0d0ff
+
+    
+    
 
     class TimeRange {
         <<Value>>
