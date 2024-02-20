@@ -100,4 +100,17 @@ public class ResultsOfTTests
         // Assert
         Assert.That(result.GetErrors().Count, Is.EqualTo(2));
     }
+    
+    [Test, Category("Result")]
+    public void Implicit_Conversion_From_T_To_Result_T()
+    {
+        // Arrange
+        var value = 10;
+        
+        // Act
+        Result<int> result = value;
+        
+        // Assert
+        Assert.That(result.Value, Is.EqualTo(value));
+    }
 }
