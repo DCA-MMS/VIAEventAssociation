@@ -76,19 +76,6 @@ public class ResultsOfTTests
     }
     
     [Test, Category("Result")]
-    public void Failure_Result_AppendError_Should_Add_Error_Message()
-    {
-        // Arrange
-        var result = Result<int>.Failure(UserError.UserNotFound());
-        
-        // Act
-        result.AppendError(UserError.UserAlreadyExists());
-        
-        // Assert
-        Assert.That(result.GetErrors().Count, Is.EqualTo(2));
-    }
-    
-    [Test, Category("Result")]
     public void Implicit_Conversion_From_T_To_Result_T()
     {
         // Arrange

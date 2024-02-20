@@ -6,27 +6,27 @@ public class Result
 {
     // - PROPERTIES
     private bool _isFailure = false;
-    private List<Error> _errorMessages = [];
+    private Error[] _errorMessages = [];
 
     // * FACTORY METHOD - Successful Result
     // * This method is used to create a new instance of Result with the _isFailure property set to false
-    public static Result Success() => new Result();
+    public static Result Success() => new();
     
     // * FACTORY METHOD - Failed Result
     // * This method is used to create a new instance of Result with the _isFailure property set to true
-    public static Result Failure(params Error[] errors) => new Result() { _isFailure = true, _errorMessages = errors.ToList() };
+    public static Result Failure(params Error[] errorMessages) => new() { _isFailure = true, _errorMessages = errorMessages };
     
     public bool IsFailure => _isFailure;
     
-    public List<Error> GetErrors() => _errorMessages;
+    public IEnumerable<Error> Errors => _errorMessages;
 }
 
-public class Result<T> : Result
+public class Result<T>
 {
     // - PROPERTIES
     private bool _isFailure = false;
-    private List<Error> _errorMessages = [];
-    public T Value { get; private init; }
+    private Error[] _errorMessages = [];
+    public T Value { get; private init; } = default!;
     
     // - IMPLICIT CONVERSION OPERATOR
     // This operator is used to convert a T to a Result<T>
@@ -34,17 +34,14 @@ public class Result<T> : Result
     
     // - FACTORY METHOD - Successful Result
     // This method is used to create a new instance of Result with the _isFailure property set to false
-    public static Result<T> Success(T value) => new Result<T>() { Value = value };
+    public static Result<T> Success(T value) => new() { Value = value };
     
     // - FACTORY METHOD - Failed Result
     // This method is used to create a new instance of Result with the _isFailure property set to true
-    public new static Result<T> Failure(Error errorMessage) => new Result<T>() { _isFailure = true, _errorMessages = [errorMessage] };
-    
-    // * Add another error message to the list of error messages
-    public new void AppendError(Error errorMessage) => _errorMessages.Add(errorMessage);
+    public new static Result<T> Failure(params Error[] errorMessages) => new() { _isFailure = true, _errorMessages = errorMessages };
     
     // * Indicates if the result is a failure
     public new bool IsFailure => _isFailure;
     
-    public new List<Error> GetErrors() => _errorMessages;
+    public new IEnumerable<Error> Errors => _errorMessages;
 }
