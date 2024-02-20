@@ -14,9 +14,7 @@ public class Result
     
     // * FACTORY METHOD - Failed Result
     // * This method is used to create a new instance of Result with the _isFailure property set to true
-    public static Result Failure(Error errorMessage) => new Result() { _isFailure = true, _errorMessages = [errorMessage] };
-    
-    public void AppendError(Error errorMessage) => _errorMessages.Add(errorMessage);
+    public static Result Failure(params Error[] errors) => new Result() { _isFailure = true, _errorMessages = errors.ToList() };
     
     public bool IsFailure => _isFailure;
     

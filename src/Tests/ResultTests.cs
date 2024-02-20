@@ -31,19 +31,6 @@ public class ResultTests
         // Assert
         Assert.That(isFailure, Is.True);
     }
-    
-    [Test, Category("Result")]
-    public void Failure_Result_AppendError_Should_Add_Error_Message()
-    {
-        // Arrange
-        var result = Result.Failure(UserError.UserNotFound());
-        
-        // Act
-        result.AppendError(UserError.UserAlreadyExists());
-        
-        // Assert
-        Assert.That(result.GetErrors().Count, Is.EqualTo(2));
-    }
 }
 
 [TestFixture]
