@@ -28,9 +28,12 @@ public class Result<T>
     private Error[] _errorMessages = [];
     public T Value { get; private init; } = default!;
     
-    // - IMPLICIT CONVERSION OPERATOR
+    // - IMPLICIT CONVERSION OPERATORS
     // This operator is used to convert a T to a Result<T>
     public static implicit operator Result<T>(T value) => Success(value);
+    
+    // This operator is used to convert a Result<T> to a T
+    public static implicit operator T(Result<T> result) => result.Value;
     
     // - FACTORY METHOD - Successful Result
     // This method is used to create a new instance of Result with the _isFailure property set to false

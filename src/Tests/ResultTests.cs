@@ -87,4 +87,18 @@ public class ResultsOfTTests
         // Assert
         Assert.That(result.Value, Is.EqualTo(value));
     }
+    
+    [Test, Category("Result")]
+    public void Implicit_Conversion_From_Result_T_To_T()
+    {
+        // Arrange
+        var value = 10;
+        var result = Result<int>.Success(value);
+        
+        // Act
+        int resultValue = result;
+        
+        // Assert
+        Assert.That(resultValue, Is.EqualTo(value));
+    }
 }
