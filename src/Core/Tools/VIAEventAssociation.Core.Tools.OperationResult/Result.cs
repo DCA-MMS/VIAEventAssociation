@@ -1,40 +1,50 @@
-﻿namespace VIAEventAssociation.Core.Tools.OperationResult;
+﻿using VIAEventAssociation.Core.Tools.OperationResult.Errors;
+
+namespace VIAEventAssociation.Core.Tools.OperationResult;
 
 public class Result
 {
-    private protected bool IsFailure = false;
-    private protected List<string> ErrorMessage = [];
-    private protected Result() {}
-    
-    public static Result Success() => new Result();
+    // - PROPERTIES
+    private bool _isFailure = false;
+    private Error[] _errorMessages = [];
 
-    public static Result Failure(string errorMessage)
-    {
-        var result = new Result
-        {
-            IsFailure = true
-        };
-        result.ErrorMessage.Add(errorMessage);
-        return result;
-    }
+    // * FACTORY METHOD - Successful Result
+    // * This method is used to create a new instance of Result with the _isFailure property set to false
+    public static Result Success() => new();
+    
+    // * FACTORY METHOD - Failed Result
+    // * This method is used to create a new instance of Result with the _isFailure property set to true
+    public static Result Failure(params Error[] errorMessages) => new() { _isFailure = true, _errorMessages = errorMessages };
+    
+    public bool IsFailure => _isFailure;
+    
+    public IEnumerable<Error> Errors => _errorMessages;
 }
 
-public class Result<T> : Result
+public class Result<T>
 {
-    public T Payload { get; init; }
-
-    public static Result<T> Success(T payload) => new()
-    {
-        Payload = payload
-    };
-
-    public new static Result<T> Failure(string errorMessage)
-    {
-        var result = new Result<T>()
-        {
-            IsFailure = true
-        };
-        result.ErrorMessage.Add(errorMessage);
-        return result;
-    }
+    // - PROPERTIES
+    private bool _isFailure = false;
+    private Error[] _errorMessages = [];
+    public T Value { get; private init; } = default!;
+    
+    // - IMPLICIT CONVERSION OPERATORS
+    // This operator is used to convert a T to a Result<T>
+    public static implicit operator Result<T>(T value) => Success(value);
+    
+    // This operator is used to convert a Result<T> to a T
+    public static implicit operator T(Result<T> result) => result.Value;
+    
+    // - FACTORY METHOD - Successful Result
+    // This method is used to create a new instance of Result with the _isFailure property set to false
+    public static Result<T> Success(T value) => new() { Value = value };
+    
+    // - FACTORY METHOD - Failed Result
+    // This method is used to create a new instance of Result with the _isFailure property set to true
+    public new static Result<T> Failure(params Error[] errorMessages) => new() { _isFailure = true, _errorMessages = errorMessages };
+    
+    // * Indicates if the result is a failure
+    public new bool IsFailure => _isFailure;
+    
+    public new IEnumerable<Error> Errors => _errorMessages;
 }
