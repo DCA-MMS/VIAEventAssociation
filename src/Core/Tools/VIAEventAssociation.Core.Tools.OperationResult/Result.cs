@@ -5,7 +5,15 @@ namespace VIAEventAssociation.Core.Tools.OperationResult;
 public class Result
 {
     // - PROPERTIES
-    private bool _isFailure = false;
+    /// <summary>
+    /// Flag that indicate if the result is a failure
+    /// (Default value is false)
+    /// </summary>
+    private bool _isFailure;
+    
+    /// <summary>
+    /// Array of error messages
+    /// </summary>
     private Error[] _errorMessages = [];
 
     // * FACTORY METHOD - Successful Result
@@ -24,8 +32,20 @@ public class Result
 public class Result<T>
 {
     // - PROPERTIES
-    private bool _isFailure = false;
+    /// <summary>
+    /// Flag that indicate if the result is a failure
+    /// (Default value is false)
+    /// </summary>
+    private bool _isFailure;
+    
+    /// <summary>
+    /// Array of error messages
+    /// </summary>
     private Error[] _errorMessages = [];
+    
+    /// <summary>
+    /// The value of the result
+    /// </summary>
     public T Value { get; private init; } = default!;
     
     // - IMPLICIT CONVERSION OPERATORS
@@ -41,10 +61,10 @@ public class Result<T>
     
     // - FACTORY METHOD - Failed Result
     // This method is used to create a new instance of Result with the _isFailure property set to true
-    public new static Result<T> Failure(params Error[] errorMessages) => new() { _isFailure = true, _errorMessages = errorMessages };
+    public static Result<T> Failure(params Error[] errorMessages) => new() { _isFailure = true, _errorMessages = errorMessages };
     
     // * Indicates if the result is a failure
-    public new bool IsFailure => _isFailure;
+    public bool IsFailure => _isFailure;
     
-    public new IEnumerable<Error> Errors => _errorMessages;
+    public IEnumerable<Error> Errors => _errorMessages;
 }
