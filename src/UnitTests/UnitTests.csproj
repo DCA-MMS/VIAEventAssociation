@@ -7,6 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <RootNamespace>Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,6 +20,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Core\Tools\OperationResult\OperationResult.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common\Values\" />
+      <Folder Include="Fakes\" />
+      <Folder Include="Features\" />
     </ItemGroup>
 
 </Project>

@@ -8,4 +8,13 @@
         <RootNamespace>VIAEventAssociation.Core.Domain</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Aggregates\Event\" />
+      <Folder Include="Aggregates\Location\" />
+      <Folder Include="Common\Bases\" />
+      <Folder Include="Common\Contracts\" />
+      <Folder Include="Common\Values\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
