@@ -2,18 +2,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0be573b1_002D4a71_002D4e9a_002Daeaf_002D621d8d2cf7e8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Users\madsh\RiderProjects\VIAEventAssociation\src\Tests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5f25e41c_002D1e06_002D419c_002D813a_002D7871651ddfbd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ResultTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.ResultTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3d327ff_002D3d1d_002D45b2_002D938e_002Deba93ad4e81e/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" Name="ResultTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.ResultTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ca4f2915_002D9c40_002D46ce_002Db087_002Ddb15b0d5230e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ResultsOfTTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.ResultsOfTTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	
+	</wpf:ResourceDictionary>
