@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>VIAEventAssociation.Core.Tools.OperationResult</RootNamespace>
     </PropertyGroup>
 
 </Project>

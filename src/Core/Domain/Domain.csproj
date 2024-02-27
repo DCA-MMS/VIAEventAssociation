@@ -4,11 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>Domain</AssemblyName>
+        <RootNamespace>VIAEventAssociation.Core.Domain</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Assignment3\" />
-      <Folder Include="Assignment4\" />
-    </ItemGroup>
 
 </Project>
