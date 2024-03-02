@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Aggregates\Event\" />
         <Folder Include="Aggregates\Location\" />
         <Folder Include="Common\Bases\" />
         <Folder Include="Common\Contracts\" />
@@ -18,6 +17,10 @@
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>UnitTests</_Parameter1>
         </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Tools\OperationResult\OperationResult.csproj" />
     </ItemGroup>
 
 </Project>

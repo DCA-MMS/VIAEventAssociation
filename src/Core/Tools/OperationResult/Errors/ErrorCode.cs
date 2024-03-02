@@ -19,10 +19,25 @@ public enum ErrorCode
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
     
+
+    // * EVENT TITLE ERRORS
+    EventTitleIsEmpty = 2101,
+    EventTitleIsTooShort = 2102,
+    EventTitleIsTooLong = 2103,
+    EventTitleNotModifiable = 2104,
+    
+    // * EVENT DESCRIPTION ERRORS
+    EventDescriptionIsToolLong = 2201,
+    EventDescriptionNotModifiable = 2202,
+    
+    
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,
     BookingAlreadyExists = 3001,
     BookingIsNotActive = 3002,
     BookingIsNotConfirmed = 3003,
     BookingIsNotCancelled = 3004
+    
+    
+    
 }
