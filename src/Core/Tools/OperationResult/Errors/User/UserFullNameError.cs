@@ -1,4 +1,4 @@
-﻿namespace VIAEventAssociation.Core.Tools.OperationResult.Errors;
+﻿namespace VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
 public class UserFullNameError : Error
 {
