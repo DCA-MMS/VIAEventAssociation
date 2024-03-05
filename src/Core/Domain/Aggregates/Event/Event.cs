@@ -7,18 +7,18 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 public class Event
 {
     // - Attributes
-    private readonly EventTitle _title;
-    private readonly EventDescription _description;
-    private readonly EventStatus _status;
-    private readonly EventVisibility _visibility;
+    public EventTitle Title { get; private set; }
+    public EventDescription Description { get; private set; }
+    public EventStatus Status { get; private set; }
+    public EventVisibility Visibility { get; private set; }
     
     // # Constructor
     private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility)
     {
-        _title = title;
-        _description = description;
-        _status = status;
-        _visibility = visibility;
+        Title = title;
+        Description = description;
+        Status = status;
+        Visibility = visibility;
     }
     
     /// <summary>
@@ -60,5 +60,70 @@ public class Event
         return @event;
     }
     
+    /// <summary>
+    /// Changes the title of the <see cref="Event"/>
+    /// </summary>
+    /// <param name="title">Title to change to.</param>
+    /// <returns>A <see cref="Result"/> representing if the title was changed.</returns>
+    public Result<bool> ChangeTitle(string title)
+    {
+        // * Create the title
+        var titleResult = EventTitle.Create(title);
+        
+        // ? Check if the title is valid
+        if(titleResult.IsFailure)
+        {
+            // ! If the title is invalid, return a failure result
+            return Result<bool>.Failure(titleResult.Errors.ToArray());
+        }
+        
+        // * Set the title
+        Title = titleResult;
+        
+        // * Return a success result
+        return true;
+    }
+    
+    /// <summary>
+    /// Changes the description of the <see cref="Event"/>
+    /// </summary>
+    /// <param name="description">Description to change to.</param>
+    /// <returns> A <see cref="Result"/> representing if the description was changed.</returns>
+    public Result<bool> ChangeDescription(string description)
+    {
+        // * Create the description
+        var descriptionResult = EventDescription.Create(description);
+        
+        // ? Check if the description is valid
+        if(descriptionResult.IsFailure)
+        {
+            // ! If the description is invalid, return a failure result
+            return Result<bool>.Failure(descriptionResult.Errors.ToArray());
+        }
+        
+        // * Set the description
+        Description = descriptionResult;
+        
+        // * Return a success result
+        return true;
+    }
+    
+    public Result<bool> ChangeStatus(EventStatus status)
+    {
+        Status = status;
+        
+        // TODO: Add logic to check if the status can be changed?
+        
+        return true;
+    }
+    
+    public Result<bool> ChangeVisibility(EventVisibility visibility)
+    {
+        Visibility = visibility;
+        
+        // TODO: Add logic to check if the visibility can be changed?
+        
+        return true;
+    }
     
 }
