@@ -19,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Core\Domain\Domain.csproj" />
       <ProjectReference Include="..\Core\Tools\OperationResult\OperationResult.csproj" />
     </ItemGroup>
 
@@ -31,7 +32,6 @@
       <Folder Include="Features\Request\" />
       <Folder Include="Features\User\" />
       <Folder Include="Values\Booking\" />
-      <Folder Include="Values\Event\" />
       <Folder Include="Values\Invitation\" />
       <Folder Include="Values\Location\" />
       <Folder Include="Values\Request\" />
