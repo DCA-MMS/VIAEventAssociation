@@ -19,6 +19,12 @@ public enum ErrorCode
     LastNameIsTooLong = 1112,
     LastNameIsInvalid = 1113,
     
+    // * USER EMAIL ERRORS
+    EmailIsEmpty = 1200,
+    EmailMustStartWith = 1201,
+    EmailMustEndWith = 1202,
+    EmailWithInvalidCharacters = 1203,
+    
     // * EVENT ERRORS - EXAMPLES
     EventNotFound = 2000,
     EventAlreadyExists = 2001,
