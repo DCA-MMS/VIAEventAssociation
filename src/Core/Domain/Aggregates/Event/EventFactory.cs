@@ -58,7 +58,9 @@ public class EventFactory
     {
         if(_errors.Count > 0)
         {
-            return Result<Event>.Failure(_errors.ToArray());
+            var errors = _errors.ToArray();
+            _errors.Clear();
+            return Result<Event>.Failure(errors);
         }
         
         return _event;

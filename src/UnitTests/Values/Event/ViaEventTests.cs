@@ -185,7 +185,7 @@ public class EventTests
          .WithStatus(status)
          .Build();
       
-      var result = @event.Value.Status;
+      EventStatus result = @event.Value.Status;
       
       // Assert
       Assert.That(result, Is.EqualTo(status));
@@ -204,7 +204,7 @@ public class EventTests
          .WithVisibility(visibility)
          .Build();
       
-      var result = @event.Value.Visibility;
+      EventVisibility result = @event.Value.Visibility;
       
       // Assert
       Assert.That(result, Is.EqualTo(visibility));
