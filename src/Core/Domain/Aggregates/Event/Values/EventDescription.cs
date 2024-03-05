@@ -2,7 +2,7 @@
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
-namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
+namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 
 /// <summary>
 /// Event Description
@@ -15,7 +15,7 @@ public class EventDescription
     /// Private constructor for the <see cref="EventDescription"/> class
     /// </summary>
     /// <param name="value"></param>
-    internal  EventDescription(string value)
+    private EventDescription(string value)
     {      
         _value = value;
     }
@@ -67,7 +67,5 @@ public class EventDescription
     /// <summary>
     /// Allows for the implicit conversion of a <see cref="EventDescription"/> to a <see cref="string"/>
     /// </summary>
-    /// <param name="description"></param>
-    /// <returns></returns>
     public static implicit operator string(EventDescription description) => description._value;
 }

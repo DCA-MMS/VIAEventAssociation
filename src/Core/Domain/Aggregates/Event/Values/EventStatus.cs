@@ -1,4 +1,4 @@
-﻿namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
+﻿namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 
 /// <summary>
 /// The status of an event.
