@@ -9,5 +9,5 @@ public class TimeRangeError : Error
     public override ErrorCode Code { get; init; }
     public override string? Message { get; init; }
     
-    public static TimeRangeError EndBeforeStart() => new TimeRangeError(ErrorCode.TimeRangeEndBeforeOrEqualToStart, "The end date cannot be before or equal to the start date");  
+    public static TimeRangeError EndBeforeOrEqualToStart() => new TimeRangeError(ErrorCode.TimeRangeEndBeforeOrEqualToStart, "The end date cannot be before or equal to the start date");  
 }

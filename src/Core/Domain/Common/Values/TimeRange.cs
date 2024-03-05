@@ -31,7 +31,7 @@ public class TimeRange
         var errors = new List<Error>();
         if (start >= end)
         {
-            errors.Add(TimeRangeError.EndBeforeStart());
+            errors.Add(TimeRangeError.EndBeforeOrEqualToStart());
         }
         return (errors.Count > 0, errors);
     }
