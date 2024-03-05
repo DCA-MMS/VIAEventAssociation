@@ -42,7 +42,7 @@ public class EmailTests
     
     [Test, Category("Email")]
     [TestCase("MANY@via.dk")]
-    [TestCase("manyvia.dk")]
+    [TestCase("many@via.dk")]
     [TestCase("MOM@via.dk")]
     [TestCase("mom@via.dk")]
     public void Success_Create_Email_With_Letters(string email)
@@ -139,6 +139,8 @@ public class EmailTests
     [TestCase("asasdwae@via.dk")]
     [TestCase("looos@via.dk")]
     [TestCase("@via.dk")]
+    [TestCase("@via.dk@via.dk")]
+    [TestCase("MAN@via.dk@via.dk")]
     public void Failure_Create_Email_With_Letters(string email)
     {
         // Act
