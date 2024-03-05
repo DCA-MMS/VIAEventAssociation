@@ -23,9 +23,9 @@ public class FullNameTests
     [TestCase("john", "johnson", ExpectedResult = "John Johnson")]
     [TestCase("JOHN", "JOHNSON", ExpectedResult = "John Johnson")]
     [TestCase("jOhN", "JOhnSoN", ExpectedResult = "John Johnson")]
-    [TestCase("jens", "andersen jensen olsen", ExpectedResult = "Andersen Jensen Olsen")]
-    [TestCase("JENS", "ANDERSEN JENSEN OLSEN", ExpectedResult = "Andersen Jensen Olsen")]
-    [TestCase("jeNs", "AndeSEn jENsEn, oLseN", ExpectedResult = "Andersen Jensen Olsen")]
+    [TestCase("jens", "andersen jens olsen", ExpectedResult = "Jens Andersen Jens Olsen")]
+    [TestCase("JENS", "ANDERSEN JENS OLSEN", ExpectedResult = "Jens Andersen Jens Olsen")]
+    [TestCase("jeNs", "AnderSEn jENs oLseN", ExpectedResult = "Jens Andersen Jens Olsen")]
 
     public string Success_Create_FullName_With_Correct_Cased_Letters(string firstName, string lastName)
     {
@@ -60,7 +60,6 @@ public class FullNameTests
     [Test, Category("FullName")]
     [TestCase("a", "Johnson")]
     [TestCase("", "Johnson")]
-    [TestCase("John", "Johnson")]
     [TestCase("John", "J")]
     [TestCase("John", "")]
     [TestCase("ThisNameIsTwentySixCharact", "Johnson")]
