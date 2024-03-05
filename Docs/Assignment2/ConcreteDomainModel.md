@@ -46,7 +46,8 @@ classDiagram
 %%    style Email fill:#ffffcc
 %%    style EventTitle fill:#ffffcc
 %%    style EventDescription fill:#ffffcc
-%%    style Capacity fill:#ffffcc
+%%    style LocationCapacity fill:#ffffcc
+%%    style EventCapacity fill:#ffffcc
 %%    style TimeRange fill:#ffffcc
 %%    style LocationName fill:#ffffcc
 %%    style RequestStatus fill:#e0d0ff
