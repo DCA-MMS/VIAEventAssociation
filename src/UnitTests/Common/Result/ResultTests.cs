@@ -1,5 +1,5 @@
 using VIAEventAssociation.Core.Tools.OperationResult;
-using VIAEventAssociation.Core.Tools.OperationResult.Errors;
+using VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
 namespace Tests;
 

@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
+using VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
 namespace VIAEventAssociation.Core.Domain.Entities.Values;
 
