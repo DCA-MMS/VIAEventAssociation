@@ -9,6 +9,16 @@ public enum ErrorCode
     UserIsNotCreator = 1003,
     UserIsNotGuest = 1004,
     
+    // * USER FULLNAME ERRORS
+    FirstNameIsEmpty = 1100,
+    FirstNameIsTooShort = 1101,
+    FirstNameIsTooLong = 1102,
+    FirstNameIsInvalid = 1103,
+    LastNameIsEmpty = 1110,
+    LastNameIsTooShort = 1111,
+    LastNameIsTooLong = 1112,
+    LastNameIsInvalid = 1113,
+    
     // * EVENT ERRORS - EXAMPLES
     EventNotFound = 2000,
     EventAlreadyExists = 2001,
