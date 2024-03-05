@@ -54,26 +54,29 @@ public class EventTitle
         // * Initialize the list of errors
         var errors = new List<Error>();
 
+        // ? Is value null or empty?
+        if (string.IsNullOrEmpty(value))
+        {
+            
+            errors.Add(EventTitleError.IsEmpty());
+            return (errors.Count > 0,errors);
+        }
+        
         switch (value)
         {
-            // ? Is value null?
-            case null:
-                errors.Add(EventTitleError.IsEmpty());
-                return (false,errors);
-            
             // ? Is value too short?
             case { Length: < 3 }:
                 errors.Add(EventTitleError.IsTooShort());
-                return (false,errors);
+                return (errors.Count > 0,errors);
             
             // ? Is value too long?
             case { Length: > 75 }:
                 errors.Add(EventTitleError.IsTooLong());
-                return (false,errors);
+                return (errors.Count > 0,errors);
         }
          
         // * If there are no errors, return a success result
-        return (false,errors);;
+        return (errors.Count != 0,errors);;
     }
     
     /// <summary>
