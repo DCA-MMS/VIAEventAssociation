@@ -13,6 +13,7 @@
         <Folder Include="Common\Bases\" />
         <Folder Include="Common\Contracts\" />
         <Folder Include="Common\Values\" />
+        <Folder Include="Entities\" />
         <Folder Include="Services\" />
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>UnitTests</_Parameter1>
