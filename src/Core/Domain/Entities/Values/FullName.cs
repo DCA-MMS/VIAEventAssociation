@@ -46,7 +46,6 @@ public class FullName
     {
         var errors = new List<Error>();
     
-        //Validate FirstName
         if (string.IsNullOrWhiteSpace(name))
         {
             errors.Add(isLastName ? UserFullNameError.LastNameIsEmpty() : UserFullNameError.FirstNameIsEmpty());
