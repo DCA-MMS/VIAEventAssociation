@@ -29,7 +29,7 @@ public class Event
     /// <param name="status">The status to use</param>
     /// <param name="visibility">The visibility to use</param>
     /// <returns>A <see cref="Result"/> contain either the <see cref="Event"/> or errors</returns>
-    public static Result<Event> Create(string title, string description, EventStatus status = EventStatus.Draft, EventVisibility visibility = EventVisibility.Private) 
+    public static Result<Event> Create(string title = "Working Title", string description = "", EventStatus status = EventStatus.Draft, EventVisibility visibility = EventVisibility.Public) 
     {
         // * Create the title and description
         var titleResult = EventTitle.Create(title);

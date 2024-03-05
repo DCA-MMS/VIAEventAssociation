@@ -3,6 +3,12 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventDescriptionTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTitleTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_New_Event_Should_Have_Title&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_Empty_Event_Should_Have_Default_Title&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_New_Event_With_Invalid_Title_Should_Fail&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_New_Event_With_Invalid_Title_Should_Have_Default_Status&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_Empty_Event_Should_Have_Default_Values&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
