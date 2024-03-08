@@ -35,8 +35,7 @@
       <Folder Include="Values\Event\" />
       <Folder Include="Values\Invitation\" />
       <Folder Include="Values\Location\" />
-      <Folder Include="Values\Request\" />
-      <Folder Include="Values\User\" />
+      <Folder Include="Values\UserTests\" />
     </ItemGroup>
 
 </Project>
