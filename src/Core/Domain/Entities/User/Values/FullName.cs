@@ -4,14 +4,12 @@ using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
-namespace VIAEventAssociation.Core.Domain.Entities.Values;
+namespace VIAEventAssociation.Core.Domain.Entities.User.Values;
 
 public class FullName
 {
     public string FirstName { get; }
     public string LastName { get; }
-
-
     
     private FullName(string firstName, string lastName)
     {

@@ -2,7 +2,7 @@
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
-namespace VIAEventAssociation.Core.Domain.Entities.Values;
+namespace VIAEventAssociation.Core.Domain.Entities.User.Values;
 
 public class Email
 {
