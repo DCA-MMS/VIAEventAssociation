@@ -6,11 +6,11 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Values.Event;
 
 [TestFixture]
-[Category("Event (Aggregate)")]
-public class EventTests
+[Category("EventFactory")]
+public class EventFactoryTests
 {
    // # Default Values
-   [Test,Category("Event - Default Values")]
+   [Test,Category("EventFactory - Default Values")]
    public void Create_Empty_Event_Should_Have_Default_Values_Title()
    {
       // Arrange
@@ -26,7 +26,7 @@ public class EventTests
       Assert.That(result, Is.EqualTo(title));
    }
    
-   [Test,Category("Event - Default Values")]
+   [Test,Category("EventFactory - Default Values")]
    public void Create_Empty_Event_Should_Have_Default_Values_Description()
    {
       // Arrange
@@ -42,7 +42,7 @@ public class EventTests
       Assert.That(result, Is.EqualTo(description));
    }
    
-   [Test,Category("Event - Default Values")]
+   [Test,Category("EventFactory - Default Values")]
    public void Create_Empty_Event_Should_Have_Default_Values_Status()
    {
       // Arrange
@@ -58,7 +58,7 @@ public class EventTests
       Assert.That(result, Is.EqualTo(status));
    }
    
-   [Test,Category("Event - Default Values")]
+   [Test,Category("EventFactory - Default Values")]
    public void Create_Empty_Event_Should_Have_Default_Values_Visibility()
    {
       // Arrange
