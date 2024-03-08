@@ -138,7 +138,7 @@ public class EventFactoryTests
       Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsTooLong().Code));
    }
 
-    // # Change Description
+   // # Change Description
 
    [Test] 
    public void Create_Event_With_Description_Should_Have_Description()

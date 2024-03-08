@@ -8,7 +8,6 @@ namespace Tests.Values.Event;
 [Category("Event Description")]
 public class EventDescriptionTests
 {
-    
     [Test]
     public void Empty_EventDescription_Should_Be_Valid()
     {

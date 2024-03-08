@@ -89,9 +89,6 @@ public class EventTitleTests
         Assert.That(result.IsFailure, Is.False);
     }
     
-    // # VALID (Between 3 and 75 characters)
-    
-    
     // # TOO LONG
     
     [Test]

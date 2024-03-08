@@ -19,7 +19,6 @@ public enum ErrorCode
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
     
-
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,
     EventTitleIsTooShort = 2102,
