@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Folder Include="Aggregates\Event\Entities\" />
         <Folder Include="Aggregates\Location\Values\" />
         <Folder Include="Common\Bases\" />
         <Folder Include="Common\Contracts\" />
