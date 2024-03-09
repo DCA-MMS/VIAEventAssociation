@@ -1,4 +1,4 @@
-﻿using VIAEventAssociation.Core.Domain.Entities.User.Values;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 
 namespace Tests.Values.Users;
 

@@ -1,7 +1,7 @@
 ﻿using Tests.Common.Factories;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
-using VIAEventAssociation.Core.Domain.Entities.User;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 
 namespace Tests.Values.Invitations;
 

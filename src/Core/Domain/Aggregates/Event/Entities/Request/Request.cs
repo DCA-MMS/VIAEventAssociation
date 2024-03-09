@@ -1,5 +1,5 @@
-﻿using VIAEventAssociation.Core.Domain.Entities.Request.Values;
-using VIAEventAssociation.Core.Domain.Entities.User;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Users;
+using VIAEventAssociation.Core.Domain.Entities.Request.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Request;

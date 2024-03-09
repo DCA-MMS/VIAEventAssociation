@@ -1,5 +1,5 @@
-﻿using VIAEventAssociation.Core.Domain.Entities.User;
-using VIAEventAssociation.Core.Domain.Entities.User.Values;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 
 namespace Tests.Common.Factories;
 

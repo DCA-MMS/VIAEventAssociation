@@ -1,7 +1,7 @@
-﻿using VIAEventAssociation.Core.Domain.Entities.User.Values;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
-namespace VIAEventAssociation.Core.Domain.Entities.User;
+namespace VIAEventAssociation.Core.Domain.Aggregates.Users;
 
 public class User
 {
