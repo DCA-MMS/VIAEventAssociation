@@ -33,7 +33,6 @@
       <Folder Include="Features\User\" />
       <Folder Include="Values\Booking\" />
       <Folder Include="Values\Event\" />
-      <Folder Include="Values\Invitation\" />
       <Folder Include="Values\Location\" />
       <Folder Include="Values\UserTests\" />
     </ItemGroup>
