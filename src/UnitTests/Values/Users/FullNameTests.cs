@@ -1,6 +1,6 @@
 ﻿using VIAEventAssociation.Core.Domain.Entities.User.Values;
 
-namespace Tests.Values.UserTests;
+namespace Tests.Values.Users;
 
 [TestFixture]
 public class FullNameTests

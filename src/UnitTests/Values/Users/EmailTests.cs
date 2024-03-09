@@ -1,7 +1,7 @@
 ﻿using VIAEventAssociation.Core.Domain.Entities.User.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Values.UserTests;
+namespace Tests.Values.Users;
 
 public class EmailTests
 {

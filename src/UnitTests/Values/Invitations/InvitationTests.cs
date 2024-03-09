@@ -3,7 +3,7 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Core.Domain.Entities.User;
 
-namespace Tests.Values.InvitationTests;
+namespace Tests.Values.Invitations;
 
 [TestFixture]
 public class InvitationTests
