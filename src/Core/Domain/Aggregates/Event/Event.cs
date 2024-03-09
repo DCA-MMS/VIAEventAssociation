@@ -7,6 +7,7 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 public class Event
 {
     // - Attributes
+    public EventId Id { get; private set; }
     public EventTitle Title { get; private set; }
     public EventDescription Description { get; private set; }
     public EventStatus Status { get; private set; }
@@ -15,6 +16,7 @@ public class Event
     // # Constructor
     private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility)
     {
+        Id = new EventId();
         Title = title;
         Description = description;
         Status = status;
