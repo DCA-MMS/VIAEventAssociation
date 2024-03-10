@@ -33,6 +33,7 @@ classDiagram
     %%Request
     Request "1" --> "1" RequestStatus : Status
     Request "1" ..> "1" User : Guest
+    Request "1" --> "1" RequestReason : Reason
     
     %% Styling
 %%    style Event fill:#cdffb4
