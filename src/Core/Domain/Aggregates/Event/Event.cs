@@ -1,4 +1,5 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
@@ -14,8 +15,8 @@ public class Event
     public EventStatus Status { get; private set; }
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
-    
     public EventTimeRange TimeRange { get; private set; }
+    public List<UserId> Participants { get; }
     
     // # Constructor
     private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility, EventCapacity capacity, EventTimeRange timeRange)
@@ -27,6 +28,7 @@ public class Event
         Visibility = visibility;
         Capacity = capacity;
         TimeRange = timeRange;
+        Participants = new List<UserId>();
     }
     
     /// <summary>
@@ -211,8 +213,6 @@ public class Event
     
     public Result<bool> ChangeStatus(EventStatus status)
     {
-        
-        
         Status = status;
         
         return true;
@@ -231,5 +231,44 @@ public class Event
         
         return true;
     }
+
+    public Result AddGuest(UserId userId)
+    {
+        var errors = new List<Error>();
+        
+        if (IsFull())
+        {
+            errors.Add(EventErrors.EventIsFull());
+        }
+
+        if (Status != EventStatus.Active)
+        {
+            errors.Add(EventErrors.EventIsNotActive());
+        }
+
+        if (Visibility != EventVisibility.Public)
+        {
+            errors.Add(EventErrors.EventIsNotPublic());
+        }
+
+        if (Participants.Contains(userId))
+        {
+            errors.Add(EventErrors.EventDuplicateParticipant());
+        }
+        
+        if (errors.Count > 0)
+        {
+            return Result.Failure(errors.ToArray());
+        }
+        
+        Participants.Add(userId);
+        return Result.Success();
+    }
+
+    private bool IsFull()
+    {
+        return Participants.Count >= Capacity;
+    }
+    
     
 }

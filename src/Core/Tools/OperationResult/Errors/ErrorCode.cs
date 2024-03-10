@@ -35,6 +35,8 @@ public enum ErrorCode
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
     EventNotModifiable = 2008, // - Might need to be moved... - MHN
+    EventIsFull = 2009,
+    EventDuplicateParticipant = 2010,
     
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,
