@@ -1,16 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0be573b1_002D4a71_002D4e9a_002Daeaf_002D621d8d2cf7e8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=40e81bcd_002Dac8f_002D47cd_002Db4f4_002D6e58fa7c40d8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TimeRangeTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventDescriptionTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTitleTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_New_Event_Should_Have_Title&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_Empty_Event_Should_Have_Default_Title&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_New_Event_With_Invalid_Title_Should_Fail&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_New_Event_With_Invalid_Title_Should_Have_Default_Status&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests.Create_Empty_Event_Should_Have_Default_Values&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.TimeRangeTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventFactoryTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::92C0C0B7-33DF-4421-B3EE-EB77DBEECA28::net8.0::Tests.Values.Event.EventCapacityTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	
-	
-	</wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

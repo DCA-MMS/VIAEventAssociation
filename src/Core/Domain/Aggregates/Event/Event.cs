@@ -13,14 +13,17 @@ public class Event
     public EventStatus Status { get; private set; }
     public EventVisibility Visibility { get; private set; }
     
+    public EventCapacity Capacity { get; private set; }
+    
     // # Constructor
-    private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility)
+    private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility, EventCapacity capacity)
     {
         Id = new EventId();
         Title = title;
         Description = description;
         Status = status;
         Visibility = visibility;
+        Capacity = capacity;
     }
     
     /// <summary>
@@ -30,12 +33,14 @@ public class Event
     /// <param name="description">The description to use</param>
     /// <param name="status">The status to use</param>
     /// <param name="visibility">The visibility to use</param>
+    /// <param name="capacity">The capacity to use</param>
     /// <returns>A <see cref="Result"/> contain either the <see cref="Event"/> or errors</returns>
-    public static Result<Event> Create(string title = "Working Title", string description = "", EventStatus status = EventStatus.Draft, EventVisibility visibility = EventVisibility.Public) 
+    public static Result<Event> Create(string title = "Working Title", string description = "", EventStatus status = EventStatus.Draft, EventVisibility visibility = EventVisibility.Private, int capacity = 5) 
     {
-        // * Create the title and description
+        // * Create the title, description and capacity
         var titleResult = EventTitle.Create(title);
         var descriptionResult = EventDescription.Create(description);
+        var capacityResult = EventCapacity.Create(capacity);
 
         var errors = new List<Error>();
         // ? Check if the title is valid
@@ -50,6 +55,12 @@ public class Event
             errors.AddRange(descriptionResult.Errors);
         }
         
+        // ? Check if the capacity is valid
+        if(capacityResult.IsFailure)
+        {
+            errors.AddRange(capacityResult.Errors);
+        }
+        
         // ! If any of the title or description are invalid, return a failure result
         if(errors.Count > 0)
         {
@@ -57,7 +68,7 @@ public class Event
         }
         
         // * Create a new instance of the Event
-        var @event = new Event(titleResult, descriptionResult, status, visibility);
+        var @event = new Event(titleResult, descriptionResult, status, visibility, capacityResult);
         
         return @event;
     }
@@ -105,6 +116,29 @@ public class Event
         
         // * Set the description
         Description = descriptionResult;
+        
+        // * Return a success result
+        return true;
+    }
+
+    /// <summary>
+    /// Changes the capacity of the <see cref="Event"/>
+    /// </summary>
+    /// <param name="capacity">Capacity to change to.</param>
+    /// <returns>A <see cref="Result"/> representing if the description was changed.</returns>
+    public Result<bool> ChangeCapacity(int capacity)
+    {
+        // * Create the capacity
+        var capacityResult = EventCapacity.Create(capacity);
+
+        if (capacityResult.IsFailure)
+        {
+            // if the capacity is invalid, return a failure result
+            return Result<bool>.Failure(capacityResult.Errors.ToArray());
+        }
+        
+        // * Set the capacity
+        Capacity = capacityResult;
         
         // * Return a success result
         return true;

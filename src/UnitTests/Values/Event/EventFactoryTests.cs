@@ -62,7 +62,7 @@ public class EventFactoryTests
    public void Create_Empty_Event_Should_Have_Default_Values_Visibility()
    {
       // Arrange
-      const EventVisibility visibility = EventVisibility.Public;
+      const EventVisibility visibility = EventVisibility.Private;
       
       // Act
       var @event = EventFactory.Create()
@@ -185,7 +185,7 @@ public class EventFactoryTests
          .WithStatus(status)
          .Build();
       
-      EventStatus result = @event.Value.Status;
+      var result = @event.Value.Status;
       
       // Assert
       Assert.That(result, Is.EqualTo(status));
@@ -204,12 +204,31 @@ public class EventFactoryTests
          .WithVisibility(visibility)
          .Build();
       
-      EventVisibility result = @event.Value.Visibility;
+      var result = @event.Value.Visibility;
       
       // Assert
       Assert.That(result, Is.EqualTo(visibility));
    }
 
+   // # Change Capacity
+   
+   public void Create_Event_With_Capacity_Of_Six_Should_Have_Capacity_Of_Six()
+   {
+      // Arrange
+      const int capacity = 6;
+      
+      // Act
+      var @event = EventFactory.Create()
+         .WithCapacity(capacity)
+         .Build();
+      
+      int result = @event.Value.Capacity;
+      
+      // Assert
+      Assert.That(result, Is.EqualTo(capacity));
+   }
+   
+   
    // # Multiple Changes
    
    [Test]
@@ -219,7 +238,8 @@ public class EventFactoryTests
       const string title = "New Title";
       const string description = "New Description";
       const EventStatus status = EventStatus.Published;
-      const EventVisibility visibility = EventVisibility.Private;
+      const EventVisibility visibility = EventVisibility.Public;
+      const int capacity = 10;
       
       // Act
       var result = EventFactory.Create()
@@ -227,6 +247,7 @@ public class EventFactoryTests
          .WithDescription(description)
          .WithStatus(status)
          .WithVisibility(visibility)
+         .WithCapacity(capacity)
          .Build();
       
       var @event = result.Value;
@@ -234,11 +255,13 @@ public class EventFactoryTests
          // Assert
          string titleResult = @event.Title;
          string descriptionResult = @event.Description;
+         int capacityResult = @event.Capacity;
          
          Assert.That(titleResult, Is.EqualTo(title));
          Assert.That(descriptionResult, Is.EqualTo(description));
          Assert.That(@event.Status, Is.EqualTo(status));
          Assert.That(@event.Visibility, Is.EqualTo(visibility)); 
+         Assert.That(capacityResult, Is.EqualTo(capacity));
       });
    }
 
@@ -249,7 +272,8 @@ public class EventFactoryTests
       const string title = "AB";
       const string description = "New Description";
       const EventStatus status = EventStatus.Published;
-      const EventVisibility visibility = EventVisibility.Private;
+      const EventVisibility visibility = EventVisibility.Public;
+      const int capacity = 10;
       
       // Act
       var result = EventFactory.Create()
@@ -257,6 +281,7 @@ public class EventFactoryTests
          .WithDescription(description)
          .WithStatus(status)
          .WithVisibility(visibility)
+         .WithCapacity(capacity)
          .Build();
       
       // Assert
@@ -264,13 +289,14 @@ public class EventFactoryTests
    }
    
    [Test]
-   public void Create_Event_With_Multiple_Change_But_Invalid_Title_And_Description_Should_Fail()
+   public void Create_Event_With_Multiple_Change_But_Invalid_Title_Description_Capacity_Should_Fail()
    {
       // Arrange
       const string title = "AB";
       string description = "A".PadRight(1001, 'A');
       const EventStatus status = EventStatus.Published;
       const EventVisibility visibility = EventVisibility.Private;
+      const int capacity = -2;
       
       // Act
       var result = EventFactory.Create()
@@ -278,15 +304,17 @@ public class EventFactoryTests
          .WithDescription(description)
          .WithStatus(status)
          .WithVisibility(visibility)
+         .WithCapacity(capacity)
          .Build();
       
       
       // Assert
       Assert.Multiple(() => {
          // Assert
-         Assert.That(result.Errors.ToList(), Has.Count.EqualTo(2));
+         Assert.That(result.Errors.ToList(), Has.Count.EqualTo(3));
          Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsTooShort().Code));
          Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventDescriptionError.IsTooLong().Code));
+         Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventCapacityError.IsNegative().Code));
       });
    }
    

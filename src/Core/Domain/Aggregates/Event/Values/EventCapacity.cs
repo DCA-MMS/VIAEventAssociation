@@ -51,6 +51,7 @@ public class EventCapacity
         if (value < 0)
         {
             errors.Add(EventCapacityError.IsNegative());
+            return errors;
         }
 
         // ? Check if the value is less than 1 or greater than 1000
