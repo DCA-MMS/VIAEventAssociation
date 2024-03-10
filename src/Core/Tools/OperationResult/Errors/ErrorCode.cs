@@ -46,6 +46,8 @@ public enum ErrorCode
     EventDescriptionIsToolLong = 2201,
     EventDescriptionNotModifiable = 2202,
     
+    // * EVENT REQUEST ERRORS
+    RequestReasonIsTooLong = 2300,
     
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,
