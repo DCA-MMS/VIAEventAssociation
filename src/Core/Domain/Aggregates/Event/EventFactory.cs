@@ -7,8 +7,8 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 public class EventFactory
 {
     // - Attributes
-    private static readonly Event _event = Event.Create();
-    private static readonly List<Error> _errors = [];
+    private readonly Event _event = Event.Create();
+    private readonly List<Error> _errors = [];
     
     /// <summary>
     /// Initializes the creation of a new event
