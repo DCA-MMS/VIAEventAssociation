@@ -1,4 +1,4 @@
-﻿namespace VIAEventAssociation.Core.Domain.Entities.Request.Values;
+﻿namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Request.Values;
 
 public enum RequestStatus
 {
