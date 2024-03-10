@@ -9,7 +9,7 @@ public class FullNameTests
     [TestCase("Bob", "Bobsen")]
     public void Success_Create_FullName(string firstName, string lastName)
     {
-        // Act
+        // Arrange
         var result = FullName.Create(firstName, lastName);
         Assert.Multiple(() =>
         {
@@ -29,7 +29,7 @@ public class FullNameTests
 
     public string Success_Create_FullName_With_Correct_Cased_Letters(string firstName, string lastName)
     {
-        // Act
+        // Arrange
         var result = FullName.Create(firstName, lastName);
 
         // Assert
@@ -48,7 +48,7 @@ public class FullNameTests
 
     public void Success_Create_FullName_With_Valid_Length(string firstName, string lastName)
     {
-        // Act
+        // Arrange
         var result = FullName.Create(firstName, lastName);
 
         // Assert
@@ -68,7 +68,7 @@ public class FullNameTests
     [TestCase("jgklfdsjilgjrliajiltjdsiirllsdijrlisejilrjselirjseilrjslr", "irojesjrioe jsiorjeois rjoiesjroiesjoirjesior ioesjriojesoi rjesoirj oiesroisejrojseoirj seoijrs")]
     public void Failure_Create_FullName_With_Invalid_Length(string firstName, string lastName)
     {
-        // Act
+        // Arrange
         var result = FullName.Create(firstName, lastName);
 
         // Assert
@@ -86,7 +86,7 @@ public class FullNameTests
     [TestCase("Jens", "Jensen - Johnson")]
     public void Failure_Create_FullName_With_Invalid_Characters(string firstName, string lastName)
     {
-        // Act
+        // Arrange
         var result = FullName.Create(firstName, lastName);
 
         // Assert

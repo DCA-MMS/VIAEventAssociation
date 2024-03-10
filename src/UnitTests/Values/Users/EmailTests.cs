@@ -9,7 +9,7 @@ public class EmailTests
     [TestCase("BOBS@via.dk")]
     public void Success_Create_Email(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -28,7 +28,7 @@ public class EmailTests
     [TestCase("111111@via.dk")]
     public void Success_Create_Email_With_Numbers(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -47,7 +47,7 @@ public class EmailTests
     [TestCase("mom@via.dk")]
     public void Success_Create_Email_With_Letters(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -66,7 +66,7 @@ public class EmailTests
     [TestCase("maNY@via.dK")]
     public void Success_Create_Email_With_Different_Cased_Letters(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -84,7 +84,7 @@ public class EmailTests
     [TestCase("")]
     public void Failure_Create_Email_That_Is_Empty(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -106,7 +106,7 @@ public class EmailTests
     [TestCase("BOBSvia.dk")]
     public void Failure_Create_Email_With_Invalid_Ending(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -123,7 +123,7 @@ public class EmailTests
     [TestCase("78514268@via.dk")]
     public void Failure_Create_Email_With_Numbers(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -143,7 +143,7 @@ public class EmailTests
     [TestCase("MAN@via.dk@via.dk")]
     public void Failure_Create_Email_With_Letters(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -160,7 +160,7 @@ public class EmailTests
     [TestCase("LO2@via.dk")]
     public void Failure_Create_Email_With_Letters_And_Numbers(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
@@ -178,7 +178,7 @@ public class EmailTests
     [TestCase("L-MN@via.dk")]
     public void Failure_Create_Email_With_Invalid_Characters(string email)
     {
-        // Act
+        // Arrange
         var result = Email.Create(email);
         
         // Assert
