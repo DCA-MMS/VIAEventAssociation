@@ -220,14 +220,13 @@ public class Event
     
     public Result<bool> ChangeVisibility(EventVisibility visibility)
     {
-        if(Status is EventStatus.Cancelled)
+        if(Status is EventStatus.Cancelled || (Status is EventStatus.Active && visibility is EventVisibility.Private))
         {
             return Result<bool>.Failure(EventVisibilityError.NotModifiable());
         }
         
         Visibility = visibility;
-        
-        // TODO: Add logic to check if the visibility can be changed?
+        Status = EventStatus.Draft;
         
         return true;
     }

@@ -1,4 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0be573b1_002D4a71_002D4e9a_002Daeaf_002D621d8d2cf7e8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\simon\source\repos\VIAEventAssociation\src\UnitTests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=795aedba_002D3ad4_002D453b_002D89ea_002Db21e45e96f30/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
     &lt;And&gt;&#xD;
@@ -22,4 +25,7 @@
       &lt;Project Location="C:\Users\madsh\RiderProjects\VIAEventAssociation\src\UnitTests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
     &lt;/And&gt;&#xD;
   &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=eb82f6fd_002D36c5_002D44a2_002D8b1d_002D5d9a453a05da/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Changing_Event_From_Private_To_Private_With_Status_Draft_Or_Ready_Should_Succeed" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\simon\source\repos\VIAEventAssociation\src\UnitTests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
