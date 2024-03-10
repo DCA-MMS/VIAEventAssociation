@@ -1,6 +1,4 @@
-﻿using NUnit.Framework.Internal.Execution;
-using Tests.Common.Factories;
-using VIAEventAssociation.Core.Domain.Aggregates.Event;
+﻿using Tests.Common.Factories;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
