@@ -18,6 +18,7 @@ public enum ErrorCode
     EventIsNotPublished = 2005,
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
+    EventNotModifiable = 2008, // - Might need to be moved... - MHN
     
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,
@@ -29,6 +30,11 @@ public enum ErrorCode
     EventDescriptionIsToolLong = 2201,
     EventDescriptionNotModifiable = 2202,
     
+    // * EVENT CAPACITY ERRORS
+    EventCapacityIsNegative = 2301,
+    EventCapacityIsLessThanOne = 2302,
+    EventCapacityIsGreaterThanAThousand = 2303,
+    EventCapacityNotModifiable = 2304,
     
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,

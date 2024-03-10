@@ -32,9 +32,9 @@ public class EventTitle
         var result = Validate(value);
 
         // ! If there are any errors, return a failure result
-        if (result.failure)
+        if (result.Count > 0)
         {
-            return Result<EventTitle>.Failure(result.errors.ToArray());
+            return Result<EventTitle>.Failure(result.ToArray());
         }
 
         // * Create a new instance of the EventDescription
@@ -49,7 +49,7 @@ public class EventTitle
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    private static (bool failure, List<Error> errors) Validate(string value)
+    private static List<Error> Validate(string value)
     {
         // * Initialize the list of errors
         var errors = new List<Error>();
@@ -57,9 +57,7 @@ public class EventTitle
         // ? Is value null or empty?
         if (string.IsNullOrEmpty(value))
         {
-            
             errors.Add(EventTitleError.IsEmpty());
-            return (errors.Count > 0,errors);
         }
         
         switch (value)
@@ -67,16 +65,15 @@ public class EventTitle
             // ? Is value too short?
             case { Length: < 3 }:
                 errors.Add(EventTitleError.IsTooShort());
-                return (errors.Count > 0,errors);
-            
+                break;
             // ? Is value too long?
             case { Length: > 75 }:
                 errors.Add(EventTitleError.IsTooLong());
-                return (errors.Count > 0,errors);
+                break;;
         }
          
         // * If there are no errors, return a success result
-        return (errors.Count != 0,errors);;
+        return errors;
     }
     
     /// <summary>
