@@ -36,6 +36,18 @@ public enum ErrorCode
     EventCapacityIsGreaterThanAThousand = 2303,
     EventCapacityNotModifiable = 2304,
     
+    // * EVENT TIME RANGE ERRORS
+    EventTimeRangeStartAfterEndDate = 2401,
+    EventTimeRangeStartAfterEndTime = 2402,
+    EventTimeRangeDurationLessThanOneHour = 2403,
+    EventTimeRangeDurationIsLongerThanTenHours = 2404,
+    EventTimeRangeStartIsBeforeEight = 2405,
+    EventTimeRangeStartIsInPast = 2406,
+    EventTimeRangeNotModifiable = 2407,
+    
+    // * EVENT VISIBILITY ERRORS
+    EventVisibilityNotModifiable = 2501,
+    
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,
     BookingAlreadyExists = 3001,

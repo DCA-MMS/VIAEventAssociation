@@ -1,6 +1,7 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
+using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
 namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 
@@ -12,11 +13,12 @@ public class Event
     public EventDescription Description { get; private set; }
     public EventStatus Status { get; private set; }
     public EventVisibility Visibility { get; private set; }
-    
     public EventCapacity Capacity { get; private set; }
     
+    public EventTimeRange TimeRange { get; private set; }
+    
     // # Constructor
-    private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility, EventCapacity capacity)
+    private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility, EventCapacity capacity, EventTimeRange timeRange)
     {
         Id = new EventId();
         Title = title;
@@ -24,6 +26,7 @@ public class Event
         Status = status;
         Visibility = visibility;
         Capacity = capacity;
+        TimeRange = timeRange;
     }
     
     /// <summary>
@@ -41,6 +44,7 @@ public class Event
         var titleResult = EventTitle.Create(title);
         var descriptionResult = EventDescription.Create(description);
         var capacityResult = EventCapacity.Create(capacity);
+        var timeRangeResult = EventTimeRange.Create(DateTime.Today.AddHours(8), DateTime.Today.AddHours(9));
 
         var errors = new List<Error>();
         // ? Check if the title is valid
@@ -68,7 +72,7 @@ public class Event
         }
         
         // * Create a new instance of the Event
-        var @event = new Event(titleResult, descriptionResult, status, visibility, capacityResult);
+        var @event = new Event(titleResult, descriptionResult, status, visibility, capacityResult,timeRangeResult);
         
         return @event;
     }
@@ -80,6 +84,12 @@ public class Event
     /// <returns>A <see cref="Result"/> representing if the title was changed.</returns>
     public Result<bool> ChangeTitle(string title)
     {
+        // ? Check if the title is modifiable
+        if(Status is EventStatus.Active or EventStatus.Cancelled)
+        {
+            return Result<bool>.Failure(EventTitleError.NotModifiable());
+        }
+        
         // * Create the title
         var titleResult = EventTitle.Create(title);
         
@@ -93,6 +103,12 @@ public class Event
         // * Set the title
         Title = titleResult;
         
+        // * Change the status to Draft if it is not already
+        if(Status != EventStatus.Draft)
+        {
+            Status = EventStatus.Draft;
+        }
+        
         // * Return a success result
         return true;
     }
@@ -104,6 +120,12 @@ public class Event
     /// <returns> A <see cref="Result"/> representing if the description was changed.</returns>
     public Result<bool> ChangeDescription(string description)
     {
+        // ? Check if the title is modifiable
+        if(Status is EventStatus.Active or EventStatus.Cancelled)
+        {
+            return Result<bool>.Failure(EventDescriptionError.NotModifiable());
+        }
+        
         // * Create the description
         var descriptionResult = EventDescription.Create(description);
         
@@ -116,6 +138,12 @@ public class Event
         
         // * Set the description
         Description = descriptionResult;
+        
+        // * Change the status to Draft if it is not already
+        if(Status != EventStatus.Draft)
+        {
+            Status = EventStatus.Draft;
+        }
         
         // * Return a success result
         return true;
@@ -143,18 +171,60 @@ public class Event
         // * Return a success result
         return true;
     }
+
+    /// <summary>
+    /// Changes the time range of the <see cref="Event"/>
+    /// </summary>
+    /// <param name="start">Start date and time of the event</param>
+    /// <param name="end">End date and time of the event</param>
+    /// <returns></returns>
+    public Result<bool> ChangeTimeRange(DateTime start, DateTime end)
+    {
+        // ? Check if the title is modifiable
+        if(Status is EventStatus.Active or EventStatus.Cancelled)
+        {
+            return Result<bool>.Failure(EventDescriptionError.NotModifiable());
+        }
+        
+        // * Create the time range
+        var timeRangeResult = EventTimeRange.Create(start, end);
+        
+        // ? Check if the time range is valid
+        if(timeRangeResult.IsFailure)
+        {
+            // ! If the time range is invalid, return a failure result
+            return Result<bool>.Failure(timeRangeResult.Errors.ToArray());
+        }
+        
+        // * Set the time range
+        TimeRange = timeRangeResult;
+        
+        // * Change the status to Draft if it is not already
+        if(Status != EventStatus.Draft)
+        {
+            Status = EventStatus.Draft;
+        }
+        
+        // * Return a success result
+        return true;
+    }
     
     public Result<bool> ChangeStatus(EventStatus status)
     {
-        Status = status;
         
-        // TODO: Add logic to check if the status can be changed?
+        
+        Status = status;
         
         return true;
     }
     
     public Result<bool> ChangeVisibility(EventVisibility visibility)
     {
+        if(Status is EventStatus.Cancelled)
+        {
+            return Result<bool>.Failure(EventVisibilityError.NotModifiable());
+        }
+        
         Visibility = visibility;
         
         // TODO: Add logic to check if the visibility can be changed?

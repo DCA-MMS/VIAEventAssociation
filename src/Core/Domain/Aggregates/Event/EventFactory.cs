@@ -71,6 +71,24 @@ public class EventFactory
     }
     
     /// <summary>
+    /// Adds a time range to the event
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
+    public EventFactory WithTimeRange(DateTime start, DateTime end)
+    {
+        var result = _event.ChangeTimeRange(start, end);
+        
+        if (result.IsFailure)
+        {
+            _errors.AddRange(result.Errors);
+        }
+        
+        return this;
+    }
+    
+    /// <summary>
     /// Adds a status to the event
     /// </summary>
     /// <param name="status"></param>
@@ -91,7 +109,6 @@ public class EventFactory
         _event.ChangeVisibility(visibility);
         return this;
     }
-    
     
     /// <summary>
     /// Returns the built event

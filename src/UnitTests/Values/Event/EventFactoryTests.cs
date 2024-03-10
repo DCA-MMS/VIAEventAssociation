@@ -178,7 +178,7 @@ public class EventFactoryTests
    public void Create_Event_With_Status_Should_Have_Status()
    {
       // Arrange
-      const EventStatus status = EventStatus.Published;
+      const EventStatus status = EventStatus.Ready;
       
       // Act
       var @event = EventFactory.Create()
@@ -237,7 +237,7 @@ public class EventFactoryTests
       // Arrange
       const string title = "New Title";
       const string description = "New Description";
-      const EventStatus status = EventStatus.Published;
+      const EventStatus status = EventStatus.Ready;
       const EventVisibility visibility = EventVisibility.Public;
       const int capacity = 10;
       
@@ -271,7 +271,7 @@ public class EventFactoryTests
       // Arrange
       const string title = "AB";
       const string description = "New Description";
-      const EventStatus status = EventStatus.Published;
+      const EventStatus status = EventStatus.Ready;
       const EventVisibility visibility = EventVisibility.Public;
       const int capacity = 10;
       
@@ -294,7 +294,7 @@ public class EventFactoryTests
       // Arrange
       const string title = "AB";
       string description = "A".PadRight(1001, 'A');
-      const EventStatus status = EventStatus.Published;
+      const EventStatus status = EventStatus.Ready;
       const EventVisibility visibility = EventVisibility.Private;
       const int capacity = -2;
       
