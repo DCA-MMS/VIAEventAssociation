@@ -12,14 +12,5 @@
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=985d1f17_002Db67d_002D49a5_002D8c92_002D3f9bb86f2408/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;And&gt;&#xD;
-      &lt;Namespace&gt;Tests.Features.Event&lt;/Namespace&gt;&#xD;
-      &lt;Project Location="C:\Users\madsh\RiderProjects\VIAEventAssociation\src\UnitTests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
-    &lt;/And&gt;&#xD;
-    &lt;And&gt;&#xD;
-      &lt;Namespace&gt;Tests.Values.Event&lt;/Namespace&gt;&#xD;
-      &lt;Project Location="C:\Users\madsh\RiderProjects\VIAEventAssociation\src\UnitTests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
-    &lt;/And&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;Project Location="C:\Users\madsh\RiderProjects\VIAEventAssociation\src\UnitTests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
