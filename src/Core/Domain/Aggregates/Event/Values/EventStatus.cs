@@ -10,19 +10,15 @@ public enum EventStatus
     /// </summary>
     Draft,
     /// <summary>
-    /// The event is ready for publication and is visible to the public.
+    /// The event is ready for publication and is to be visible for the public.
     /// </summary>
-    Published,
+    Ready,
     /// <summary>
-    /// The event has been cancelled and is no longer visible to the public.
+    /// The event is currently active and is visible for the public.
     /// </summary>
-    Cancelled,
+    Active,
     /// <summary>
-    /// The event has been completed and is no longer visible to the public.
+    /// The event has been cancelled and is no longer visible for the public.
     /// </summary>
-    Completed,
-    /// <summary>
-    /// The event has been archived and is no longer visible to the public.
-    /// </summary>
-    Archived
+    Cancelled
 }

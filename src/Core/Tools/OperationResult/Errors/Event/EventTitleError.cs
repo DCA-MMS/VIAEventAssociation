@@ -13,21 +13,21 @@ public class EventTitleError : Error
     /// <summary>
     /// Error for when a event title is empty
     /// </summary>
-    public static EventTitleError IsEmpty() => new EventTitleError(ErrorCode.EventTitleIsEmpty, "The title cannot be empty");
+    public static EventTitleError IsEmpty() => new (ErrorCode.EventTitleIsEmpty, "The title cannot be empty, it must be between 3 and 75 characters");
     
     /// <summary>
     /// Error for when a event title is too short
     /// </summary>
-    public static EventTitleError IsTooShort() => new EventTitleError(ErrorCode.EventTitleIsTooShort, "The title cannot be shorter than 3 characters");
+    public static EventTitleError IsTooShort() => new (ErrorCode.EventTitleIsTooShort, "The title cannot be shorter than 3 characters, it must be between 3 and 75 characters");
     
     /// <summary>
     /// Error for when a event title is too long
     /// </summary>
-    public static EventTitleError IsTooLong() => new EventTitleError(ErrorCode.EventTitleIsTooLong, "The title cannot be longer than 75 characters");
+    public static EventTitleError IsTooLong() => new (ErrorCode.EventTitleIsTooLong, "The title cannot be longer than 75 characters, it must be between 3 and 75 characters");
     
     /// <summary>
     /// Error for when a event title is not modifiable
     /// </summary>
-    public static EventTitleError NotModifiable() => new EventTitleError(ErrorCode.EventTitleNotModifiable, "The title cannot be modified");
+    public static EventTitleError NotModifiable() => new (ErrorCode.EventTitleNotModifiable, "The title cannot be modified");
 
 }

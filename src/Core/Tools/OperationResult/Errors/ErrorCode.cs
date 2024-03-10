@@ -34,8 +34,8 @@ public enum ErrorCode
     EventIsNotPublished = 2005,
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
+    EventNotModifiable = 2008, // - Might need to be moved... - MHN
     
-
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,
     EventTitleIsTooShort = 2102,
@@ -46,8 +46,26 @@ public enum ErrorCode
     EventDescriptionIsToolLong = 2201,
     EventDescriptionNotModifiable = 2202,
     
+    // * EVENT CAPACITY ERRORS
+    EventCapacityIsNegative = 2301,
+    EventCapacityIsLessThanOne = 2302,
+    EventCapacityIsGreaterThanAThousand = 2303,
+    EventCapacityNotModifiable = 2304,
+    
+    // * EVENT TIME RANGE ERRORS
+    EventTimeRangeStartAfterEndDate = 2401,
+    EventTimeRangeStartAfterEndTime = 2402,
+    EventTimeRangeDurationLessThanOneHour = 2403,
+    EventTimeRangeDurationIsLongerThanTenHours = 2404,
+    EventTimeRangeStartIsBeforeEight = 2405,
+    EventTimeRangeStartIsInPast = 2406,
+    EventTimeRangeNotModifiable = 2407,
+    
+    // * EVENT VISIBILITY ERRORS
+    EventVisibilityNotModifiable = 2501,
+    
     // * EVENT REQUEST ERRORS
-    RequestReasonIsTooLong = 2300,
+    RequestReasonIsTooLong = 2600,
     
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,
