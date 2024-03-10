@@ -32,9 +32,9 @@ public class EventDescription
         var result = Validate(value);
 
         // ! If there are any errors, return a failure result
-        if (result.failure)
+        if (result.Count > 0)
         {
-            return Result<EventDescription>.Failure(result.errors.ToArray());
+            return Result<EventDescription>.Failure(result.ToArray());
         }
         
         // * Create a new instance of the EventDescription
@@ -49,7 +49,7 @@ public class EventDescription
     /// </summary>
     /// <param name="value">The value to validate</param>
     /// <returns>A <see cref="bool"/> representing if value has passed the validation</returns>
-    private static (bool failure, List<Error> errors) Validate(string value)
+    private static List<Error> Validate(string value)
     {
         var errors = new List<Error>();
 
@@ -60,8 +60,8 @@ public class EventDescription
                 errors.Add(EventDescriptionError.IsTooLong());
                 break;
         }
-        
-        return (errors.Count != 0, errors);
+
+        return errors;
     }
 
     /// <summary>
