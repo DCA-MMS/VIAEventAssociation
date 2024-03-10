@@ -61,24 +61,10 @@ public class EventCapacityTests
         var result = EventCapacity.Create(value);
         
         // Assert
-        Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventCapacityError.IsLessThanOne().Code));
+        Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventCapacityError.IsLessThanFive().Code));
     }
     
-    // # BOTTOM LIMIT (1) - VALID
-    [Test]
-    public void One_EventCapacity_Should_Be_Valid()
-    {
-        // Arrange
-        var value = 1;
-        
-        // Act
-        var result = EventCapacity.Create(value);
-        
-        // Assert
-        Assert.That(result.IsFailure, Is.False);
-    }
-    
-    // # VALID (5)
+    // # BOTTOM LIMIT (5) - VALID
     [Test]
     public void Five_EventCapacity_Should_Be_Valid()
     {
@@ -92,12 +78,12 @@ public class EventCapacityTests
         Assert.That(result.IsFailure, Is.False);
     }
     
-    // # TOP LIMIT (1000) - VALID
+    // # TOP LIMIT (50) - VALID
     [Test]
-    public void OneThousand_EventCapacity_Should_Be_Valid()
+    public void Fifty_EventCapacity_Should_Be_Valid()
     {
         // Arrange
-        var value = 1000;
+        var value = 50;
         
         // Act
         var result = EventCapacity.Create(value);
@@ -106,12 +92,12 @@ public class EventCapacityTests
         Assert.That(result.IsFailure, Is.False);
     }
     
-    // # TOO HIGH (1001) - INVALID
+    // # TOO HIGH (51) - INVALID
     [Test]
-    public void OneThousandOne_EventCapacity_Should_Be_Invalid()
+    public void FiftyOne_EventCapacity_Should_Be_Invalid()
     {
         // Arrange
-        var value = 1001;
+        var value = 51;
         
         // Act
         var result = EventCapacity.Create(value);
@@ -131,6 +117,6 @@ public class EventCapacityTests
         var result = EventCapacity.Create(value);
         
         // Assert
-        Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventCapacityError.IsGreaterThanAThousand().Code));
+        Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventCapacityError.IsGreaterThanFifty().Code));
     }
 }

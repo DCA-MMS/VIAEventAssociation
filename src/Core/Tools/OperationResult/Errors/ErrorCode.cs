@@ -35,6 +35,7 @@ public enum ErrorCode
     EventCapacityIsLessThanOne = 2302,
     EventCapacityIsGreaterThanAThousand = 2303,
     EventCapacityNotModifiable = 2304,
+    EventCapacityCantBeReduced = 2305,
     
     // * EVENT TIME RANGE ERRORS
     EventTimeRangeStartAfterEndDate = 2401,

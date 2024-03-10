@@ -164,6 +164,16 @@ public class Event
             // if the capacity is invalid, return a failure result
             return Result<bool>.Failure(capacityResult.Errors.ToArray());
         }
+
+        if (Status is EventStatus.Cancelled)
+        {
+            return Result<bool>.Failure(EventCapacityError.NotModifiable());
+        }
+        
+        if (Status is EventStatus.Active && capacity < Capacity)
+        {
+            return Result<bool>.Failure(EventCapacityError.CantReduceCapacityError());
+        }
         
         // * Set the capacity
         Capacity = capacityResult;
