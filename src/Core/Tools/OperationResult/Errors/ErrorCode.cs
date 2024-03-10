@@ -52,8 +52,12 @@ public enum ErrorCode
     BookingAlreadyExists = 3001,
     BookingIsNotActive = 3002,
     BookingIsNotConfirmed = 3003,
-    BookingIsNotCancelled = 3004
+    BookingIsNotCancelled = 3004,
     
+    // * LOCATION ERRORS
+    LocationExample = 4000,
     
+    // * TIME RANGE ERRORS
+    TimeRangeEndBeforeOrEqualToStart = 5000,
     
 }

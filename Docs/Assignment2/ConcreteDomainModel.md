@@ -6,7 +6,7 @@ classDiagram
     Event "1" --> "1" EventVisibility : Visibility
     Event "1" --> "1" EventStatus : Status
     Event "1" *--> "1" TimeRange : Duration
-    Event "1" *--> "1" Capacity : MaxGuest
+    Event "1" *--> "1" EventCapacity : MaxGuest
     Event "1" ..> "1" Location : Location
     Request "1" <--* "0..*" Event : Requests
     Invitation "1" <--* "0..*" Event : Invitations 
@@ -20,7 +20,7 @@ classDiagram
     %%Location
     Location "1" --> "1" LocationName : Name
     Location "1" --> "1" LocationType : Type
-    Location "1" --> "1" Capacity : Capacity
+    Location "1" --> "1" LocationCapacity : Capacity
     Location "1" *--> "0..*" Booking : Bookings
 
     %%Booking
@@ -46,7 +46,8 @@ classDiagram
 %%    style Email fill:#ffffcc
 %%    style EventTitle fill:#ffffcc
 %%    style EventDescription fill:#ffffcc
-%%    style Capacity fill:#ffffcc
+%%    style LocationCapacity fill:#ffffcc
+%%    style EventCapacity fill:#ffffcc
 %%    style TimeRange fill:#ffffcc
 %%    style LocationName fill:#ffffcc
 %%    style RequestStatus fill:#e0d0ff
@@ -63,12 +64,6 @@ classDiagram
         +[get] Start : DateTime
         +[get] End : DateTime
         +TimeRange(start : DateTime, end : DateTime)
-    }
-
-    class Capacity {
-        <<Value>>
-        +[get] Value : int
-        +Capacity(capacity : int)
     }
 
     namespace EVENT {
@@ -117,6 +112,12 @@ classDiagram
             +Ready
             +Cancelled
         }
+
+        class EventCapacity {
+            <<Value>>
+            +[get] Value : int
+            +EventCapacity(capacity : int)
+        }
     }
     
     namespace LOCATION {
@@ -138,6 +139,12 @@ classDiagram
             <<Value>>
             +[get] Value : string
             +LocationName(name : string)
+        }
+
+        class LocationCapacity {
+            <<Value>>
+            +[get] Value : int
+            +LocationCapacity(capacity : int)
         }
 
         class Booking {
