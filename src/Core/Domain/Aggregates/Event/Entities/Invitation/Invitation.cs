@@ -1,23 +1,23 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
-using VIAEventAssociation.Core.Domain.Aggregates.Users;
+using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
 
 public class Invitation
 {
-    public User Guest { get; }
+    public UserId GuestId { get; }
     public InvitationStatus Status { get; private set; }
 
-    private Invitation(User guest, InvitationStatus status)
+    private Invitation(UserId guestId, InvitationStatus status)
     {
-        Guest = guest;
+        GuestId = guestId;
         Status = status;
     }
 
-    public static Result<Invitation> Create(User guest, InvitationStatus status)
+    public static Result<Invitation> Create(UserId guestId, InvitationStatus status)
     {
-        return Result<Invitation>.Success(new Invitation(guest, status));
+        return Result<Invitation>.Success(new Invitation(guestId, status));
     }
 
     public Result Accept()
