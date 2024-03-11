@@ -7,8 +7,8 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 public class EventFactory
 {
     // - Attributes
-    private static readonly Event _event = Event.Create();
-    private static readonly List<Error> _errors = [];
+    private readonly Event _event = Event.Create();
+    private readonly List<Error> _errors = [];
     
     /// <summary>
     /// Initializes the creation of a new event
@@ -116,6 +116,10 @@ public class EventFactory
     /// <returns></returns>
     public Result<Event> Build()
     {
+        // TODO: The EventFactory should probably not handle errors. It's making unit testing more restrictive.
+        return _event;
+        
+        /*
         // ! If there are no errors, return the event
         if (_errors.Count <= 0) return _event;
         
@@ -123,6 +127,6 @@ public class EventFactory
         var errors = _errors.ToArray();
         _errors.Clear();
         return Result<Event>.Failure(errors);
-
+        */
     }
 }

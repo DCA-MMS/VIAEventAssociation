@@ -14,7 +14,6 @@ public class Event
     public EventStatus Status { get; private set; }
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
-    
     public EventTimeRange TimeRange { get; private set; }
     
     // # Constructor
@@ -240,5 +239,26 @@ public class Event
         
         return true;
     }
-    
+
+    public Result MakeReady()
+    {
+        if (Status is EventStatus.Cancelled)
+        {
+            return Result.Failure(EventError.CantReadyCancelledEvent());
+        }
+        
+        if (DateTime.Now > TimeRange.Start)
+        {
+            return Result.Failure(EventError.CantReadyEventWithStartTimePriorToNow());
+        }
+        
+        if (Title == "Working Title")
+        {
+            return Result.Failure(EventError.CantReadyWhenTitleIsDefault());
+        }
+        
+        Status = EventStatus.Ready;
+
+        return Result.Success();
+    }
 }
