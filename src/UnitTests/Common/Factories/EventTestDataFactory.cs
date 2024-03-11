@@ -38,6 +38,33 @@ public static class EventTestDataFactory
         return publicEvent;
     }
     
+    public static Event ActivePublicEventWithPendingInvitation()
+    {
+        var publicEvent = ActivePublicEvent();
+
+        publicEvent.InviteGuest(new UserId());
+
+        return publicEvent;
+    }
+    
+    public static Event CancelledPublicEventWithPendingInvitation()
+    {
+        var publicEvent = ActivePublicEventWithPendingInvitation();
+    
+        publicEvent.ChangeStatus(EventStatus.Cancelled);
+        
+        return publicEvent;
+    }
+    
+    public static Event ReadyPublicEventWithPendingInvitation()
+    {
+        var publicEvent = ActivePublicEventWithPendingInvitation();
+    
+        publicEvent.ChangeStatus(EventStatus.Ready);
+        
+        return publicEvent;
+    }
+    
     public static Event FullActivePublicEvent()
     {
         var @event = ActivePublicEvent();
@@ -47,6 +74,20 @@ public static class EventTestDataFactory
             @event.AddGuest(new UserId());
         }
 
+        return @event;
+    }
+    
+    public static Event FullActivePublicEventWithPendingInvitation()
+    {
+        var @event = ActivePublicEvent();
+        
+        @event.InviteGuest(new UserId());
+
+        for (var i = 0; i < @event.Capacity; i++)
+        {
+            @event.AddGuest(new UserId());
+        }        
+        
         return @event;
     }
 }

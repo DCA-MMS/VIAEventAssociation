@@ -12,5 +12,9 @@ public class EventInvitationError : Error
     public static EventInvitationError InvitationToNonReadyOrActiveEvent() => new (ErrorCode.InvitationToNonReadyOrActiveEvent, "Guests can only be invited to ready or active events");
     
     public static EventInvitationError InvitationToFullEvent() => new (ErrorCode.InvitationToFullEvent, "You cannot invite a guest to a full event");
+    public static EventInvitationError InvitationAcceptToGuestNotInvited() => new (ErrorCode.InvitationAcceptToGuestNotInvited, "You are not invited to this event");
+    public static EventInvitationError InvitationAcceptToFullEvent() => new (ErrorCode.InvitationAcceptToFullEvent, "You cannot accept the invitation the event is already full");
+    public static EventInvitationError InvitationAcceptToCancelledEvent() => new (ErrorCode.InvitationAcceptToCancelledEvent, "You cannot accept the invitation, the event has been cancelled");
+    public static EventInvitationError InvitationAcceptToReadyEvent() => new (ErrorCode.InvitationAcceptToReadyEvent, "You have to wait until the event is active before accepting the invitation");
 
 }

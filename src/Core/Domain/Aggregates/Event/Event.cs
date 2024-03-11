@@ -298,6 +298,41 @@ public class Event
         return Result.Success();
     }
 
+    public Result AcceptInvitation(UserId userId)
+    {
+        var errors = new List<Error>();
+
+        
+        var invitation = Invitations.FirstOrDefault(x => x.GuestId == userId);
+        if (invitation == null)
+        {
+            errors.Add(EventInvitationError.InvitationAcceptToGuestNotInvited());
+        }
+
+        if (IsFull())
+        {
+            errors.Add(EventInvitationError.InvitationAcceptToFullEvent());
+        }
+
+        if (Status == EventStatus.Cancelled)
+        {
+            errors.Add(EventInvitationError.InvitationAcceptToCancelledEvent());
+        }
+        
+        if (Status == EventStatus.Ready)
+        {
+            errors.Add(EventInvitationError.InvitationAcceptToReadyEvent());
+        }
+        
+        if (errors.Count > 0)
+        {
+            return Result.Failure(errors.ToArray());
+        }
+
+        invitation!.Accept();
+        return Result.Success();
+    }
+
     private bool IsFull()
     {
         return Participants.Count + Invitations.Count(x => x.Status == InvitationStatus.Accepted) >= Capacity;
