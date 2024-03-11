@@ -301,7 +301,6 @@ public class Event
     public Result AcceptInvitation(UserId userId)
     {
         var errors = new List<Error>();
-
         
         var invitation = Invitations.FirstOrDefault(x => x.GuestId == userId);
         if (invitation == null)
@@ -330,6 +329,35 @@ public class Event
         }
 
         invitation!.Accept();
+        return Result.Success();
+    }
+    
+    public Result DeclineInvitation(UserId userId)
+    {
+        var errors = new List<Error>();
+        
+        var invitation = Invitations.FirstOrDefault(x => x.GuestId == userId);
+        if (invitation == null)
+        {
+            errors.Add(EventInvitationError.InvitationDeclineToGuestNotInvited());
+        }
+        
+        if (Status == EventStatus.Cancelled)
+        {
+            errors.Add(EventInvitationError.InvitationDeclineToCancelledEvent());
+        }
+        
+        if (Status == EventStatus.Ready)
+        {
+            errors.Add(EventInvitationError.InvitationDeclineToReadyEvent());
+        }
+        
+        if (errors.Count > 0)
+        {
+            return Result.Failure(errors.ToArray());
+        }
+
+        invitation!.Decline();
         return Result.Success();
     }
 

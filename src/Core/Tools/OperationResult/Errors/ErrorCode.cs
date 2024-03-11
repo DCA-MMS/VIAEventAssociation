@@ -78,6 +78,9 @@ public enum ErrorCode
     InvitationAcceptToFullEvent = 2702,
     InvitationAcceptToCancelledEvent = 2703,
     InvitationAcceptToReadyEvent = 2704,
+    InvitationDeclineToGuestNotInvited = 2705,
+    InvitationDeclineToCancelledEvent = 2706,
+    InvitationDeclineToReadyEvent = 2707,
 
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,
