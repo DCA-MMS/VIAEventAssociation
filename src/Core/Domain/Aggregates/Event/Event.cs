@@ -1,4 +1,6 @@
-﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
+using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
@@ -17,6 +19,7 @@ public class Event
     public EventCapacity Capacity { get; private set; }
     public EventTimeRange TimeRange { get; private set; }
     public List<UserId> Participants { get; }
+    public List<Invitation> Invitations { get; }
     
     // # Constructor
     private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility, EventCapacity capacity, EventTimeRange timeRange)
@@ -29,6 +32,7 @@ public class Event
         Capacity = capacity;
         TimeRange = timeRange;
         Participants = new List<UserId>();
+        Invitations = new List<Invitation>();
     }
     
     /// <summary>
@@ -271,9 +275,32 @@ public class Event
         return Result.Success();
     }
 
+    public Result InviteGuest(UserId userId)
+    {
+        var errors = new List<Error>();
+
+        if (IsFull())
+        {
+            errors.Add(EventInvitationError.InvitationToFullEvent());
+        }
+
+        if (Status != EventStatus.Ready && Status != EventStatus.Active)
+        {
+            errors.Add(EventInvitationError.InvitationToNonReadyOrActiveEvent());
+        }
+
+        if (errors.Count > 0)
+        {
+            return Result.Failure(errors.ToArray());
+        }
+        
+        Invitations.Add(Invitation.Create(userId, InvitationStatus.Pending));
+        return Result.Success();
+    }
+
     private bool IsFull()
     {
-        return Participants.Count >= Capacity;
+        return Participants.Count + Invitations.Count(x => x.Status == InvitationStatus.Accepted) >= Capacity;
     }
     
     
