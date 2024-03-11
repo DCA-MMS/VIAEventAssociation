@@ -264,6 +264,12 @@ public class Event
         Participants.Add(userId);
         return Result.Success();
     }
+    
+    public Result RemoveGuest(UserId userId)
+    {
+        Participants.Remove(userId);
+        return Result.Success();
+    }
 
     private bool IsFull()
     {
