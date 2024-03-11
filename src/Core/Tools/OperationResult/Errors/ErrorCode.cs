@@ -35,8 +35,6 @@ public enum ErrorCode
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
     EventNotModifiable = 2008, // - Might need to be moved... - MHN
-    EventIsFull = 2009,
-    EventDuplicateParticipant = 2010,
     
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,
@@ -68,6 +66,14 @@ public enum ErrorCode
     
     // * EVENT REQUEST ERRORS
     RequestReasonIsTooLong = 2600,
+    RequestToFullEvent = 2601,
+    RequestToEventGuestIsAlreadyPartaking = 2602,
+    RequestToEventThatIsNotPublic = 2603,
+    RequestToEventThatIsNotActive = 2604,
+    
+    // # EVENT INVITATION ERRORS
+    InvitationToFullEvent = 2700,
+    InvitationToNonReadyOrActiveEvent = 2701,
     
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,

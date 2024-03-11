@@ -45,7 +45,7 @@ public class Usecase11
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.EventIsNotActive), Is.True);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToEventThatIsNotActive), Is.True);
         });
     }
     
@@ -64,7 +64,7 @@ public class Usecase11
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.EventIsFull), Is.True);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToFullEvent), Is.True);
         });
     }
     
@@ -86,7 +86,7 @@ public class Usecase11
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.EventIsNotPublic), Is.True);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToEventThatIsNotPublic), Is.True);
         });
     }
     
@@ -106,7 +106,7 @@ public class Usecase11
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.EventDuplicateParticipant), Is.True);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToEventGuestIsAlreadyPartaking), Is.True);
         });
     }
 }

@@ -238,22 +238,22 @@ public class Event
         
         if (IsFull())
         {
-            errors.Add(EventErrors.EventIsFull());
+            errors.Add(EventRequestError.RequestToFullEvent());
         }
 
         if (Status != EventStatus.Active)
         {
-            errors.Add(EventErrors.EventIsNotActive());
+            errors.Add(EventRequestError.RequestToEventThatIsNotActive());
         }
 
         if (Visibility != EventVisibility.Public)
         {
-            errors.Add(EventErrors.EventIsNotPublic());
+            errors.Add(EventRequestError.RequestToEventThatIsNotPublic());
         }
 
         if (Participants.Contains(userId))
         {
-            errors.Add(EventErrors.EventDuplicateParticipant());
+            errors.Add(EventRequestError.RequestToEventGuestIsAlreadyPartaking());
         }
         
         if (errors.Count > 0)

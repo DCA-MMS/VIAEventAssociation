@@ -31,7 +31,7 @@ public class RequestReason
 
         if (value.Length > 250)
         {
-            errors.Add(EventRequestReasonError.RequestReasonIsTooLong());
+            errors.Add(EventRequestError.RequestReasonIsTooLong());
         }
         
         return errors;
