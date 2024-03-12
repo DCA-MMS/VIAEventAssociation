@@ -20,3 +20,8 @@
 ## Simon
 - Finish usecase 9 + 10
 - Update Concrete Domain Model
+
+
+## Marcus
+- Create last two fail missing fail scenarios
+- Create UseCase 16-20
