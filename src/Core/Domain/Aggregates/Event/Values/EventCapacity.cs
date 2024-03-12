@@ -58,20 +58,29 @@ public class EventCapacity
         switch (value)
         {
             // ? Value can't be less than 1
-            case < 1:
-                errors.Add(EventCapacityError.IsLessThanOne());
+            case < 5:
+                errors.Add(EventCapacityError.IsLessThanFive());
                 break;
             // ? Value can't be greater than 1000
-            case > 1000:
-                errors.Add(EventCapacityError.IsGreaterThanAThousand());
+            case > 50:
+                errors.Add(EventCapacityError.IsGreaterThanFifty());
                 break;
         }
 
         // * Return the list of potential errors
         return errors;
     }
-    
-    
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is EventCapacity capacity)
+        {
+            return capacity._value == _value;
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// Allows implicit conversion from <see cref="EventCapacity"/> to <see cref="int"/>
     /// </summary>

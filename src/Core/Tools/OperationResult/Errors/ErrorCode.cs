@@ -19,6 +19,9 @@ public enum ErrorCode
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
     EventNotModifiable = 2008, // - Might need to be moved... - MHN
+    EventCantReadyCancelledEvent = 2009,
+    EventCantReadyEventWithStartTimePriorToNow = 2010,
+    EventCantReadyWhenTitleIsDefault = 2011,
     
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,
@@ -35,6 +38,7 @@ public enum ErrorCode
     EventCapacityIsLessThanOne = 2302,
     EventCapacityIsGreaterThanAThousand = 2303,
     EventCapacityNotModifiable = 2304,
+    EventCapacityCantBeReduced = 2305,
     
     // * EVENT TIME RANGE ERRORS
     EventTimeRangeStartAfterEndDate = 2401,

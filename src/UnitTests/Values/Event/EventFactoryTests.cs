@@ -245,8 +245,8 @@ public class EventFactoryTests
       var result = EventFactory.Create()
          .WithTitle(title)
          .WithDescription(description)
-         .WithStatus(status)
          .WithVisibility(visibility)
+         .WithStatus(status)
          .WithCapacity(capacity)
          .Build();
       
