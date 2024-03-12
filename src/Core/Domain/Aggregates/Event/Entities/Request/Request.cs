@@ -7,11 +7,13 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Request;
 
 public class Request
 {
+    public RequestId Id { get; }
     public UserId GuestId { get; }
     public RequestStatus Status { get; private set; }
 
     private Request(UserId guestId, RequestStatus status)
     {
+        Id = new RequestId();
         GuestId = guestId;
         Status = status;
     }

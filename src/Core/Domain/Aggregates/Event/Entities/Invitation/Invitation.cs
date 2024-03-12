@@ -6,11 +6,13 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
 
 public class Invitation
 {
+    public InvitationId Id { get; }
     public UserId GuestId { get; }
     public InvitationStatus Status { get; private set; }
 
     private Invitation(UserId guestId, InvitationStatus status)
     {
+        Id = new InvitationId();
         GuestId = guestId;
         Status = status;
     }
