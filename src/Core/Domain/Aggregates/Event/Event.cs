@@ -170,6 +170,16 @@ public class Event
             // if the capacity is invalid, return a failure result
             return Result<bool>.Failure(capacityResult.Errors.ToArray());
         }
+
+        if (Status is EventStatus.Cancelled)
+        {
+            return Result<bool>.Failure(EventCapacityError.NotModifiable());
+        }
+        
+        if (Status is EventStatus.Active && capacity < Capacity)
+        {
+            return Result<bool>.Failure(EventCapacityError.CantReduceCapacityError());
+        }
         
         // * Set the capacity
         Capacity = capacityResult;
@@ -224,16 +234,37 @@ public class Event
     
     public Result<bool> ChangeVisibility(EventVisibility visibility)
     {
-        if(Status is EventStatus.Cancelled)
+        if(Status is EventStatus.Cancelled || (Status is EventStatus.Active && visibility is EventVisibility.Private))
         {
             return Result<bool>.Failure(EventVisibilityError.NotModifiable());
         }
         
         Visibility = visibility;
-        
-        // TODO: Add logic to check if the visibility can be changed?
+        Status = EventStatus.Draft;
         
         return true;
+    }
+
+    public Result MakeReady()
+    {
+        if (Status is EventStatus.Cancelled)
+        {
+            return Result.Failure(EventError.CantReadyCancelledEvent());
+        }
+        
+        if (DateTime.Now > TimeRange.Start)
+        {
+            return Result.Failure(EventError.CantReadyEventWithStartTimePriorToNow());
+        }
+        
+        if (Title == "Working Title")
+        {
+            return Result.Failure(EventError.CantReadyWhenTitleIsDefault());
+        }
+        
+        Status = EventStatus.Ready;
+
+        return Result.Success();
     }
 
     public Result AddGuest(UserId userId)

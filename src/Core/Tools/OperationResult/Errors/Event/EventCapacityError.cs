@@ -20,13 +20,23 @@ public class EventCapacityError : Error
     /// Error for when a event capacity is less than 1
     /// </summary>
     /// <returns></returns>
-    public static EventCapacityError IsLessThanOne() => new EventCapacityError(ErrorCode.EventCapacityIsLessThanOne, "The capacity cannot be less than 1");
+    public static EventCapacityError IsLessThanFive() => new EventCapacityError(ErrorCode.EventCapacityIsLessThanOne, "The capacity cannot be less than 5");
     
     /// <summary>
     /// Error for when a event capacity is greater than 1000
     /// </summary>
     /// <returns></returns>
-    public static EventCapacityError IsGreaterThanAThousand() => new EventCapacityError(ErrorCode.EventCapacityIsGreaterThanAThousand, "The capacity cannot be greater than 1000");
+    public static EventCapacityError IsGreaterThanFifty() => new EventCapacityError(ErrorCode.EventCapacityIsGreaterThanAThousand, "The capacity cannot be greater than 50");
+    
+    /// <summary>
+    /// Error for unmodifiable event capacity
+    /// </summary>
+    public static EventCapacityError NotModifiable() => new EventCapacityError(ErrorCode.EventCapacityNotModifiable, "The capacity cannot be modified");
+    
+    /// <summary>
+    /// Error for when attempting to reduce the capacity of an active event
+    /// </summary>
+    public static EventCapacityError CantReduceCapacityError() => new EventCapacityError(ErrorCode.EventCapacityCantBeReduced, "The capacity cannot be reduced for an active event");
 
 
 }
