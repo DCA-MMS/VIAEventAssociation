@@ -16,3 +16,7 @@
 - Refactor/Revamp `Event` + `EventFactory`
   - Move Default values for `Event` to a constant class or something.
   - Fix `EventFactory` Unit Tests
+
+## Simon
+- Finish usecase 9 + 10
+- Update Concrete Domain Model
