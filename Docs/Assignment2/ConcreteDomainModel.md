@@ -33,12 +33,13 @@ classDiagram
     %%Request
     Request "1" --> "1" RequestStatus : Status
     Request "1" ..> "1" User : Guest
+    Request "1" --> "1" RequestReason : Reason
     
     %% Styling
 %%    style Event fill:#cdffb4
 %%    style Location fill:#cdffb4
+%%    style User fill:#cdffb4
 %%    style Request fill:#dae8fc
-%%    style User fill:#dae8fc
 %%    style Invitation fill:#dae8fc
 %%    style Booking fill:#dae8fc
 %%    style RequestReason fill:#ffffcc
@@ -154,7 +155,7 @@ classDiagram
 
     namespace USER {
         class User {
-            <<Entity>>
+            <<Aggregate>>
         }
 
         class Email {

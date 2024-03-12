@@ -24,17 +24,20 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Common\Factories\" />
       <Folder Include="Fakes\" />
       <Folder Include="Features\Booking\" />
+      <Folder Include="Features\Event\" />
       <Folder Include="Features\Invitation\" />
       <Folder Include="Features\Location\" />
       <Folder Include="Features\Request\" />
       <Folder Include="Features\User\" />
       <Folder Include="Values\Booking\" />
+      <Folder Include="Values\Event\" />
       <Folder Include="Values\Invitation\" />
       <Folder Include="Values\Location\" />
       <Folder Include="Values\Request\" />
-      <Folder Include="Values\User\" />
+      <Folder Include="Values\Users\" />
     </ItemGroup>
 
 </Project>

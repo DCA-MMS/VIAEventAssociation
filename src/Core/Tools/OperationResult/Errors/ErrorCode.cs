@@ -9,6 +9,22 @@ public enum ErrorCode
     UserIsNotCreator = 1003,
     UserIsNotGuest = 1004,
     
+    // * USER FULLNAME ERRORS
+    FirstNameIsEmpty = 1100,
+    FirstNameIsTooShort = 1101,
+    FirstNameIsTooLong = 1102,
+    FirstNameIsInvalid = 1103,
+    LastNameIsEmpty = 1110,
+    LastNameIsTooShort = 1111,
+    LastNameIsTooLong = 1112,
+    LastNameIsInvalid = 1113,
+    
+    // * USER EMAIL ERRORS
+    EmailIsEmpty = 1200,
+    EmailMustStartWith = 1201,
+    EmailMustEndWith = 1202,
+    EmailWithInvalidCharacters = 1203,
+    
     // * EVENT ERRORS - EXAMPLES
     EventNotFound = 2000,
     EventAlreadyExists = 2001,
@@ -52,6 +68,24 @@ public enum ErrorCode
     // * EVENT VISIBILITY ERRORS
     EventVisibilityNotModifiable = 2501,
     
+    // * EVENT REQUEST ERRORS
+    RequestReasonIsTooLong = 2600,
+    RequestToFullEvent = 2601,
+    RequestToEventGuestIsAlreadyPartaking = 2602,
+    RequestToEventThatIsNotPublic = 2603,
+    RequestToEventThatIsNotActive = 2604,
+    
+    // # EVENT INVITATION ERRORS
+    InvitationToFullEvent = 2700,
+    InvitationToNonReadyOrActiveEvent = 2701,
+    InvitationAcceptToGuestNotInvited = 2702,
+    InvitationAcceptToFullEvent = 2702,
+    InvitationAcceptToCancelledEvent = 2703,
+    InvitationAcceptToReadyEvent = 2704,
+    InvitationDeclineToGuestNotInvited = 2705,
+    InvitationDeclineToCancelledEvent = 2706,
+    InvitationDeclineToReadyEvent = 2707,
+
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,
     BookingAlreadyExists = 3001,
