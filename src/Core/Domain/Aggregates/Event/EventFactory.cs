@@ -1,4 +1,6 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Common.Contracts;
+using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
@@ -128,5 +130,15 @@ public class EventFactory
         _errors.Clear();
         return Result<Event>.Failure(errors);
         */
+    }
+
+    /// <summary>
+    /// Builds a version of the event with the test system time: <see cref="Constants.GetTestSystemTime"/>
+    /// </summary>
+    /// <returns></returns>
+    public Result<Event> BuildTest()
+    {
+        _event.SetSystemTime(Constants.GetTestSystemTime());
+        return _event;
     }
 }

@@ -11,9 +11,6 @@
     <ItemGroup>
         <Folder Include="Aggregates\Event\Entities\" />
         <Folder Include="Aggregates\Location\Values\" />
-        <Folder Include="Common\Bases\" />
-        <Folder Include="Common\Contracts\" />
-        <Folder Include="Common\Values\" />
         <Folder Include="Services\" />
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>UnitTests</_Parameter1>
