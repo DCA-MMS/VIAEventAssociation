@@ -28,13 +28,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithTitle(string title)
     {
-        var result = _event.ChangeTitle(title);
-
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeTitle(title);
         return this;
     }
     
@@ -45,13 +39,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithDescription(string description)
     {
-        var result = _event.ChangeDescription(description);
-        
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeDescription(description);
         return this;
     }
     
@@ -62,13 +50,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithCapacity(int capacity)
     {
-        var result = _event.ChangeCapacity(capacity);
-        
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeCapacity(capacity);
         return this;
     }
     
@@ -80,13 +62,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithTimeRange(DateTime start, DateTime end)
     {
-        var result = _event.ChangeTimeRange(start, end);
-        
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeTimeRange(start, end);
         return this;
     }
     

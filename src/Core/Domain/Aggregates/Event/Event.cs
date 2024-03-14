@@ -60,12 +60,12 @@ public class Event
     /// </summary>
     /// <param name="title">Title to change to.</param>
     /// <returns>A <see cref="Result"/> representing if the title was changed.</returns>
-    public Result<bool> ChangeTitle(string title)
+    public Result ChangeTitle(string title)
     {
         // ? Check if the title is modifiable
         if(Status is EventStatus.Active or EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventTitleError.NotModifiable());
+            return Result.Failure(EventTitleError.NotModifiable());
         }
         
         // * Create the title
@@ -75,7 +75,7 @@ public class Event
         if(titleResult.IsFailure)
         {
             // ! If the title is invalid, return a failure result
-            return Result<bool>.Failure(titleResult.Errors.ToArray());
+            return Result.Failure(titleResult.Errors.ToArray());
         }
         
         // * Set the title
@@ -88,7 +88,7 @@ public class Event
         }
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
     
     /// <summary>
@@ -96,12 +96,12 @@ public class Event
     /// </summary>
     /// <param name="description">Description to change to.</param>
     /// <returns> A <see cref="Result"/> representing if the description was changed.</returns>
-    public Result<bool> ChangeDescription(string description)
+    public Result ChangeDescription(string description)
     {
         // ? Check if the title is modifiable
         if(Status is EventStatus.Active or EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventDescriptionError.NotModifiable());
+            return Result.Failure(EventDescriptionError.NotModifiable());
         }
         
         // * Create the description
@@ -111,7 +111,7 @@ public class Event
         if(descriptionResult.IsFailure)
         {
             // ! If the description is invalid, return a failure result
-            return Result<bool>.Failure(descriptionResult.Errors.ToArray());
+            return Result.Failure(descriptionResult.Errors.ToArray());
         }
         
         // * Set the description
@@ -124,7 +124,7 @@ public class Event
         }
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
     
     /// <summary>
@@ -132,7 +132,7 @@ public class Event
     /// </summary>
     /// <param name="capacity">Capacity to change to.</param>
     /// <returns>A <see cref="Result"/> representing if the description was changed.</returns>
-    public Result<bool> ChangeCapacity(int capacity)
+    public Result ChangeCapacity(int capacity)
     {
         // * Create the capacity
         var capacityResult = EventCapacity.Create(capacity);
@@ -140,24 +140,24 @@ public class Event
         if (capacityResult.IsFailure)
         {
             // if the capacity is invalid, return a failure result
-            return Result<bool>.Failure(capacityResult.Errors.ToArray());
+            return Result.Failure(capacityResult.Errors.ToArray());
         }
 
         if (Status is EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventCapacityError.NotModifiable());
+            return Result.Failure(EventCapacityError.NotModifiable());
         }
         
         if (Status is EventStatus.Active && capacity < Capacity)
         {
-            return Result<bool>.Failure(EventCapacityError.CantReduceCapacityError());
+            return Result.Failure(EventCapacityError.CantReduceCapacityError());
         }
         
         // * Set the capacity
         Capacity = capacityResult;
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
 
     /// <summary>
@@ -206,24 +206,24 @@ public class Event
         return Result.Success();
     }
     
-    public Result<bool> ChangeStatus(EventStatus status)
+    public Result ChangeStatus(EventStatus status)
     {
         Status = status;
         
-        return true;
+        return Result.Success();
     }
     
-    internal Result<bool> ChangeVisibility(EventVisibility visibility)
+    public Result ChangeVisibility(EventVisibility visibility)
     {
         if(Status is EventStatus.Cancelled || (Status is EventStatus.Active && visibility is EventVisibility.Private))
         {
-            return Result<bool>.Failure(EventVisibilityError.NotModifiable());
+            return Result.Failure(EventVisibilityError.NotModifiable());
         }
         
         Visibility = visibility;
         Status = EventStatus.Draft;
         
-        return true;
+        return Result.Success();
     }
 
     public Result MakeReady()
@@ -429,7 +429,7 @@ public class Event
     /// Allows for setting the system time for testing purposes
     /// </summary>
     /// <param name="systemTime"></param>
-    internal void SetSystemTime(ISystemTime systemTime)
+    protected internal void SetSystemTime(ISystemTime systemTime)
     {
         _systemTime = systemTime;
     }
