@@ -11,6 +11,7 @@ public class EventFactory
     // - Attributes
     private readonly Event _event = Event.Create();
     private readonly List<Error> _errors = [];
+    private ISystemTime _systemTime = Constants.GetTestSystemTime();
     
     /// <summary>
     /// Initializes the creation of a new event
@@ -88,6 +89,12 @@ public class EventFactory
         return this;
     }
     
+    public EventFactory WithSystemTime(ISystemTime systemTime)
+    {
+        _systemTime = systemTime;
+        return this;
+    }
+    
     /// <summary>
     /// Returns the built event
     /// </summary>
@@ -114,7 +121,7 @@ public class EventFactory
     /// <returns></returns>
     public Result<Event> BuildTest()
     {
-        _event.SetSystemTime(Constants.GetTestSystemTime());
+        _event.SetSystemTime(_systemTime);
         return _event;
     }
 }

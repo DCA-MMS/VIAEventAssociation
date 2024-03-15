@@ -235,7 +235,7 @@ public class Event
         
         // TODO: Add check for if there is a time range. - MHN 
         
-        if (DateTime.Now > TimeRange?.Start)
+        if (_systemTime.Now > TimeRange?.Start)
         {
             return Result.Failure(EventError.CantReadyEventWithStartTimePriorToNow());
         }
