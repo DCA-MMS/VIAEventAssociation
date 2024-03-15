@@ -57,13 +57,11 @@ public enum ErrorCode
     EventCapacityCantBeReduced = 2305,
     
     // * EVENT TIME RANGE ERRORS
-    EventTimeRangeStartAfterEndDate = 2401,
-    EventTimeRangeStartAfterEndTime = 2402,
-    EventTimeRangeDurationLessThanOneHour = 2403,
-    EventTimeRangeDurationIsLongerThanTenHours = 2404,
-    EventTimeRangeStartIsBeforeEight = 2405,
-    EventTimeRangeStartIsInPast = 2406,
-    EventTimeRangeNotModifiable = 2407,
+    EventTimeRangeDurationLessThanOneHour = 2401,
+    EventTimeRangeDurationIsLongerThanTenHours = 2402,
+    EventTimeRangeStartIsBeforeEight = 2403,
+    EventTimeRangeStartIsInPast = 2404,
+    EventTimeRangeNotModifiable = 2405,
     
     // * EVENT VISIBILITY ERRORS
     EventVisibilityNotModifiable = 2501,
@@ -98,5 +96,7 @@ public enum ErrorCode
     
     // * TIME RANGE ERRORS
     TimeRangeEndBeforeOrEqualToStart = 5000,
+    TimeRangeStartAfterEndDate = 5001,
+    TimeRangeStartAfterEndTime = 5002,
     
 }

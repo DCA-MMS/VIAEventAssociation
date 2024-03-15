@@ -2,6 +2,8 @@
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
+using VIAEventAssociation.Core.Domain.Common.Contracts;
+using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
@@ -17,70 +19,40 @@ public class Event
     public EventStatus Status { get; private set; }
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
-    public EventTimeRange TimeRange { get; private set; }
+    public TimeRange? TimeRange { get; private set; }
     public List<UserId> Participants { get; }
     public List<Invitation> Invitations { get; }
     
+    /// <summary>
+    /// Contract for handling system time (Is used for testing purposes)
+    /// </summary>
+    private ISystemTime _systemTime;
+    
     // # Constructor
-    private Event(EventTitle title, EventDescription description, EventStatus status, EventVisibility visibility, EventCapacity capacity, EventTimeRange timeRange)
+    private Event()
     {
+        // * Set the default values
         Id = new EventId();
-        Title = title;
-        Description = description;
-        Status = status;
-        Visibility = visibility;
-        Capacity = capacity;
-        TimeRange = timeRange;
+        Title = Constants.DefaultEventTitle;
+        Description = Constants.DefaultEventDescription;
+        Status = Constants.DefaultEventStatus;
+        Visibility = Constants.DefaultEventVisibility;
+        Capacity = Constants.DefaultEventCapacity;
         Participants = new List<UserId>();
         Invitations = new List<Invitation>();
+        
+        _systemTime = Constants.DefaultSystemTime;
     }
     
     /// <summary>
     /// Creates a new instance of the <see cref="Event"/> class
     /// </summary>
-    /// <param name="title">The title to use</param>
-    /// <param name="description">The description to use</param>
-    /// <param name="status">The status to use</param>
-    /// <param name="visibility">The visibility to use</param>
-    /// <param name="capacity">The capacity to use</param>
     /// <returns>A <see cref="Result"/> contain either the <see cref="Event"/> or errors</returns>
-    public static Result<Event> Create(string title = "Working Title", string description = "", EventStatus status = EventStatus.Draft, EventVisibility visibility = EventVisibility.Private, int capacity = 5) 
+    public static Event Create() 
     {
-        // * Create the title, description and capacity
-        var titleResult = EventTitle.Create(title);
-        var descriptionResult = EventDescription.Create(description);
-        var capacityResult = EventCapacity.Create(capacity);
-        var timeRangeResult = EventTimeRange.Create(DateTime.Today.AddHours(8), DateTime.Today.AddHours(9));
-
-        var errors = new List<Error>();
-        // ? Check if the title is valid
-        if(titleResult.IsFailure)
-        {
-            errors.AddRange(titleResult.Errors);
-        }
-        
-        // ? Check if the description is valid
-        if(descriptionResult.IsFailure)
-        {
-            errors.AddRange(descriptionResult.Errors);
-        }
-        
-        // ? Check if the capacity is valid
-        if(capacityResult.IsFailure)
-        {
-            errors.AddRange(capacityResult.Errors);
-        }
-        
-        // ! If any of the title or description are invalid, return a failure result
-        if(errors.Count > 0)
-        {
-            return Result<Event>.Failure(errors.ToArray());
-        }
-        
-        // * Create a new instance of the Event
-        var @event = new Event(titleResult, descriptionResult, status, visibility, capacityResult,timeRangeResult);
-        
-        return @event;
+        // ! No validation is needed here
+        // As the Event can only be modified through the methods provided.
+        return new Event();
     }
     
     /// <summary>
@@ -88,12 +60,12 @@ public class Event
     /// </summary>
     /// <param name="title">Title to change to.</param>
     /// <returns>A <see cref="Result"/> representing if the title was changed.</returns>
-    public Result<bool> ChangeTitle(string title)
+    public Result ChangeTitle(string title)
     {
         // ? Check if the title is modifiable
         if(Status is EventStatus.Active or EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventTitleError.NotModifiable());
+            return Result.Failure(EventTitleError.NotModifiable());
         }
         
         // * Create the title
@@ -103,7 +75,7 @@ public class Event
         if(titleResult.IsFailure)
         {
             // ! If the title is invalid, return a failure result
-            return Result<bool>.Failure(titleResult.Errors.ToArray());
+            return Result.Failure(titleResult.Errors.ToArray());
         }
         
         // * Set the title
@@ -116,7 +88,7 @@ public class Event
         }
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
     
     /// <summary>
@@ -124,12 +96,12 @@ public class Event
     /// </summary>
     /// <param name="description">Description to change to.</param>
     /// <returns> A <see cref="Result"/> representing if the description was changed.</returns>
-    public Result<bool> ChangeDescription(string description)
+    public Result ChangeDescription(string description)
     {
         // ? Check if the title is modifiable
         if(Status is EventStatus.Active or EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventDescriptionError.NotModifiable());
+            return Result.Failure(EventDescriptionError.NotModifiable());
         }
         
         // * Create the description
@@ -139,7 +111,7 @@ public class Event
         if(descriptionResult.IsFailure)
         {
             // ! If the description is invalid, return a failure result
-            return Result<bool>.Failure(descriptionResult.Errors.ToArray());
+            return Result.Failure(descriptionResult.Errors.ToArray());
         }
         
         // * Set the description
@@ -152,15 +124,15 @@ public class Event
         }
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
-
+    
     /// <summary>
     /// Changes the capacity of the <see cref="Event"/>
     /// </summary>
     /// <param name="capacity">Capacity to change to.</param>
     /// <returns>A <see cref="Result"/> representing if the description was changed.</returns>
-    public Result<bool> ChangeCapacity(int capacity)
+    public Result ChangeCapacity(int capacity)
     {
         // * Create the capacity
         var capacityResult = EventCapacity.Create(capacity);
@@ -168,24 +140,24 @@ public class Event
         if (capacityResult.IsFailure)
         {
             // if the capacity is invalid, return a failure result
-            return Result<bool>.Failure(capacityResult.Errors.ToArray());
+            return Result.Failure(capacityResult.Errors.ToArray());
         }
 
         if (Status is EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventCapacityError.NotModifiable());
+            return Result.Failure(EventCapacityError.NotModifiable());
         }
         
         if (Status is EventStatus.Active && capacity < Capacity)
         {
-            return Result<bool>.Failure(EventCapacityError.CantReduceCapacityError());
+            return Result.Failure(EventCapacityError.CantReduceCapacityError());
         }
         
         // * Set the capacity
         Capacity = capacityResult;
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
 
     /// <summary>
@@ -194,22 +166,31 @@ public class Event
     /// <param name="start">Start date and time of the event</param>
     /// <param name="end">End date and time of the event</param>
     /// <returns></returns>
-    public Result<bool> ChangeTimeRange(DateTime start, DateTime end)
+    public Result ChangeTimeRange(DateTime start, DateTime end)
     {
         // ? Check if the title is modifiable
         if(Status is EventStatus.Active or EventStatus.Cancelled)
         {
-            return Result<bool>.Failure(EventDescriptionError.NotModifiable());
+            return Result.Failure(EventDescriptionError.NotModifiable());
         }
         
         // * Create the time range
-        var timeRangeResult = EventTimeRange.Create(start, end);
+        var timeRangeResult = TimeRange.Create(start, end);
         
         // ? Check if the time range is valid
         if(timeRangeResult.IsFailure)
         {
             // ! If the time range is invalid, return a failure result
-            return Result<bool>.Failure(timeRangeResult.Errors.ToArray());
+            return Result.Failure(timeRangeResult.Errors.ToArray());
+        }
+        
+        // ? Check if the time range is valid for an event.
+        var result = ValidateTimeRange(start, end);
+        
+        // ! If there are any errors, return a failure result
+        if(result.IsFailure)
+        {
+            return Result.Failure(result.Errors.ToArray());
         }
         
         // * Set the time range
@@ -222,27 +203,27 @@ public class Event
         }
         
         // * Return a success result
-        return true;
+        return Result.Success();
     }
     
-    public Result<bool> ChangeStatus(EventStatus status)
+    public Result ChangeStatus(EventStatus status)
     {
         Status = status;
         
-        return true;
+        return Result.Success();
     }
     
-    public Result<bool> ChangeVisibility(EventVisibility visibility)
+    public Result ChangeVisibility(EventVisibility visibility)
     {
         if(Status is EventStatus.Cancelled || (Status is EventStatus.Active && visibility is EventVisibility.Private))
         {
-            return Result<bool>.Failure(EventVisibilityError.NotModifiable());
+            return Result.Failure(EventVisibilityError.NotModifiable());
         }
         
         Visibility = visibility;
         Status = EventStatus.Draft;
         
-        return true;
+        return Result.Success();
     }
 
     public Result MakeReady()
@@ -252,7 +233,9 @@ public class Event
             return Result.Failure(EventError.CantReadyOrActivateCancelledEvent());
         }
         
-        if (DateTime.Now > TimeRange.Start)
+        // TODO: Add check for if there is a time range. - MHN 
+        
+        if (_systemTime.Now > TimeRange?.Start)
         {
             return Result.Failure(EventError.CantReadyOrActivateEventWithStartTimePriorToNow());
         }
@@ -413,6 +396,59 @@ public class Event
     {
         return Participants.Count + Invitations.Count(x => x.Status == InvitationStatus.Accepted) >= Capacity;
     }
+
+
+    /// <summary>
+    /// Validates that the time range is valid for an event.
+    /// </summary>
+    /// <param name="start">Start of the event</param>
+    /// <param name="end">Start of the event</param>
+    /// <returns>A <see cref="Result"/> contains errors, if any.</returns>
+    private Result ValidateTimeRange(DateTime start, DateTime end)
+    {
+        var errors = new List<Error>();
+        
+        // ? Is Start date in the past?
+        if(start < _systemTime.Now)
+        {
+            errors.Add(EventTimeRangeError.StartIsInPast());
+            return Result.Failure(errors.ToArray());
+        }
+        
+        // ? Start is before 08:00
+        if(start.TimeOfDay < TimeSpan.FromHours(8))
+        {
+            errors.Add(EventTimeRangeError.StartBeforeEight());
+            return Result.Failure(errors.ToArray());
+        }
+        
+        // * Calculate the duration
+        var duration = end - start;
+        
+        // ?  Duration is less than 1 hour
+        if(duration < TimeSpan.FromHours(1))
+        {
+            errors.Add(EventTimeRangeError.DurationLessThanOneHour());
+            return Result.Failure(errors.ToArray());
+        }
+        
+        // ? Duration is more than 10 hours
+        if (duration > TimeSpan.FromHours(10))
+        {
+            errors.Add(EventTimeRangeError.DurationIsLongerThanTenHours());
+            return Result.Failure(errors.ToArray());
+        }
+        
+        return Result.Success();
+    }
     
+    /// <summary>
+    /// Allows for setting the system time for testing purposes
+    /// </summary>
+    /// <param name="systemTime"></param>
+    protected internal void SetSystemTime(ISystemTime systemTime)
+    {
+        _systemTime = systemTime;
+    }
     
 }

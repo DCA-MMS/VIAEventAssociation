@@ -1,6 +1,4 @@
 ﻿using Tests.Common.Factories;
-using Tests.Fakes;
-using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 
 namespace Tests.Features.Event;

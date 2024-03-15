@@ -17,22 +17,32 @@ public class TimeRange
     public static Result<TimeRange> Create(DateTime start, DateTime end)
     {
         var result = Validate(start, end);
-        if (result.failure)
+        
+        if (result.Count > 0)
         {
-            return Result<TimeRange>.Failure(result.errors.ToArray());
+            return Result<TimeRange>.Failure(result.ToArray());
         }
 
         return new TimeRange(start, end);
 
     }
     
-    private static (bool failure, List<Error> errors) Validate(DateTime start, DateTime end)
+    private static List<Error> Validate(DateTime start, DateTime end)
     {
         var errors = new List<Error>();
-        if (start >= end)
+        
+        // ? Start date is after end date
+        if (start.Date > end.Date)
         {
-            errors.Add(TimeRangeError.EndBeforeOrEqualToStart());
+            errors.Add(TimeRangeError.StartAfterEndDate());
         }
-        return (errors.Count > 0, errors);
+        
+        // ? Start time is after end time
+        if (start.TimeOfDay > end.TimeOfDay)
+        {
+            errors.Add(TimeRangeError.StartAfterEndTime());
+        }
+        
+        return errors;
     }
 }

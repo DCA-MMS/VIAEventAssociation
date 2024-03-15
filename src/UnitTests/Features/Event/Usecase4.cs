@@ -8,13 +8,20 @@ namespace Tests.Features.Event;
 [TestFixture]
 public class Usecase4
 {
+    // - HELPERS
+   
+    /// <summary>
+    /// A valid date for the tests
+    /// </summary>
+    private static DateTime Date => DateTime.Today.AddDays(1);
+    
     // # S1 - Time change
     [Test]
     public void Given_An_Event_Changing_The_TimeRange_Into_Another_Time_Then_The_TimeRange_Should_Be_Updated()
     {
-        var expectedStart = DateTime.Today.AddHours(8);
-        var expectedEnd = DateTime.Today.AddHours(10);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddHours(9);
+        var expectedEnd = Date.AddHours(10);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -25,8 +32,8 @@ public class Usecase4
             var timeRange = @event.Value.TimeRange;
             
             // Assert
-            Assert.That(timeRange.Start, Is.EqualTo(expectedStart));
-            Assert.That(timeRange.End, Is.EqualTo(expectedEnd));
+            Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
+            Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
@@ -36,9 +43,9 @@ public class Usecase4
     public void Given_An_Event_Changing_The_Date_Into_Another_Date_Then_The_Date_Should_Be_Updated()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddDays(1).AddHours(8);
-        var expectedEnd = DateTime.Today.AddDays(1).AddHours(10);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddHours(8);
+        var expectedEnd = Date.AddHours(10);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -49,8 +56,8 @@ public class Usecase4
             var timeRange = @event.Value.TimeRange;
             
             // Assert
-            Assert.That(timeRange.Start, Is.EqualTo(expectedStart));
-            Assert.That(timeRange.End, Is.EqualTo(expectedEnd));
+            Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
+            Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
@@ -60,19 +67,22 @@ public class Usecase4
     public void Given_An_Event_Changing_The_TimeRange_Into_Another_Time_Then_The_Status_Should_Be_Draft()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(8);
-        var expectedEnd = DateTime.Today.AddHours(10);
+        var expectedStart = Date.AddHours(8);
+        var expectedEnd = Date.AddHours(10);
         var @event = EventFactory.Create()
             .WithStatus(EventStatus.Ready)
-            .Build();
+            .BuildTest();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
             var status = @event.Value.Status;
+            
+            Assert.That(result.IsFailure, Is.False);
+            Assert.That(result.Errors, Is.Empty);
             
             // Assert
             Assert.That(status, Is.EqualTo(EventStatus.Draft));
@@ -84,9 +94,9 @@ public class Usecase4
     public void Given_An_Event_Changing_The_TimeRange_Into_Another_Time_Then_The_TimeRange_Should_Be_In_The_Future()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddDays(1).AddHours(8);
-        var expectedEnd = DateTime.Today.AddDays(1).AddHours(10);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddHours(8);
+        var expectedEnd = Date.AddHours(10);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -97,8 +107,8 @@ public class Usecase4
             var timeRange = @event.Value.TimeRange;
             
             // Assert
-            Assert.That(timeRange.Start, Is.EqualTo(expectedStart));
-            Assert.That(timeRange.End, Is.EqualTo(expectedEnd));
+            Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
+            Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
@@ -112,9 +122,9 @@ public class Usecase4
     public void Given_An_Event_Changing_The_TimeRange_Into_Another_Time_Then_The_TimeRange_Should_Be_Updated_With_The_New_Duration(int startHour, int endHour)
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(startHour);
-        var expectedEnd = DateTime.Today.AddHours(endHour);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddHours(startHour);
+        var expectedEnd = Date.AddHours(endHour);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -125,8 +135,8 @@ public class Usecase4
             var timeRange = @event.Value.TimeRange;
             
             // Assert
-            Assert.That(timeRange.Start, Is.EqualTo(expectedStart));
-            Assert.That(timeRange.End, Is.EqualTo(expectedEnd));
+            Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
+            Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
@@ -136,9 +146,9 @@ public class Usecase4
     public void Given_Start_Date_After_End_Date_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddDays(1);
-        var expectedEnd = DateTime.Today;
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddDays(1).AddHours(8);
+        var expectedEnd = Date.AddHours(10);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -147,7 +157,7 @@ public class Usecase4
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTimeRangeError.StartAfterEndDate().Code));
+            Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == TimeRangeError.StartAfterEndDate().Code));
         });
     }
     
@@ -156,9 +166,9 @@ public class Usecase4
     public void Given_Start_Time_After_End_Time_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(10);
-        var expectedEnd = DateTime.Today.AddHours(8);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddHours(11);
+        var expectedEnd = Date.AddHours(10);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -167,7 +177,8 @@ public class Usecase4
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTimeRangeError.StartAfterEndTime().Code));
+            Assert.That(result.Errors.ToList(), Has.Count.EqualTo(1));
+            Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == TimeRangeError.StartAfterEndTime().Code));
         });
     }
     
@@ -176,9 +187,9 @@ public class Usecase4
     public void Given_Duration_Less_Than_1_Hour_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(10);
-        var expectedEnd = DateTime.Today.AddHours(10).AddMinutes(30);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddHours(10);
+        var expectedEnd = Date.AddHours(10).AddMinutes(30);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -196,9 +207,9 @@ public class Usecase4
     public void Given_Start_Before_08_00_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(7);
-        var expectedEnd = DateTime.Today.AddHours(10);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddDays(1).AddHours(7);
+        var expectedEnd = Date.AddDays(1).AddHours(10);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -216,9 +227,9 @@ public class Usecase4
     public void Given_Start_Before_01_00_And_End_After_01_00_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddMinutes(55);
-        var expectedEnd = DateTime.Today.AddDays(1).AddHours(1);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddMinutes(55);
+        var expectedEnd = Date.AddDays(1).AddHours(1);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -236,11 +247,11 @@ public class Usecase4
     public void Given_Status_Is_Active_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(8);
-        var expectedEnd = DateTime.Today.AddHours(10);
+        var expectedStart = Date.AddHours(8);
+        var expectedEnd = Date.AddHours(10);
         var @event = EventFactory.Create()
             .WithStatus(EventStatus.Active)
-            .Build();
+            .BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -262,7 +273,7 @@ public class Usecase4
         var expectedEnd = DateTime.Today.AddHours(10);
         var @event = EventFactory.Create()
             .WithStatus(EventStatus.Cancelled)
-            .Build();
+            .BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -282,7 +293,7 @@ public class Usecase4
         // Arrange
         var expectedStart = DateTime.Today.AddHours(8);
         var expectedEnd = DateTime.Today.AddHours(20);
-        var @event = EventFactory.Create().Build();
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -302,7 +313,7 @@ public class Usecase4
         // Arrange
         var expectedStart = DateTime.Today.AddDays(-1).AddHours(8);
         var expectedEnd = DateTime.Today.AddDays(-1).AddHours(10);
-        var @event = EventFactory.Create().Build();
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
@@ -320,9 +331,9 @@ public class Usecase4
     public void Given_Start_Before_01_00_And_End_After_08_00_On_Same_Date_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddMinutes(55);
-        var expectedEnd = DateTime.Today.AddHours(8).AddMinutes(30);
-        var @event = EventFactory.Create().Build();
+        var expectedStart = Date.AddMinutes(55);
+        var expectedEnd = Date.AddHours(8).AddMinutes(30);
+        var @event = EventFactory.Create().BuildTest();
         
         // Act
         var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
