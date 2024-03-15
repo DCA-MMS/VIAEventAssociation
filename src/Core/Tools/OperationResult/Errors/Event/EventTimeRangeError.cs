@@ -9,20 +9,6 @@ public class EventTimeRangeError : Error
     
     private EventTimeRangeError(ErrorCode code, string message) : base(code, message) { }
     
-    
-    
-    /// <summary>
-    /// Error for when the start date is after the end date
-    /// </summary>
-    /// <returns></returns>
-    public static EventTimeRangeError StartAfterEndDate() => new (ErrorCode.EventTimeRangeStartAfterEndDate, "The start date cannot be after the end date");
-    
-    /// <summary>
-    /// Error for when the start time is after the end time
-    /// </summary>
-    /// <returns></returns>
-    public static EventTimeRangeError StartAfterEndTime() => new (ErrorCode.EventTimeRangeStartAfterEndTime, "The start time cannot be after the end time");
-    
     /// <summary>
     /// Error for when the duration is less than 1 hour
     /// </summary>

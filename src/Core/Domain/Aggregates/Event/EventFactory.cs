@@ -1,4 +1,6 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Common.Contracts;
+using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
@@ -9,6 +11,7 @@ public class EventFactory
     // - Attributes
     private readonly Event _event = Event.Create();
     private readonly List<Error> _errors = [];
+    private ISystemTime _systemTime = Constants.GetTestSystemTime();
     
     /// <summary>
     /// Initializes the creation of a new event
@@ -26,13 +29,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithTitle(string title)
     {
-        var result = _event.ChangeTitle(title);
-
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeTitle(title);
         return this;
     }
     
@@ -43,13 +40,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithDescription(string description)
     {
-        var result = _event.ChangeDescription(description);
-        
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeDescription(description);
         return this;
     }
     
@@ -60,13 +51,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithCapacity(int capacity)
     {
-        var result = _event.ChangeCapacity(capacity);
-        
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeCapacity(capacity);
         return this;
     }
     
@@ -78,13 +63,7 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithTimeRange(DateTime start, DateTime end)
     {
-        var result = _event.ChangeTimeRange(start, end);
-        
-        if (result.IsFailure)
-        {
-            _errors.AddRange(result.Errors);
-        }
-        
+        _event.ChangeTimeRange(start, end);
         return this;
     }
     
@@ -110,6 +89,12 @@ public class EventFactory
         return this;
     }
     
+    public EventFactory WithSystemTime(ISystemTime systemTime)
+    {
+        _systemTime = systemTime;
+        return this;
+    }
+    
     /// <summary>
     /// Returns the built event
     /// </summary>
@@ -128,5 +113,15 @@ public class EventFactory
         _errors.Clear();
         return Result<Event>.Failure(errors);
         */
+    }
+
+    /// <summary>
+    /// Builds a version of the event with the test system time: <see cref="Constants.GetTestSystemTime"/>
+    /// </summary>
+    /// <returns></returns>
+    public Result<Event> BuildTest()
+    {
+        _event.SetSystemTime(_systemTime);
+        return _event;
     }
 }

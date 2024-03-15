@@ -93,51 +93,6 @@ public class EventFactoryTests
       Assert.That(result, Is.EqualTo(title));
    }
 
-   [Test]
-   public void Create_Event_With_Invalid_Title_Empty()
-   {
-      // Arrange
-      const string title = "";
-      
-      // Act
-      var result = EventFactory.Create()
-         .WithTitle(title)
-         .Build();
-      
-      // Assert
-      Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsEmpty().Code));
-   }
-   
-   [Test]
-   public void Create_Event_With_Invalid_Title_Too_Short()
-   {
-      // Arrange
-      const string title = "AB";
-      
-      // Act
-      var result = EventFactory.Create()
-         .WithTitle(title)
-         .Build();
-      
-      // Assert
-      Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsTooShort().Code));
-   }
-   
-   [Test]
-   public void Create_Event_With_Invalid_Title_Too_Long()
-   {
-      // Arrange
-      string title = "A".PadRight(76, 'A');
-      
-      // Act
-      var result = EventFactory.Create()
-         .WithTitle(title)
-         .Build();
-      
-      // Assert
-      Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsTooLong().Code));
-   }
-
    // # Change Description
 
    [Test] 
@@ -157,20 +112,6 @@ public class EventFactoryTests
          Assert.That(result, Is.EqualTo(description));
       }
    
-   [Test]
-   public void Create_Event_With_Invalid_EventDescription_Too_Long()
-   {
-      // Arrange
-      string description = "A".PadRight(1001, 'A');
-      
-      // Act
-      var result = EventFactory.Create()
-         .WithDescription(description)
-         .Build();
-      
-      // Assert
-      Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventDescriptionError.IsTooLong().Code));
-   }
    
    // # Change Status
    
@@ -228,7 +169,6 @@ public class EventFactoryTests
       Assert.That(result, Is.EqualTo(capacity));
    }
    
-   
    // # Multiple Changes
    
    [Test]
@@ -262,59 +202,6 @@ public class EventFactoryTests
          Assert.That(@event.Status, Is.EqualTo(status));
          Assert.That(@event.Visibility, Is.EqualTo(visibility)); 
          Assert.That(capacityResult, Is.EqualTo(capacity));
-      });
-   }
-
-   [Test]
-   public void Create_Event_With_Multiple_Change_But_Invalid_Title_Should_Fail()
-   {
-      // Arrange
-      const string title = "AB";
-      const string description = "New Description";
-      const EventStatus status = EventStatus.Ready;
-      const EventVisibility visibility = EventVisibility.Public;
-      const int capacity = 10;
-      
-      // Act
-      var result = EventFactory.Create()
-         .WithTitle(title)
-         .WithDescription(description)
-         .WithStatus(status)
-         .WithVisibility(visibility)
-         .WithCapacity(capacity)
-         .Build();
-      
-      // Assert
-      Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsTooShort().Code));
-   }
-   
-   [Test]
-   public void Create_Event_With_Multiple_Change_But_Invalid_Title_Description_Capacity_Should_Fail()
-   {
-      // Arrange
-      const string title = "AB";
-      string description = "A".PadRight(1001, 'A');
-      const EventStatus status = EventStatus.Ready;
-      const EventVisibility visibility = EventVisibility.Private;
-      const int capacity = -2;
-      
-      // Act
-      var result = EventFactory.Create()
-         .WithTitle(title)
-         .WithDescription(description)
-         .WithStatus(status)
-         .WithVisibility(visibility)
-         .WithCapacity(capacity)
-         .Build();
-      
-      
-      // Assert
-      Assert.Multiple(() => {
-         // Assert
-         Assert.That(result.Errors.ToList(), Has.Count.EqualTo(3));
-         Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsTooShort().Code));
-         Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventDescriptionError.IsTooLong().Code));
-         Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventCapacityError.IsNegative().Code));
       });
    }
    

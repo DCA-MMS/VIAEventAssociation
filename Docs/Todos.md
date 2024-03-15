@@ -9,13 +9,13 @@
 # Work Items
 
 ## Mads
-- Refactor `TimeRange`
-  - Add new Error message for Date and Time (UC4)
-- Remove `EventTimeRange` (Move logic to `Event` and `TimeRange`)
-- Delete `EventTimeRange` Unit Tests
-- Refactor/Revamp `Event` + `EventFactory`
-  - Move Default values for `Event` to a constant class or something.
-  - Fix `EventFactory` Unit Tests
+- [x] Refactor `TimeRange`
+  - [x]  Add new Error message for Date and Time (UC4)
+- [x] Remove `EventTimeRange` (Move logic to `Event` and `TimeRange`)
+- [x] Delete `EventTimeRange` Unit Tests
+- [x] Refactor/Revamp `Event` + `EventFactory`
+  - [x] Move Default values for `Event` to a constant class or something.
+  - [x] Fix `EventFactory` Unit Tests
 
 ## Simon
 - Finish usecase 9 + 10

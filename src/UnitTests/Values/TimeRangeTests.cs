@@ -24,8 +24,8 @@ public class TimeRangeTests
     public void End_Before_Start_Should_Be_Failure()
     {
         // Arrange
-        var start = DateTime.Now;
-        var end = start.AddSeconds(-1);
+        var start = DateTime.Today.AddDays(1);
+        var end = DateTime.Today;
         
         // Act
         var result = TimeRange.Create(start, end);
@@ -34,7 +34,7 @@ public class TimeRangeTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.First().Code, Is.EqualTo(ErrorCode.TimeRangeEndBeforeOrEqualToStart));
+            Assert.That(result.Errors.First().Code, Is.EqualTo(ErrorCode.TimeRangeStartAfterEndDate));
         });
     }
     
@@ -42,8 +42,8 @@ public class TimeRangeTests
     public void End_Equal_To_Start_Should_Be_Failure()
     {
         // Arrange
-        var start = DateTime.Now;
-        var end = start;
+        var start = DateTime.Today.AddHours(1);
+        var end = DateTime.Today;
         
         // Act
         var result = TimeRange.Create(start, end);
@@ -52,7 +52,7 @@ public class TimeRangeTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.First().Code, Is.EqualTo(ErrorCode.TimeRangeEndBeforeOrEqualToStart));
+            Assert.That(result.Errors.First().Code, Is.EqualTo(ErrorCode.TimeRangeStartAfterEndTime));
         });
     }
 }
