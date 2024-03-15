@@ -6,9 +6,9 @@ public class EventError : Error
     public override string? Message { get; init; }
     private EventError(ErrorCode code, string message) : base(code, message) { }
     
-    public static EventError CantReadyCancelledEvent() => new EventError(ErrorCode.EventCantReadyCancelledEvent, "The event cannot be readied because it is cancelled");
+    public static EventError CantReadyOrActivateCancelledEvent() => new EventError(ErrorCode.EventCantReadyOrActivateCancelledEvent, "The event cannot be readied or activated because it is cancelled");
 
-    public static EventError CantReadyEventWithStartTimePriorToNow() => new EventError(ErrorCode.EventCantReadyEventWithStartTimePriorToNow, "The event cannot be readied because the start time is prior to now");
+    public static EventError CantReadyOrActivateEventWithStartTimePriorToNow() => new EventError(ErrorCode.EventCantReadyOrActivateEventWithStartTimePriorToNow, "The event cannot be readied or activated because the start time is prior to now");
     
-    public static EventError CantReadyWhenTitleIsDefault() => new EventError(ErrorCode.EventCantReadyWhenTitleIsDefault, "The event cannot be readied because the title is the default value");
+    public static EventError CantReadyOrActivateWhenTitleIsDefault() => new EventError(ErrorCode.EventCantReadyOrActivateWhenTitleIsDefault, "The event cannot be readied or activated because the title is the default value");
 }

@@ -92,7 +92,7 @@ public class Usecase8
             // Assert
             Assert.That(result.IsFailure, Is.True);
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Cancelled));
-            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyCancelledEvent().Code));
+            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateCancelledEvent().Code));
         });
     }
     
@@ -121,7 +121,7 @@ public class Usecase8
             // Assert
             Assert.That(result.IsFailure, Is.True);
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
-            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyEventWithStartTimePriorToNow().Code));
+            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateEventWithStartTimePriorToNow().Code));
         });
     }
     
@@ -149,7 +149,7 @@ public class Usecase8
             // Assert
             Assert.That(result.IsFailure, Is.True);
             Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
-            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyWhenTitleIsDefault().Code));
+            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateWhenTitleIsDefault().Code));
         });
     }
 }

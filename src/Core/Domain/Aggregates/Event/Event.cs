@@ -249,21 +249,38 @@ public class Event
     {
         if (Status is EventStatus.Cancelled)
         {
-            return Result.Failure(EventError.CantReadyCancelledEvent());
+            return Result.Failure(EventError.CantReadyOrActivateCancelledEvent());
         }
         
         if (DateTime.Now > TimeRange.Start)
         {
-            return Result.Failure(EventError.CantReadyEventWithStartTimePriorToNow());
+            return Result.Failure(EventError.CantReadyOrActivateEventWithStartTimePriorToNow());
         }
         
         if (Title == "Working Title")
         {
-            return Result.Failure(EventError.CantReadyWhenTitleIsDefault());
+            return Result.Failure(EventError.CantReadyOrActivateWhenTitleIsDefault());
         }
         
         Status = EventStatus.Ready;
 
+        return Result.Success();
+    }
+    
+    public Result Activate()
+    {
+        if (Status is not EventStatus.Ready)
+        {
+            var readyResult = MakeReady();
+
+            if (readyResult.IsFailure)
+            {
+                return readyResult;
+            }
+        }
+        
+        Status = EventStatus.Active;
+        
         return Result.Success();
     }
 
