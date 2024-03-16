@@ -290,6 +290,11 @@ public class Event
     
     public Result RemoveGuest(UserId userId)
     {
+        if (TimeRange != null && TimeRange.Start < _systemTime.Now)
+        {
+            return Result.Failure(EventCancelParticipation.CancelParticipationToEventInThePast());
+        }
+        
         Participants.Remove(userId);
         return Result.Success();
     }

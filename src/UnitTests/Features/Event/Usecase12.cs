@@ -1,5 +1,6 @@
 ﻿using Tests.Common.Factories;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
+using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Tests.Features.Event;
 
@@ -44,5 +45,20 @@ public class Usecase12
     }
 
     // # F1
-    //TODO
-}
+    [Test]
+    public void When_Guest_Cancels_Event_From_The_Past_Then_Request_Is_Rejected()
+    {
+        // Arrange
+        var @event = EventTestDataFactory.ActivePublicEventWithGuestAndStartTimeInPast();
+        var userId = @event.Participants.First();
+
+        // Act
+        var result = @event.RemoveGuest(userId);
+
+        Assert.Multiple(() =>
+        {
+            // Assert
+            Assert.That(result.IsFailure, Is.True);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.CancelParticipationToEventInThePast), Is.True);
+        });
+    }}

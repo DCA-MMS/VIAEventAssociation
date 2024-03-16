@@ -84,6 +84,9 @@ public enum ErrorCode
     InvitationDeclineToGuestNotInvited = 2705,
     InvitationDeclineToCancelledEvent = 2706,
     InvitationDeclineToReadyEvent = 2707,
+    
+    // # EVENT CANCEL PARTICIPATION ERRORS
+    CancelParticipationToEventInThePast = 2800,
 
     // * BOOKING ERRORS - EXAMPLES
     BookingNotFound = 3000,

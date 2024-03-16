@@ -1,4 +1,5 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Domain.Common.Contracts;
 using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
@@ -92,6 +93,12 @@ public class EventFactory
     public EventFactory WithSystemTime(ISystemTime systemTime)
     {
         _systemTime = systemTime;
+        return this;
+    }
+    
+    public EventFactory WithGuest(UserId guest)
+    {
+        _event.AddGuest(guest);
         return this;
     }
     
