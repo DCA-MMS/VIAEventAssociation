@@ -273,6 +273,11 @@ public class Event
         {
             errors.Add(EventRequestError.RequestToEventGuestIsAlreadyPartaking());
         }
+
+        if (TimeRange != null && TimeRange.Start < _systemTime.Now)
+        {
+            errors.Add(EventRequestError.RequestToEventInThePast());
+        }
         
         if (errors.Count > 0)
         {

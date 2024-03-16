@@ -17,5 +17,7 @@ public class EventRequestError : Error
     public static EventRequestError RequestToEventThatIsNotPublic() => new (ErrorCode.RequestToEventThatIsNotPublic, "Only public events can be participated");
 
     public static EventRequestError RequestToEventGuestIsAlreadyPartaking() => new (ErrorCode.RequestToEventGuestIsAlreadyPartaking, "You are already attending this event");
+    
+    public static EventRequestError RequestToEventInThePast() => new (ErrorCode.RequestToEventInThePast, "You cannot create a request to an event that has already taken place");
 
 }

@@ -1,6 +1,7 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
+using VIAEventAssociation.Core.Domain.Common.Bases;
 
 namespace Tests.Common.Factories;
 
@@ -63,6 +64,18 @@ public static class EventTestDataFactory
         publicEvent.ChangeStatus(EventStatus.Ready);
         
         return publicEvent;
+    }
+
+    public static Event ActivePublicEventWithStartTimeInPast()
+    {
+        var tomorrow = DateTime.Today.AddDays(1);
+        
+        return EventFactory.Create().WithVisibility(EventVisibility.Public)
+            .WithTimeRange(tomorrow.AddHours(8), tomorrow.AddHours(12)).WithStatus(EventStatus.Active)
+            .WithSystemTime(new TestTime()
+            {
+                Now = DateTime.Now.AddDays(1)
+            }).BuildTest();
     }
     
     public static Event FullActivePublicEvent()

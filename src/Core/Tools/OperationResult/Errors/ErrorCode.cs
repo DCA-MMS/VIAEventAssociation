@@ -72,6 +72,7 @@ public enum ErrorCode
     RequestToEventGuestIsAlreadyPartaking = 2602,
     RequestToEventThatIsNotPublic = 2603,
     RequestToEventThatIsNotActive = 2604,
+    RequestToEventInThePast = 2605,
     
     // # EVENT INVITATION ERRORS
     InvitationToFullEvent = 2700,
