@@ -34,7 +34,7 @@ public class EventFactory
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(string)}, null);
         if (eventTitleConstructor == null) throw new NullReferenceException("EventTitle constructor not found");
         
-        var eventTitle = (EventTitle) eventTitleConstructor.Invoke(new object[] {title})!;
+        var eventTitle = (EventTitle) eventTitleConstructor.Invoke(new object[] {title});
         
         // Get the Title property of the Event class and set the value
         var titleProperty = typeof(Event).GetProperty("Title");
@@ -56,7 +56,7 @@ public class EventFactory
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(string)}, null);
         if (eventDescriptionConstructor == null) throw new NullReferenceException("EventDescription constructor not found");
         
-        var eventDescription = (EventDescription) eventDescriptionConstructor.Invoke(new object[] {description})!;
+        var eventDescription = (EventDescription) eventDescriptionConstructor.Invoke(new object[] {description});
         
         // Get the Description property of the Event class and set the value
         var descriptionProperty = typeof(Event).GetProperty("Description");
@@ -78,7 +78,7 @@ public class EventFactory
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(int)}, null);
         if (eventCapacityConstructor == null) throw new NullReferenceException("EventCapacity constructor not found");
         
-        var eventCapacity = (EventCapacity) eventCapacityConstructor.Invoke(new object[] {capacity})!;
+        var eventCapacity = (EventCapacity) eventCapacityConstructor.Invoke(new object[] {capacity});
         
         // Get the Capacity property of the Event class and set the value
         var titleProperty = typeof(Event).GetProperty("Capacity");
@@ -101,7 +101,7 @@ public class EventFactory
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(DateTime), typeof(DateTime)}, null);
         if (timeRangeConstructor == null) throw new NullReferenceException("TimeRange constructor not found");
         
-        var eventTimeRange = (TimeRange) timeRangeConstructor.Invoke(new object[] {start, end})!;
+        var eventTimeRange = (TimeRange) timeRangeConstructor.Invoke(new object[] {start, end});
         
         // Get the TimeRange property of the Event class and set the value
         var durationProperty = typeof(Event).GetProperty("Duration");
