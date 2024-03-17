@@ -31,6 +31,7 @@ public class Usecase5
             // Assert
             Assert.That(result.IsFailure, Is.False);
             Assert.That(@event.Visibility, Is.EqualTo(EventVisibility.Public));
+            Assert.That(@event.Status, Is.EqualTo(status));
         });
         
     }

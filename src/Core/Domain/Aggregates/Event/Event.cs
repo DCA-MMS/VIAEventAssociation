@@ -206,7 +206,6 @@ public class Event
         }
         
         Visibility = EventVisibility.Public;
-        Status = EventStatus.Draft;
 
         return Result.Success();
     }
