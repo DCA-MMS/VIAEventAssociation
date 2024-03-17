@@ -141,28 +141,12 @@ public class EventFactory
         return this;
     }
     
-    public EventFactory WithSystemTime(ISystemTime systemTime)
-    {
-        _systemTime = systemTime;
-        return this;
-    }
-    
     /// <summary>
     /// Returns the built event
     /// </summary>
     /// <returns></returns>
     public Event Build()
     {
-        return _event;
-    }
-
-    /// <summary>
-    /// Builds a version of the event with the test system time: <see cref="Constants.GetTestSystemTime"/>
-    /// </summary>
-    /// <returns></returns>
-    public Result<Event> BuildTest()
-    {
-        _event.SetSystemTime(_systemTime);
         return _event;
     }
 }
