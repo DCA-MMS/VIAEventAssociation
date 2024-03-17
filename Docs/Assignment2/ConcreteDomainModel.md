@@ -118,6 +118,38 @@ classDiagram
             +[get] Value : int
             +EventCapacity(capacity : int)
         }
+
+        class Request {
+            <<Entity>>
+            +Approve()
+            +Decline()
+        }
+
+        class RequestStatus {
+            <<Enum>>
+            +Pending
+            +Accepted
+            +Rejected
+        }
+
+        class RequestReason {
+            <<Value>>
+            +[get] Value : string
+            +RequestReason(reason : string)
+        }
+
+        class Invitation {
+            <<Entity>>
+            +Accept()
+            +Decline()
+        }
+
+        class InvitationStatus {
+            <<Enum>>
+            +Pending
+            +Accepted
+            +Rejected
+        }
     }
     
     namespace LOCATION {
@@ -170,41 +202,5 @@ classDiagram
             +FullName(firstName : string, lastName : string)
         }
 
-    }
-    
-    namespace REQUEST {
-        class Request {
-            <<Entity>>
-            +Approve()
-            +Decline()
-        }
-
-        class RequestStatus {
-            <<Enum>>
-            +Pending
-            +Accepted
-            +Rejected
-        }
-
-        class RequestReason {
-            <<Value>>
-            +[get] Value : string
-            +RequestReason(reason : string)
-        }
-    }
-    
-    namespace INVITATION {
-        class Invitation {
-            <<Entity>>
-            +Accept()
-            +Decline()
-        }
-
-        class InvitationStatus {
-            <<Enum>>
-            +Pending
-            +Accepted
-            +Rejected
-        }   
     }
 ```
