@@ -70,7 +70,6 @@ classDiagram
     namespace EVENT {
         class Event {
             <<Aggregate>>
-            +[get] IsLocked : bool
             +ChangeTitle(title : EventTitle)
             +ChangeDescription(description : EventDescription)
             +ChangeCapacity(amount : Capacity)
