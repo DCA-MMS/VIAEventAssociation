@@ -1,7 +1,6 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
-using VIAEventAssociation.Core.Domain.Common.Bases;
 
 namespace Tests.Common.Factories;
 

@@ -296,7 +296,7 @@ public class Event
             errors.Add(EventRequestError.RequestToEventGuestIsAlreadyPartaking());
         }
 
-        if (Duration != null && Duration.Start < _systemTime.Now)
+        if (Duration != null && Duration.Start < DateTime.Now)
         {
             errors.Add(EventRequestError.RequestToEventInThePast());
         }
@@ -312,7 +312,7 @@ public class Event
     
     public Result RemoveGuest(UserId userId)
     {
-        if (Duration != null && Duration.Start < _systemTime.Now)
+        if (Duration != null && Duration.Start < DateTime.Now)
         {
             return Result.Failure(EventCancelParticipation.CancelParticipationToEventInThePast());
         }
