@@ -39,7 +39,7 @@ public class Usecase11
         var userId = new UserId();
 
         // Act
-        var result = @event.Value.AddGuest(userId);
+        var result = @event.AddGuest(userId);
 
         Assert.Multiple(() =>
         {

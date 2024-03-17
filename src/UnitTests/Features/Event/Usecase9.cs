@@ -25,13 +25,13 @@ public class Usecase9
             .Build();
         
         // Act
-        var result = @event.Value.Activate();
+        var result = @event.Activate();
         
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Active));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Active));
         });
     }
     
@@ -52,13 +52,13 @@ public class Usecase9
             .Build();
         
         // Act
-        var result = @event.Value.Activate();
+        var result = @event.Activate();
         
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Active));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Active));
         });
     }
     
@@ -79,13 +79,13 @@ public class Usecase9
             .Build();
         
         // Act
-        var result = @event.Value.Activate();
+        var result = @event.Activate();
         
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Active));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Active));
         });
     }
     
@@ -106,13 +106,13 @@ public class Usecase9
             .Build();
         
         // Act
-        var result = @event.Value.Activate();
+        var result = @event.Activate();
         
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
             Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateWhenTitleIsDefault().Code));
         });
     }
@@ -134,13 +134,13 @@ public class Usecase9
             .Build();
         
         // Act
-        var result = @event.Value.Activate();
+        var result = @event.Activate();
         
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
             Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateEventWithStartTimePriorToNow().Code));
         });
     }
@@ -162,13 +162,13 @@ public class Usecase9
             .Build();
         
         // Act
-        var result = @event.Value.Activate();
+        var result = @event.Activate();
         
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Cancelled));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Cancelled));
             Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateCancelledEvent().Code));
         });
     }

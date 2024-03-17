@@ -20,7 +20,7 @@ public class EventFactoryTests
       var @event = EventFactory.Create()
          .Build();
       
-      string result = @event.Value.Title;
+      string result = @event.Title;
       
       // Assert
       Assert.That(result, Is.EqualTo(title));
@@ -36,7 +36,7 @@ public class EventFactoryTests
       var @event = EventFactory.Create()
          .Build();
       
-      string result = @event.Value.Description;
+      string result = @event.Description;
       
       // Assert
       Assert.That(result, Is.EqualTo(description));
@@ -52,7 +52,7 @@ public class EventFactoryTests
       var @event = EventFactory.Create()
          .Build();
       
-      var result = @event.Value.Status;
+      var result = @event.Status;
       
       // Assert
       Assert.That(result, Is.EqualTo(status));
@@ -68,7 +68,7 @@ public class EventFactoryTests
       var @event = EventFactory.Create()
          .Build();
       
-      var result = @event.Value.Visibility;
+      var result = @event.Visibility;
       
       // Assert
       Assert.That(result, Is.EqualTo(visibility));
@@ -87,7 +87,7 @@ public class EventFactoryTests
          .WithTitle(title)
          .Build();
       
-      string result = @event.Value.Title;
+      string result = @event.Title;
       
       // Assert
       Assert.That(result, Is.EqualTo(title));
@@ -106,7 +106,7 @@ public class EventFactoryTests
                .WithDescription(description)
                .Build();
          
-         string result = @event.Value.Description;
+         string result = @event.Description;
          
          // Assert
          Assert.That(result, Is.EqualTo(description));
@@ -126,7 +126,7 @@ public class EventFactoryTests
          .WithStatus(status)
          .Build();
       
-      var result = @event.Value.Status;
+      var result = @event.Status;
       
       // Assert
       Assert.That(result, Is.EqualTo(status));
@@ -145,7 +145,7 @@ public class EventFactoryTests
          .WithVisibility(visibility)
          .Build();
       
-      var result = @event.Value.Visibility;
+      var result = @event.Visibility;
       
       // Assert
       Assert.That(result, Is.EqualTo(visibility));
@@ -163,7 +163,7 @@ public class EventFactoryTests
          .WithCapacity(capacity)
          .Build();
       
-      int result = @event.Value.Capacity;
+      int result = @event.Capacity;
       
       // Assert
       Assert.That(result, Is.EqualTo(capacity));
@@ -190,7 +190,7 @@ public class EventFactoryTests
          .WithCapacity(capacity)
          .Build();
       
-      var @event = result.Value;
+      var @event = result;
       Assert.Multiple(() => {
          // Assert
          string titleResult = @event.Title;

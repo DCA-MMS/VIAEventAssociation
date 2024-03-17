@@ -20,13 +20,13 @@ public class Usecase13
         var userId = new UserId();
         
         // Act
-        var result = @event.Value.InviteGuest(userId);
+        var result = @event.InviteGuest(userId);
 
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Invitations.Any(x => x.GuestId == userId));
+            Assert.That(@event.Invitations.Any(x => x.GuestId == userId));
         });
     }
     
@@ -41,7 +41,7 @@ public class Usecase13
         var userId = new UserId();
         
         // Act
-        var result = @event.Value.InviteGuest(userId);
+        var result = @event.InviteGuest(userId);
 
         // Assert
         Assert.Multiple(() =>

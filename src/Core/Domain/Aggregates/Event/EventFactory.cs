@@ -151,8 +151,7 @@ public class EventFactory
     /// Returns the built event
     /// </summary>
     /// <returns></returns>
-    /// TODO: Return type should probably not return a Result
-    public Result<Event> Build()
+    public Event Build()
     {
         return _event;
     }
