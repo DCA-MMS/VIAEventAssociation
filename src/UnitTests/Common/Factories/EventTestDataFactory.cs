@@ -25,7 +25,7 @@ public static class EventTestDataFactory
     {
         var @event = PrivateEvent();
 
-        @event.ChangeVisibility(EventVisibility.Public);
+        @event.MakePublic();
 
         return @event;
     }
@@ -34,7 +34,7 @@ public static class EventTestDataFactory
     {
         var publicEvent = PublicEvent();
     
-        publicEvent.ChangeStatus(EventStatus.Active);
+        publicEvent.Activate();
         
         return publicEvent;
     }
@@ -52,7 +52,7 @@ public static class EventTestDataFactory
     {
         var publicEvent = ActivePublicEventWithPendingInvitation();
     
-        publicEvent.ChangeStatus(EventStatus.Cancelled);
+        publicEvent.Cancel();
         
         return publicEvent;
     }
@@ -61,7 +61,7 @@ public static class EventTestDataFactory
     {
         var publicEvent = ActivePublicEventWithPendingInvitation();
     
-        publicEvent.ChangeStatus(EventStatus.Ready);
+        publicEvent.MakeReady();
         
         return publicEvent;
     }

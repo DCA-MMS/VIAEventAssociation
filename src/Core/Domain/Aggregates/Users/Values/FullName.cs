@@ -69,4 +69,19 @@ public class FullName
         
         return errors;
     }
+    
+    public override bool Equals(object? obj)
+    {
+        if (obj is FullName fullName)
+        {
+            return fullName.FirstName == FirstName && fullName.LastName == LastName;
+        }
+
+        return false;
+    }
+    
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(FirstName, LastName);
+    }
 }

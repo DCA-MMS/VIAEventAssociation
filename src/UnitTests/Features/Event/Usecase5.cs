@@ -23,14 +23,14 @@ public class Usecase5
             .Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Public);
+        var result = @event.MakePublic();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Visibility, Is.EqualTo(EventVisibility.Public));
+            Assert.That(@event.Visibility, Is.EqualTo(EventVisibility.Public));
         });
         
     }
@@ -46,7 +46,7 @@ public class Usecase5
             .Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Public);        
+        var result = @event.MakePublic();        
         
         // Assert
         Assert.Multiple(() =>

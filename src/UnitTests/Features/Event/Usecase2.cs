@@ -20,13 +20,13 @@ public class Usecase2
         
         
         // Act
-        @event.Value.ChangeTitle(expected);
+        @event.ChangeTitle(expected);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            string title = @event.Value.Title;
-            var status = @event.Value.Status;
+            string title = @event.Title;
+            var status = @event.Status;
             
             // Assert
             Assert.That(title, Is.EqualTo(expected));
@@ -49,13 +49,13 @@ public class Usecase2
         
         
         // Act
-        @event.Value.ChangeTitle(expected);
+        @event.ChangeTitle(expected);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            string title = @event.Value.Title;
-            var status = @event.Value.Status;
+            string title = @event.Title;
+            var status = @event.Status;
             
             // Assert
             Assert.That(title, Is.EqualTo(expected));
@@ -71,7 +71,7 @@ public class Usecase2
         var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTitle("");
+        var result = @event.ChangeTitle("");
         
         Assert.Multiple(() =>
         {
@@ -91,7 +91,7 @@ public class Usecase2
         var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTitle(title);
+        var result = @event.ChangeTitle(title);
         
         Assert.Multiple(() =>
         {
@@ -109,7 +109,7 @@ public class Usecase2
         var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTitle("This is a very long title that is longer than 75 characters, which is the maximum length of a title");
+        var result = @event.ChangeTitle("This is a very long title that is longer than 75 characters, which is the maximum length of a title");
         
         Assert.Multiple(() =>
         {
@@ -129,7 +129,7 @@ public class Usecase2
             .Build();
         
         // Act
-        var result = @event.Value.ChangeTitle(null!);
+        var result = @event.ChangeTitle(null!);
         Assert.Multiple(() =>
         {
 
@@ -150,7 +150,7 @@ public class Usecase2
             .Build();
         
         // Act
-        var result = @event.Value.ChangeTitle("New Title");
+        var result = @event.ChangeTitle("New Title");
         
         Assert.Multiple(() =>
         {
@@ -171,7 +171,7 @@ public class Usecase2
             .Build();
         
         // Act
-        var result = @event.Value.ChangeTitle("New Title");
+        var result = @event.ChangeTitle("New Title");
         
         Assert.Multiple(() =>
         {

@@ -27,7 +27,6 @@
       <Folder Include="Common\Factories\" />
       <Folder Include="Fakes\" />
       <Folder Include="Features\Booking\" />
-      <Folder Include="Features\Event\" />
       <Folder Include="Features\Invitation\" />
       <Folder Include="Features\Location\" />
       <Folder Include="Features\Request\" />

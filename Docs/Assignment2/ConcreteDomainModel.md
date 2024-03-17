@@ -6,7 +6,7 @@ classDiagram
     Event "1" --> "1" EventVisibility : Visibility
     Event "1" --> "1" EventStatus : Status
     Event "1" *--> "1" TimeRange : Duration
-    Event "1" *--> "1" EventCapacity : MaxGuest
+    Event "1" *--> "1" EventCapacity : Capacity
     Event "1" ..> "1" Location : Location
     Request "1" <--* "0..*" Event : Requests
     Invitation "1" <--* "0..*" Event : Invitations 
@@ -71,14 +71,14 @@ classDiagram
         class Event {
             <<Aggregate>>
             +[get] IsLocked : bool
-            +UpdateTitle(title : EventTitle)
-            +UpdateDescription(description : EventDescription)
-            +UpdateDuration(duration : TimeRange)
-            +SetLocation(location: Location)
-            +SetPublic()
-            +SetPrivate()
-            +SetMaxGuests(amount : Capacity)
-            +Ready()
+            +ChangeTitle(title : EventTitle)
+            +ChangeDescription(description : EventDescription)
+            +ChangeDuration(duration : TimeRange)
+            +ChangeLocation(location: Location)
+            +MakePublic()
+            +MakePrivate()
+            +ChangeCapacity(amount : Capacity)
+            +MakeReady()
             +Activate()
             +Cancel()
             +Delete()

@@ -64,6 +64,21 @@ public class EventDescription
         return errors;
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is EventDescription description)
+        {
+            return description._value == _value;
+        }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return _value.GetHashCode();
+    }
+
     /// <summary>
     /// Allows for the implicit conversion of a <see cref="EventDescription"/> to a <see cref="string"/>
     /// </summary>

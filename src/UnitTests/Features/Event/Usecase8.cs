@@ -19,20 +19,20 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Draft)
             .WithTimeRange(
-                new DateTime(2027, 3, 11, 12, 0, 0),
-                new DateTime(2027, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(1).AddHours(8),
+                DateTime.Today.AddDays(1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
         // Act
-        var result = @event.Value.MakeReady();
+        var result = @event.MakeReady();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Ready));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Ready));
         });
     }
     
@@ -55,14 +55,14 @@ public class Usecase8
             .Build();
         
         // Act
-        var result = @event.Value.MakeReady();
+        var result = @event.MakeReady();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     */
@@ -78,21 +78,21 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Cancelled)
             .WithTimeRange(
-                new DateTime(2027, 3, 11, 12, 0, 0),
-                new DateTime(2027, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(1).AddHours(8),
+                DateTime.Today.AddDays(1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
         // Act
-        var result = @event.Value.MakeReady();
+        var result = @event.MakeReady();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Cancelled));
-            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyCancelledEvent().Code));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Cancelled));
+            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateCancelledEvent().Code));
         });
     }
     
@@ -107,21 +107,21 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Draft)
             .WithTimeRange(
-                new DateTime(2022, 3, 11, 12, 0, 0),
-                new DateTime(2022, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(-1).AddHours(8),
+                DateTime.Today.AddDays(-1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
         // Act
-        var result = @event.Value.MakeReady();
+        var result = @event.MakeReady();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
-            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyEventWithStartTimePriorToNow().Code));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateEventWithStartTimePriorToNow().Code));
         });
     }
     
@@ -135,21 +135,21 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Draft)
             .WithTimeRange(
-                new DateTime(2027, 3, 11, 12, 0, 0),
-                new DateTime(2027, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(1).AddHours(8),
+                DateTime.Today.AddDays(1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
         // Act
-        var result = @event.Value.MakeReady();
+        var result = @event.MakeReady();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
-            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyWhenTitleIsDefault().Code));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(result.Errors, Has.Exactly(1).Matches<Error>(x => x.Code == EventError.CantReadyOrActivateWhenTitleIsDefault().Code));
         });
     }
 }
