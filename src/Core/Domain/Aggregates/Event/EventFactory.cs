@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
-using VIAEventAssociation.Core.Domain.Common.Contracts;
 using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
@@ -11,7 +10,6 @@ public class EventFactory
 {
     // - Attributes
     private readonly Event _event = Event.Create();
-    private ISystemTime _systemTime = Constants.GetTestSystemTime();
     
     /// <summary>
     /// Initializes the creation of a new event
