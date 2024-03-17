@@ -75,7 +75,22 @@ public class EventTitle
         // * If there are no errors, return a success result
         return errors;
     }
-    
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is EventTitle title)
+        {
+            return title._value == _value;
+        }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return _value.GetHashCode();
+    }
+
     /// <summary>
     /// Allows implicit conversion from <see cref="EventTitle"/> to <see cref="string"/>
     /// </summary>

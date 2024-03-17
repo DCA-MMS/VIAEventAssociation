@@ -99,5 +99,19 @@ public class Email
         
         return true;
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Email email)
+        {
+            return Value == email.Value;
+        }
+
+        return false;
+    }
     
+    public override int GetHashCode()
+    {
+        return Value.GetHashCode();
+    }
 }

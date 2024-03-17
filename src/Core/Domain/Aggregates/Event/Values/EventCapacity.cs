@@ -80,6 +80,11 @@ public class EventCapacity
 
         return false;
     }
+    
+    public override int GetHashCode()
+    {
+        return _value.GetHashCode();
+    }
 
     /// <summary>
     /// Allows implicit conversion from <see cref="EventCapacity"/> to <see cref="int"/>

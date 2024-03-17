@@ -45,4 +45,19 @@ public class TimeRange
         
         return errors;
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is TimeRange timeRange)
+        {
+            return Start == timeRange.Start && End == timeRange.End;
+        }
+
+        return false;
+    }
+    
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Start, End);
+    }
 }
