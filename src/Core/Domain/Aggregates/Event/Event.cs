@@ -19,7 +19,7 @@ public class Event
     public EventStatus Status { get; private set; }
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
-    public TimeRange? TimeRange { get; private set; }
+    public TimeRange? Duration { get; private set; }
     public List<UserId> Participants { get; }
     public List<Invitation> Invitations { get; }
     
@@ -166,7 +166,7 @@ public class Event
     /// <param name="start">Start date and time of the event</param>
     /// <param name="end">End date and time of the event</param>
     /// <returns></returns>
-    public Result ChangeTimeRange(DateTime start, DateTime end)
+    public Result ChangeDuration(DateTime start, DateTime end)
     {
         // ? Check if the title is modifiable
         if(Status is EventStatus.Active or EventStatus.Cancelled)
@@ -194,7 +194,7 @@ public class Event
         }
         
         // * Set the time range
-        TimeRange = timeRangeResult;
+        Duration = timeRangeResult;
         
         // * Change the status to Draft if it is not already
         if(Status != EventStatus.Draft)
@@ -203,13 +203,6 @@ public class Event
         }
         
         // * Return a success result
-        return Result.Success();
-    }
-    
-    public Result ChangeStatus(EventStatus status)
-    {
-        Status = status;
-        
         return Result.Success();
     }
 
@@ -248,7 +241,7 @@ public class Event
         
         // TODO: Add check for if there is a time range. - MHN 
         
-        if (_systemTime.Now > TimeRange?.Start)
+        if (_systemTime.Now > Duration?.Start)
         {
             return Result.Failure(EventError.CantReadyOrActivateEventWithStartTimePriorToNow());
         }
@@ -276,6 +269,13 @@ public class Event
         }
         
         Status = EventStatus.Active;
+        
+        return Result.Success();
+    }
+
+    public Result Cancel()
+    {
+        Status = EventStatus.Cancelled;
         
         return Result.Success();
     }

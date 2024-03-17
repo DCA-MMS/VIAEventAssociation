@@ -1,4 +1,5 @@
 ﻿using Tests.Common.Factories;
+using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
@@ -34,12 +35,11 @@ public class Usecase11
     public void When_Guest_Attend_Non_Active_Event_Then_Guest_Is_Rejected(EventStatus status)
     {
         // Arrange
-        var @event = EventTestDataFactory.PublicEvent();
-        @event.ChangeStatus(status);
+        var @event = EventFactory.Create().WithStatus(status).Build();
         var userId = new UserId();
 
         // Act
-        var result = @event.AddGuest(userId);
+        var result = @event.Value.AddGuest(userId);
 
         Assert.Multiple(() =>
         {

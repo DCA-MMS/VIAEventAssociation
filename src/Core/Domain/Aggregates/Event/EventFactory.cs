@@ -90,7 +90,7 @@ public class EventFactory
         var eventTimeRange = (TimeRange) timeRangeConstructor?.Invoke(new object[] {start, end})!;
         
         // Get the TimeRange property of the Event class and set the value
-        var timeRangeProperty = typeof(Event).GetProperty("TimeRange");
+        var timeRangeProperty = typeof(Event).GetProperty("Duration");
         timeRangeProperty?.SetValue(_event, eventTimeRange);
         return this;
     }

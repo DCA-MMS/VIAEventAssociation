@@ -24,12 +24,12 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Value.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
@@ -48,12 +48,12 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Value.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
@@ -74,7 +74,7 @@ public class Usecase4
             .BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -99,12 +99,12 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Value.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
@@ -127,12 +127,12 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Value.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
@@ -151,7 +151,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -171,7 +171,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -192,7 +192,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -212,7 +212,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -232,7 +232,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -254,7 +254,7 @@ public class Usecase4
             .BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -276,7 +276,7 @@ public class Usecase4
             .BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -296,7 +296,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -316,7 +316,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -336,7 +336,7 @@ public class Usecase4
         var @event = EventFactory.Create().BuildTest();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.Value.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
