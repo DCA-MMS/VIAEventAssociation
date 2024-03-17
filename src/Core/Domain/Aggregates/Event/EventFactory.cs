@@ -32,11 +32,15 @@ public class EventFactory
         // Get EventTitle private constructor and instantiate a new EventTitle
         var eventTitleConstructor = typeof(EventTitle)
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(string)}, null);
-        var eventTitle = (EventTitle) eventTitleConstructor?.Invoke(new object[] {title})!;
+        if (eventTitleConstructor == null) throw new NullReferenceException("EventTitle constructor not found");
+        
+        var eventTitle = (EventTitle) eventTitleConstructor.Invoke(new object[] {title})!;
         
         // Get the Title property of the Event class and set the value
         var titleProperty = typeof(Event).GetProperty("Title");
-        titleProperty?.SetValue(_event, eventTitle);
+        if (titleProperty == null) throw new NullReferenceException("Title property not found");
+        
+        titleProperty.SetValue(_event, eventTitle);
         return this;
     }
     
@@ -50,11 +54,15 @@ public class EventFactory
         // Get the private constructor of EventDescription and instantiate a new EventDescription
         var eventDescriptionConstructor = typeof(EventDescription)
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(string)}, null);
-        var eventDescription = (EventDescription) eventDescriptionConstructor?.Invoke(new object[] {description})!;
+        if (eventDescriptionConstructor == null) throw new NullReferenceException("EventDescription constructor not found");
+        
+        var eventDescription = (EventDescription) eventDescriptionConstructor.Invoke(new object[] {description})!;
         
         // Get the Description property of the Event class and set the value
         var descriptionProperty = typeof(Event).GetProperty("Description");
-        descriptionProperty?.SetValue(_event, eventDescription);
+        if (descriptionProperty == null) throw new NullReferenceException("Description property not found");
+        
+        descriptionProperty.SetValue(_event, eventDescription);
         return this;
     }
     
@@ -68,11 +76,15 @@ public class EventFactory
         // Get the private constructor of EventCapacity and instantiate a new EventCapacity
         var eventCapacityConstructor = typeof(EventCapacity)
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(int)}, null);
-        var eventCapacity = (EventCapacity) eventCapacityConstructor?.Invoke(new object[] {capacity})!;
+        if (eventCapacityConstructor == null) throw new NullReferenceException("EventCapacity constructor not found");
+        
+        var eventCapacity = (EventCapacity) eventCapacityConstructor.Invoke(new object[] {capacity})!;
         
         // Get the Capacity property of the Event class and set the value
         var titleProperty = typeof(Event).GetProperty("Capacity");
-        titleProperty?.SetValue(_event, eventCapacity);
+        if (titleProperty == null) throw new NullReferenceException("Capacity property not found");
+        
+        titleProperty.SetValue(_event, eventCapacity);
         return this;
     }
     
@@ -87,11 +99,15 @@ public class EventFactory
         // Get the private constructor of TimeRange and instantiate a new TimeRange
         var timeRangeConstructor = typeof(TimeRange)
             .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(DateTime), typeof(DateTime)}, null);
-        var eventTimeRange = (TimeRange) timeRangeConstructor?.Invoke(new object[] {start, end})!;
+        if (timeRangeConstructor == null) throw new NullReferenceException("TimeRange constructor not found");
+        
+        var eventTimeRange = (TimeRange) timeRangeConstructor.Invoke(new object[] {start, end})!;
         
         // Get the TimeRange property of the Event class and set the value
-        var timeRangeProperty = typeof(Event).GetProperty("Duration");
-        timeRangeProperty?.SetValue(_event, eventTimeRange);
+        var durationProperty = typeof(Event).GetProperty("Duration");
+        if (durationProperty == null) throw new NullReferenceException("Duration property not found");
+        
+        durationProperty.SetValue(_event, eventTimeRange);
         return this;
     }
     
@@ -104,7 +120,9 @@ public class EventFactory
     {
         // Get the Status property of the Event class and set the value
         var statusProperty = typeof(Event).GetProperty("Status");
-        statusProperty?.SetValue(_event, status);
+        if (statusProperty == null) throw new NullReferenceException("Status property not found");
+        
+        statusProperty.SetValue(_event, status);
         return this;
     }
     
@@ -117,7 +135,9 @@ public class EventFactory
     {
         // Get the Visibility property of the Event class and set the value
         var visibilityProperty = typeof(Event).GetProperty("Visibility");
-        visibilityProperty?.SetValue(_event, visibility);
+        if (visibilityProperty == null) throw new NullReferenceException("Visibility property not found");
+        
+        visibilityProperty.SetValue(_event, visibility);
         return this;
     }
     
