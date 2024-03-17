@@ -1,4 +1,5 @@
 ﻿using Tests.Common.Factories;
+using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
@@ -15,8 +16,7 @@ public class Usecase13
     public void When_Guest_Is_Invited_To_Ready_Or_Active_Event_Then_Add_Pending_Invitation_In_Event(EventStatus status)
     {
         // Arrange
-        var @event = EventTestDataFactory.PublicEvent();
-        @event.ChangeStatus(status);
+        var @event = EventFactory.Create().WithStatus(status).Build();
         var userId = new UserId();
         
         // Act
@@ -37,8 +37,7 @@ public class Usecase13
     public void When_Guest_Is_Invited_To_Draft_Or_Cancelled_Event_Then_Reject_Request(EventStatus status)
     {
         // Arrange
-        var @event = EventTestDataFactory.DraftEvent();
-        @event.ChangeStatus(status);
+        var @event = EventFactory.Create().WithStatus(status).Build();
         var userId = new UserId();
         
         // Act

@@ -20,13 +20,13 @@ public class Usecase3
         var @event = EventFactory.Create().Build();
         
         // Act
-        @event.Value.ChangeDescription(expected);
+        @event.ChangeDescription(expected);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            string description = @event.Value.Description;
-            var status = @event.Value.Status;
+            string description = @event.Description;
+            var status = @event.Status;
             
             // Assert
             Assert.That(description, Is.EqualTo(expected));
@@ -42,13 +42,13 @@ public class Usecase3
         var @event = EventFactory.Create().Build();
         
         // Act
-        @event.Value.ChangeDescription("");
+        @event.ChangeDescription("");
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            string description = @event.Value.Description;
-            var status = @event.Value.Status;
+            string description = @event.Description;
+            var status = @event.Status;
             
             // Assert
             Assert.That(description, Is.EqualTo(""));
@@ -70,13 +70,13 @@ public class Usecase3
             .Build();
         
         // Act
-        @event.Value.ChangeDescription(expected);
+        @event.ChangeDescription(expected);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            string description = @event.Value.Description;
-            var status = @event.Value.Status;
+            string description = @event.Description;
+            var status = @event.Status;
             
             // Assert
             Assert.That(description, Is.EqualTo(expected));
@@ -92,7 +92,7 @@ public class Usecase3
         var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeDescription("Imagine a grand celebration of technology and innovation, the \"TechFuture Gala 2024,\" set in a sleek, modern convention center adorned with cutting-edge gadgets and interactive displays. This day-long event, scheduled for July 15th, 2024, promises to gather industry leaders, tech enthusiasts, and innovators from around the globe. Attendees will have the opportunity to engage in thought-provoking keynotes, participate in hands-on workshops on the latest technological advancements, and network with peers in specially designed meeting zones. Highlights include a keynote speech from a renowned tech visionary, unveiling of groundbreaking products, and a startup showcase where emerging companies present their solutions to pressing global challenges. The gala will conclude with an awards ceremony recognizing outstanding achievements in technology and innovation, followed by a futuristic-themed networking dinner under the stars. This event is a must-attend for anyone passionate about shaping the future of technology.");
+        var result = @event.ChangeDescription("Imagine a grand celebration of technology and innovation, the \"TechFuture Gala 2024,\" set in a sleek, modern convention center adorned with cutting-edge gadgets and interactive displays. This day-long event, scheduled for July 15th, 2024, promises to gather industry leaders, tech enthusiasts, and innovators from around the globe. Attendees will have the opportunity to engage in thought-provoking keynotes, participate in hands-on workshops on the latest technological advancements, and network with peers in specially designed meeting zones. Highlights include a keynote speech from a renowned tech visionary, unveiling of groundbreaking products, and a startup showcase where emerging companies present their solutions to pressing global challenges. The gala will conclude with an awards ceremony recognizing outstanding achievements in technology and innovation, followed by a futuristic-themed networking dinner under the stars. This event is a must-attend for anyone passionate about shaping the future of technology.");
         
         // Assert
         Assert.Multiple(() =>
@@ -114,7 +114,7 @@ public class Usecase3
             .Build();
         
         // Act
-        var result = @event.Value.ChangeDescription("Scary Movie Night!");
+        var result = @event.ChangeDescription("Scary Movie Night!");
         
         // Assert
         Assert.Multiple(() =>
@@ -136,7 +136,7 @@ public class Usecase3
             .Build();
         
         // Act
-        var result = @event.Value.ChangeDescription("Scary Movie Night!");
+        var result = @event.ChangeDescription("Scary Movie Night!");
         
         // Assert
         Assert.Multiple(() =>

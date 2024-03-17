@@ -35,9 +35,9 @@ public enum ErrorCode
     EventIsNotDraft = 2006,
     EventIsNotCancelled = 2007,
     EventNotModifiable = 2008, // - Might need to be moved... - MHN
-    EventCantReadyCancelledEvent = 2009,
-    EventCantReadyEventWithStartTimePriorToNow = 2010,
-    EventCantReadyWhenTitleIsDefault = 2011,
+    EventCantReadyOrActivateCancelledEvent = 2009,
+    EventCantReadyOrActivateEventWithStartTimePriorToNow = 2010,
+    EventCantReadyOrActivateWhenTitleIsDefault = 2011,
     
     // * EVENT TITLE ERRORS
     EventTitleIsEmpty = 2101,

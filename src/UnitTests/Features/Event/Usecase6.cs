@@ -18,15 +18,15 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(EventVisibility.Private).WithStatus(status).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Visibility, Is.EqualTo(EventVisibility.Private));
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Visibility, Is.EqualTo(EventVisibility.Private));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     
@@ -39,15 +39,15 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(EventVisibility.Public).WithStatus(status).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Value.Visibility, Is.EqualTo(EventVisibility.Private));
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Visibility, Is.EqualTo(EventVisibility.Private));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     
@@ -60,7 +60,7 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(visibility).WithStatus(EventStatus.Active).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
@@ -80,7 +80,7 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(visibility).WithStatus(EventStatus.Cancelled).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>

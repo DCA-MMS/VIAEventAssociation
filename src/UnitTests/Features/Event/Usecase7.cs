@@ -24,15 +24,15 @@ public class Usecase7
         var @event = EventFactory.Create().WithStatus(EventStatus.Draft).Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(capacity);
+        var result = @event.ChangeCapacity(capacity);
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That((int)@event.Value.Capacity, Is.LessThanOrEqualTo(50));
-            Assert.That((int)@event.Value.Capacity, Is.EqualTo(capacity));
+            Assert.That((int)@event.Capacity, Is.LessThanOrEqualTo(50));
+            Assert.That((int)@event.Capacity, Is.EqualTo(capacity));
         });
     }
     
@@ -52,15 +52,15 @@ public class Usecase7
         var @event = EventFactory.Create().WithStatus(EventStatus.Draft).Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(capacity);
+        var result = @event.ChangeCapacity(capacity);
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That((int)@event.Value.Capacity, Is.GreaterThanOrEqualTo(5));
-            Assert.That((int)@event.Value.Capacity, Is.EqualTo(capacity));
+            Assert.That((int)@event.Capacity, Is.GreaterThanOrEqualTo(5));
+            Assert.That((int)@event.Capacity, Is.EqualTo(capacity));
         });
     }
     
@@ -75,16 +75,16 @@ public class Usecase7
         var @event = EventFactory.Create().WithStatus(EventStatus.Active).WithCapacity(previousCapacity).Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(newCapacity);
+        var result = @event.ChangeCapacity(newCapacity);
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That((int)@event.Value.Capacity, Is.GreaterThanOrEqualTo(5));
-            Assert.That((int)@event.Value.Capacity, Is.LessThanOrEqualTo(50));
-            Assert.That((int)@event.Value.Capacity, Is.EqualTo(newCapacity));
+            Assert.That((int)@event.Capacity, Is.GreaterThanOrEqualTo(5));
+            Assert.That((int)@event.Capacity, Is.LessThanOrEqualTo(50));
+            Assert.That((int)@event.Capacity, Is.EqualTo(newCapacity));
         });
     }
 
@@ -99,7 +99,7 @@ public class Usecase7
         var @event = EventFactory.Create().WithStatus(EventStatus.Active).WithCapacity(previousCapacity).Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(newCapacity);
+        var result = @event.ChangeCapacity(newCapacity);
         
         // Assert
         Assert.Multiple(() =>
@@ -118,7 +118,7 @@ public class Usecase7
         var @event = EventFactory.Create().WithStatus(EventStatus.Cancelled).Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(10);
+        var result = @event.ChangeCapacity(10);
         
         // Assert
         Assert.Multiple(() =>
@@ -140,7 +140,7 @@ public class Usecase7
         var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(4);
+        var result = @event.ChangeCapacity(4);
         
         // Assert
         Assert.Multiple(() =>
@@ -159,7 +159,7 @@ public class Usecase7
         var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeCapacity(51);
+        var result = @event.ChangeCapacity(51);
         
         // Assert
         Assert.Multiple(() =>

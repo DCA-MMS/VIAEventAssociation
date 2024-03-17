@@ -1,4 +1,5 @@
-﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+﻿using System.Reflection;
+using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Common.Contracts;
 using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
@@ -10,7 +11,6 @@ public class EventFactory
 {
     // - Attributes
     private readonly Event _event = Event.Create();
-    private readonly List<Error> _errors = [];
     private ISystemTime _systemTime = Constants.GetTestSystemTime();
     
     /// <summary>
@@ -29,7 +29,18 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithTitle(string title)
     {
-        _event.ChangeTitle(title);
+        // Get EventTitle private constructor and instantiate a new EventTitle
+        var eventTitleConstructor = typeof(EventTitle)
+            .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(string)}, null);
+        if (eventTitleConstructor == null) throw new NullReferenceException("EventTitle constructor not found");
+        
+        var eventTitle = (EventTitle) eventTitleConstructor.Invoke(new object[] {title});
+        
+        // Get the Title property of the Event class and set the value
+        var titleProperty = typeof(Event).GetProperty("Title");
+        if (titleProperty == null) throw new NullReferenceException("Title property not found");
+        
+        titleProperty.SetValue(_event, eventTitle);
         return this;
     }
     
@@ -40,7 +51,18 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithDescription(string description)
     {
-        _event.ChangeDescription(description);
+        // Get the private constructor of EventDescription and instantiate a new EventDescription
+        var eventDescriptionConstructor = typeof(EventDescription)
+            .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(string)}, null);
+        if (eventDescriptionConstructor == null) throw new NullReferenceException("EventDescription constructor not found");
+        
+        var eventDescription = (EventDescription) eventDescriptionConstructor.Invoke(new object[] {description});
+        
+        // Get the Description property of the Event class and set the value
+        var descriptionProperty = typeof(Event).GetProperty("Description");
+        if (descriptionProperty == null) throw new NullReferenceException("Description property not found");
+        
+        descriptionProperty.SetValue(_event, eventDescription);
         return this;
     }
     
@@ -51,7 +73,18 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithCapacity(int capacity)
     {
-        _event.ChangeCapacity(capacity);
+        // Get the private constructor of EventCapacity and instantiate a new EventCapacity
+        var eventCapacityConstructor = typeof(EventCapacity)
+            .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(int)}, null);
+        if (eventCapacityConstructor == null) throw new NullReferenceException("EventCapacity constructor not found");
+        
+        var eventCapacity = (EventCapacity) eventCapacityConstructor.Invoke(new object[] {capacity});
+        
+        // Get the Capacity property of the Event class and set the value
+        var titleProperty = typeof(Event).GetProperty("Capacity");
+        if (titleProperty == null) throw new NullReferenceException("Capacity property not found");
+        
+        titleProperty.SetValue(_event, eventCapacity);
         return this;
     }
     
@@ -63,7 +96,18 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithTimeRange(DateTime start, DateTime end)
     {
-        _event.ChangeTimeRange(start, end);
+        // Get the private constructor of TimeRange and instantiate a new TimeRange
+        var timeRangeConstructor = typeof(TimeRange)
+            .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] {typeof(DateTime), typeof(DateTime)}, null);
+        if (timeRangeConstructor == null) throw new NullReferenceException("TimeRange constructor not found");
+        
+        var eventTimeRange = (TimeRange) timeRangeConstructor.Invoke(new object[] {start, end});
+        
+        // Get the TimeRange property of the Event class and set the value
+        var durationProperty = typeof(Event).GetProperty("Duration");
+        if (durationProperty == null) throw new NullReferenceException("Duration property not found");
+        
+        durationProperty.SetValue(_event, eventTimeRange);
         return this;
     }
     
@@ -74,7 +118,11 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithStatus(EventStatus status)
     {
-        _event.ChangeStatus(status);
+        // Get the Status property of the Event class and set the value
+        var statusProperty = typeof(Event).GetProperty("Status");
+        if (statusProperty == null) throw new NullReferenceException("Status property not found");
+        
+        statusProperty.SetValue(_event, status);
         return this;
     }
     
@@ -85,13 +133,11 @@ public class EventFactory
     /// <returns></returns>
     public EventFactory WithVisibility(EventVisibility visibility)
     {
-        _event.ChangeVisibility(visibility);
-        return this;
-    }
-    
-    public EventFactory WithSystemTime(ISystemTime systemTime)
-    {
-        _systemTime = systemTime;
+        // Get the Visibility property of the Event class and set the value
+        var visibilityProperty = typeof(Event).GetProperty("Visibility");
+        if (visibilityProperty == null) throw new NullReferenceException("Visibility property not found");
+        
+        visibilityProperty.SetValue(_event, visibility);
         return this;
     }
     
@@ -99,29 +145,8 @@ public class EventFactory
     /// Returns the built event
     /// </summary>
     /// <returns></returns>
-    public Result<Event> Build()
+    public Event Build()
     {
-        // TODO: The EventFactory should probably not handle errors. It's making unit testing more restrictive.
-        return _event;
-        
-        /*
-        // ! If there are no errors, return the event
-        if (_errors.Count <= 0) return _event;
-        
-        // Else, return a failure result with the errors
-        var errors = _errors.ToArray();
-        _errors.Clear();
-        return Result<Event>.Failure(errors);
-        */
-    }
-
-    /// <summary>
-    /// Builds a version of the event with the test system time: <see cref="Constants.GetTestSystemTime"/>
-    /// </summary>
-    /// <returns></returns>
-    public Result<Event> BuildTest()
-    {
-        _event.SetSystemTime(_systemTime);
         return _event;
     }
 }

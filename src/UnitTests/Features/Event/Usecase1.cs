@@ -22,9 +22,9 @@ public class Usecase1
         Assert.Multiple(() =>
         {
             // Prepare the result data
-            var statusResult = result.Value.Status;
-            int capacityResult = result.Value.Capacity;
-            var id = result.Value.Id;
+            var statusResult = result.Status;
+            int capacityResult = result.Capacity;
+            var id = result.Id;
             
             // Assert
             Assert.That(id, Is.Not.Null);
@@ -46,7 +46,7 @@ public class Usecase1
             .Build();
 
         // Prepare the result data
-        string titleResult = result.Value.Title;
+        string titleResult = result.Title;
             
         // Assert
         Assert.That(titleResult, Is.EqualTo(title));
@@ -65,7 +65,7 @@ public class Usecase1
             .Build();
 
         // Prepare the result data
-        string descriptionResult = result.Value.Description;
+        string descriptionResult = result.Description;
             
         // Assert
         Assert.That(descriptionResult, Is.EqualTo(description));
@@ -84,7 +84,7 @@ public class Usecase1
             .Build();
 
         // Prepare the result data
-        var visibilityResult = result.Value.Visibility;
+        var visibilityResult = result.Visibility;
             
         // Assert
         Assert.That(visibilityResult, Is.EqualTo(visibility));

@@ -21,20 +21,20 @@ public class Usecase4
     {
         var expectedStart = Date.AddHours(9);
         var expectedEnd = Date.AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
             Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     
@@ -45,20 +45,20 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddHours(8);
         var expectedEnd = Date.AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
             Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     
@@ -71,15 +71,15 @@ public class Usecase4
         var expectedEnd = Date.AddHours(10);
         var @event = EventFactory.Create()
             .WithStatus(EventStatus.Ready)
-            .BuildTest();
+            .Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var status = @event.Value.Status;
+            var status = @event.Status;
             
             Assert.That(result.IsFailure, Is.False);
             Assert.That(result.Errors, Is.Empty);
@@ -96,20 +96,20 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddHours(8);
         var expectedEnd = Date.AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
             Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     
@@ -124,20 +124,20 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddHours(startHour);
         var expectedEnd = Date.AddHours(endHour);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
             // Prepare for result data
-            var timeRange = @event.Value.TimeRange;
+            var timeRange = @event.Duration;
             
             // Assert
             Assert.That(timeRange?.Start, Is.EqualTo(expectedStart));
             Assert.That(timeRange?.End, Is.EqualTo(expectedEnd));
-            Assert.That(@event.Value.Status, Is.EqualTo(EventStatus.Draft));
+            Assert.That(@event.Status, Is.EqualTo(EventStatus.Draft));
         });
     }
     
@@ -148,10 +148,10 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddDays(1).AddHours(8);
         var expectedEnd = Date.AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -168,10 +168,10 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddHours(11);
         var expectedEnd = Date.AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -189,10 +189,10 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddHours(10);
         var expectedEnd = Date.AddHours(10).AddMinutes(30);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -209,10 +209,10 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddDays(1).AddHours(7);
         var expectedEnd = Date.AddDays(1).AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -229,10 +229,10 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddMinutes(55);
         var expectedEnd = Date.AddDays(1).AddHours(1);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -251,10 +251,10 @@ public class Usecase4
         var expectedEnd = Date.AddHours(10);
         var @event = EventFactory.Create()
             .WithStatus(EventStatus.Active)
-            .BuildTest();
+            .Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -273,10 +273,10 @@ public class Usecase4
         var expectedEnd = DateTime.Today.AddHours(10);
         var @event = EventFactory.Create()
             .WithStatus(EventStatus.Cancelled)
-            .BuildTest();
+            .Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -291,12 +291,12 @@ public class Usecase4
     public void Given_Duration_Longer_Than_10_Hours_Should_Return_Error()
     {
         // Arrange
-        var expectedStart = DateTime.Today.AddHours(8);
-        var expectedEnd = DateTime.Today.AddHours(20);
-        var @event = EventFactory.Create().BuildTest();
+        var expectedStart = Date.AddHours(8);
+        var expectedEnd = Date.AddHours(20);
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -313,10 +313,10 @@ public class Usecase4
         // Arrange
         var expectedStart = DateTime.Today.AddDays(-1).AddHours(8);
         var expectedEnd = DateTime.Today.AddDays(-1).AddHours(10);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
@@ -333,10 +333,10 @@ public class Usecase4
         // Arrange
         var expectedStart = Date.AddMinutes(55);
         var expectedEnd = Date.AddHours(8).AddMinutes(30);
-        var @event = EventFactory.Create().BuildTest();
+        var @event = EventFactory.Create().Build();
         
         // Act
-        var result = @event.Value.ChangeTimeRange(expectedStart, expectedEnd);
+        var result = @event.ChangeDuration(expectedStart, expectedEnd);
         
         Assert.Multiple(() =>
         {
