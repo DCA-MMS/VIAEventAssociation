@@ -20,7 +20,7 @@ public class Event
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
     public TimeRange? Duration { get; private set; }
-    public List<UserId> Participants { get; }
+    public List<UserId> Participants { get; private set; }
     public List<Invitation> Invitations { get; }
     
     /// <summary>

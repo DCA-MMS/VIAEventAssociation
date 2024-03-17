@@ -140,9 +140,14 @@ public class EventFactory
         return this;
     }
     
-    public EventFactory WithGuest(UserId guest)
+    public EventFactory WithParticipants(params UserId[] guests)
     {
-        _event.AddGuest(guest);
+        const string property = "Participants";
+        
+        var participantsProperty = typeof(Event).GetProperty(property);
+        if (participantsProperty == null) throw new NullReferenceException($"{property} property not found");
+        
+        participantsProperty.SetValue(_event, guests.ToList());
         return this;
     }
     
