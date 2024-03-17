@@ -24,7 +24,7 @@ public static class EventTestDataFactory
     {
         var @event = PrivateEvent();
 
-        @event.ChangeVisibility(EventVisibility.Public);
+        @event.MakePublic();
 
         return @event;
     }

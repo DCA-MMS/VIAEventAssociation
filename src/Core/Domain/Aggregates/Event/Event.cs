@@ -212,17 +212,30 @@ public class Event
         
         return Result.Success();
     }
-    
-    public Result ChangeVisibility(EventVisibility visibility)
+
+    public Result MakePublic()
     {
-        if(Status is EventStatus.Cancelled || (Status is EventStatus.Active && visibility is EventVisibility.Private))
+        if(Status is EventStatus.Cancelled)
         {
             return Result.Failure(EventVisibilityError.NotModifiable());
         }
         
-        Visibility = visibility;
+        Visibility = EventVisibility.Public;
         Status = EventStatus.Draft;
+
+        return Result.Success();
+    }
+    
+    public Result MakePrivate()
+    {
+        if(Status is EventStatus.Cancelled or EventStatus.Active)
+        {
+            return Result.Failure(EventVisibilityError.NotModifiable());
+        }
         
+        Visibility = EventVisibility.Private;
+        Status = EventStatus.Draft;
+
         return Result.Success();
     }
 

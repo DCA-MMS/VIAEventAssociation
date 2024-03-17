@@ -18,7 +18,7 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(EventVisibility.Private).WithStatus(status).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.Value.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
@@ -39,7 +39,7 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(EventVisibility.Public).WithStatus(status).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.Value.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
@@ -60,7 +60,7 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(visibility).WithStatus(EventStatus.Active).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.Value.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
@@ -80,7 +80,7 @@ public class Usecase6
         var @event = EventFactory.Create().WithVisibility(visibility).WithStatus(EventStatus.Cancelled).Build();
         
         // Act
-        var result = @event.Value.ChangeVisibility(EventVisibility.Private);
+        var result = @event.Value.MakePrivate();
         
         // Assert
         Assert.Multiple(() =>
