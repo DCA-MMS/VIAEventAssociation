@@ -19,8 +19,8 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Draft)
             .WithTimeRange(
-                new DateTime(2027, 3, 11, 12, 0, 0),
-                new DateTime(2027, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(1).AddHours(8),
+                DateTime.Today.AddDays(1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
@@ -78,8 +78,8 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Cancelled)
             .WithTimeRange(
-                new DateTime(2027, 3, 11, 12, 0, 0),
-                new DateTime(2027, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(1).AddHours(8),
+                DateTime.Today.AddDays(1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
@@ -107,8 +107,8 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Draft)
             .WithTimeRange(
-                new DateTime(2022, 3, 11, 12, 0, 0),
-                new DateTime(2022, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(-1).AddHours(8),
+                DateTime.Today.AddDays(-1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
@@ -135,8 +135,8 @@ public class Usecase8
             .WithVisibility(EventVisibility.Public)
             .WithStatus(EventStatus.Draft)
             .WithTimeRange(
-                new DateTime(2027, 3, 11, 12, 0, 0),
-                new DateTime(2027, 3, 11, 18, 0, 0))
+                DateTime.Today.AddDays(1).AddHours(8),
+                DateTime.Today.AddDays(1).AddHours(12))
             .WithCapacity(20)
             .Build();
         
