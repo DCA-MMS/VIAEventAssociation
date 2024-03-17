@@ -1,7 +1,6 @@
 using System.Reflection;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
-using VIAEventAssociation.Core.Domain.Common.Contracts;
 using VIAEventAssociation.Core.Domain.Common.Values;
 
 namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
@@ -10,7 +9,6 @@ public class EventFactory
 {
     // - Attributes
     private readonly Event _event = Event.Create();
-    private ISystemTime _systemTime = Constants.GetTestSystemTime();
     
     /// <summary>
     /// Initializes the creation of a new event

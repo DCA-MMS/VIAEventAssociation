@@ -2,7 +2,6 @@
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
-using VIAEventAssociation.Core.Domain.Common.Contracts;
 using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
@@ -23,11 +22,6 @@ public class Event
     public List<UserId> Participants { get; private set; }
     public List<Invitation> Invitations { get; }
     
-    /// <summary>
-    /// Contract for handling system time (Is used for testing purposes)
-    /// </summary>
-    private ISystemTime _systemTime;
-    
     // # Constructor
     private Event()
     {
@@ -40,8 +34,6 @@ public class Event
         Capacity = Constants.DefaultEventCapacity;
         Participants = new List<UserId>();
         Invitations = new List<Invitation>();
-        
-        _systemTime = Constants.DefaultSystemTime;
     }
     
     /// <summary>
@@ -241,7 +233,7 @@ public class Event
         
         // TODO: Add check for if there is a time range. - MHN 
         
-        if (_systemTime.Now > Duration?.Start)
+        if (DateTime.Now > Duration?.Start)
         {
             return Result.Failure(EventError.CantReadyOrActivateEventWithStartTimePriorToNow());
         }
@@ -432,7 +424,7 @@ public class Event
         var errors = new List<Error>();
         
         // ? Is Start date in the past?
-        if(start < _systemTime.Now)
+        if(start < DateTime.Now)
         {
             errors.Add(EventTimeRangeError.StartIsInPast());
             return Result.Failure(errors.ToArray());
@@ -464,14 +456,4 @@ public class Event
         
         return Result.Success();
     }
-    
-    /// <summary>
-    /// Allows for setting the system time for testing purposes
-    /// </summary>
-    /// <param name="systemTime"></param>
-    protected internal void SetSystemTime(ISystemTime systemTime)
-    {
-        _systemTime = systemTime;
-    }
-    
 }

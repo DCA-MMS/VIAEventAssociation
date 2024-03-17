@@ -70,18 +70,16 @@ classDiagram
     namespace EVENT {
         class Event {
             <<Aggregate>>
-            +[get] IsLocked : bool
             +ChangeTitle(title : EventTitle)
             +ChangeDescription(description : EventDescription)
+            +ChangeCapacity(amount : Capacity)
             +ChangeDuration(duration : TimeRange)
             +ChangeLocation(location: Location)
             +MakePublic()
             +MakePrivate()
-            +ChangeCapacity(amount : Capacity)
             +MakeReady()
             +Activate()
             +Cancel()
-            +Delete()
             +AddGuest(guest : User)
             +RemoveGuest(guest : User)
             +InviteGuest(guest : User)
@@ -118,6 +116,38 @@ classDiagram
             <<Value>>
             +[get] Value : int
             +EventCapacity(capacity : int)
+        }
+
+        class Request {
+            <<Entity>>
+            +Approve()
+            +Decline()
+        }
+
+        class RequestStatus {
+            <<Enum>>
+            +Pending
+            +Accepted
+            +Rejected
+        }
+
+        class RequestReason {
+            <<Value>>
+            +[get] Value : string
+            +RequestReason(reason : string)
+        }
+
+        class Invitation {
+            <<Entity>>
+            +Accept()
+            +Decline()
+        }
+
+        class InvitationStatus {
+            <<Enum>>
+            +Pending
+            +Accepted
+            +Rejected
         }
     }
     
@@ -171,41 +201,5 @@ classDiagram
             +FullName(firstName : string, lastName : string)
         }
 
-    }
-    
-    namespace REQUEST {
-        class Request {
-            <<Entity>>
-            +Approve()
-            +Decline()
-        }
-
-        class RequestStatus {
-            <<Enum>>
-            +Pending
-            +Accepted
-            +Rejected
-        }
-
-        class RequestReason {
-            <<Value>>
-            +[get] Value : string
-            +RequestReason(reason : string)
-        }
-    }
-    
-    namespace INVITATION {
-        class Invitation {
-            <<Entity>>
-            +Accept()
-            +Decline()
-        }
-
-        class InvitationStatus {
-            <<Enum>>
-            +Pending
-            +Accepted
-            +Rejected
-        }   
     }
 ```
