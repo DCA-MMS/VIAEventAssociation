@@ -68,26 +68,19 @@ public static class EventTestDataFactory
 
     public static Event ActivePublicEventWithStartTimeInPast()
     {
-        var tomorrow = DateTime.Today.AddDays(1);
-        
+        var yesterday = DateTime.Today.AddDays(-1);
+
         return EventFactory.Create().WithVisibility(EventVisibility.Public)
-            .WithTimeRange(tomorrow.AddHours(8), tomorrow.AddHours(12)).WithStatus(EventStatus.Active)
-            .WithSystemTime(new TestTime()
-            {
-                Now = DateTime.Now.AddDays(1)
-            }).BuildTest();
+            .WithTimeRange(yesterday.AddHours(8), yesterday.AddHours(12)).WithStatus(EventStatus.Active).Build();
     }
     
     public static Event ActivePublicEventWithGuestAndStartTimeInPast()
     {
-        var tomorrow = DateTime.Today.AddDays(1);
-        
+        var yesterday = DateTime.Today.AddDays(-1);
+
         return EventFactory.Create().WithVisibility(EventVisibility.Public)
-            .WithTimeRange(tomorrow.AddHours(8), tomorrow.AddHours(12)).WithStatus(EventStatus.Active).WithGuest(new UserId())
-            .WithSystemTime(new TestTime()
-            {
-                Now = DateTime.Now.AddDays(1)
-            }).BuildTest();
+            .WithTimeRange(yesterday.AddHours(8), yesterday.AddHours(12)).WithStatus(EventStatus.Active)
+            .WithParticipants(new UserId()).Build();
     }
     
     public static Event FullActivePublicEvent()
