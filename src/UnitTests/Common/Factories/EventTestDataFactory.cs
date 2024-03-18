@@ -64,6 +64,23 @@ public static class EventTestDataFactory
         
         return publicEvent;
     }
+
+    public static Event ActivePublicEventWithStartTimeInPast()
+    {
+        var yesterday = DateTime.Today.AddDays(-1);
+
+        return EventFactory.Create().WithVisibility(EventVisibility.Public)
+            .WithTimeRange(yesterday.AddHours(8), yesterday.AddHours(12)).WithStatus(EventStatus.Active).Build();
+    }
+    
+    public static Event ActivePublicEventWithGuestAndStartTimeInPast()
+    {
+        var yesterday = DateTime.Today.AddDays(-1);
+
+        return EventFactory.Create().WithVisibility(EventVisibility.Public)
+            .WithTimeRange(yesterday.AddHours(8), yesterday.AddHours(12)).WithStatus(EventStatus.Active)
+            .WithParticipants(new UserId()).Build();
+    }
     
     public static Event FullActivePublicEvent()
     {

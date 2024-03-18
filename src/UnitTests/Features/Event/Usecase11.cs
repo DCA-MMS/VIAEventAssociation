@@ -69,7 +69,24 @@ public class Usecase11
     }
     
     // # F3
-    //TODO
+    [Test]
+    public void When_Guest_Attend_Event_From_The_Past_Then_Guest_Is_Rejected()
+    {
+        // Arrange
+        var @event = EventTestDataFactory.ActivePublicEventWithStartTimeInPast();
+        var userId = new UserId();
+
+        // Act
+        var result = @event.AddGuest(userId);
+
+        Assert.Multiple(() =>
+        {
+            // Assert
+            Assert.That(result.IsFailure, Is.True);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToEventInThePast), Is.True);
+        });
+    }    
+    
     
     // # F4
     [Test]

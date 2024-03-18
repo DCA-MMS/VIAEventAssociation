@@ -1,8 +1,7 @@
-﻿using System.Reflection;
+using System.Reflection;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Domain.Common.Values;
-using VIAEventAssociation.Core.Tools.OperationResult;
-using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 
@@ -35,8 +34,10 @@ public class EventFactory
         var eventTitle = (EventTitle) eventTitleConstructor.Invoke(new object[] {title});
         
         // Get the Title property of the Event class and set the value
-        var titleProperty = typeof(Event).GetProperty("Title");
-        if (titleProperty == null) throw new NullReferenceException("Title property not found");
+        const string property = "Title";
+
+        var titleProperty = typeof(Event).GetProperty(property);
+        if (titleProperty == null) throw new NullReferenceException($"{property} property not found");
         
         titleProperty.SetValue(_event, eventTitle);
         return this;
@@ -57,8 +58,10 @@ public class EventFactory
         var eventDescription = (EventDescription) eventDescriptionConstructor.Invoke(new object[] {description});
         
         // Get the Description property of the Event class and set the value
-        var descriptionProperty = typeof(Event).GetProperty("Description");
-        if (descriptionProperty == null) throw new NullReferenceException("Description property not found");
+        const string property = "Description";
+        
+        var descriptionProperty = typeof(Event).GetProperty(property);
+        if (descriptionProperty == null) throw new NullReferenceException($"{property} property not found");
         
         descriptionProperty.SetValue(_event, eventDescription);
         return this;
@@ -79,8 +82,10 @@ public class EventFactory
         var eventCapacity = (EventCapacity) eventCapacityConstructor.Invoke(new object[] {capacity});
         
         // Get the Capacity property of the Event class and set the value
-        var titleProperty = typeof(Event).GetProperty("Capacity");
-        if (titleProperty == null) throw new NullReferenceException("Capacity property not found");
+        const string property = "Capacity";
+        
+        var titleProperty = typeof(Event).GetProperty(property);
+        if (titleProperty == null) throw new NullReferenceException($"{property} property not found");
         
         titleProperty.SetValue(_event, eventCapacity);
         return this;
@@ -102,8 +107,10 @@ public class EventFactory
         var eventTimeRange = (TimeRange) timeRangeConstructor.Invoke(new object[] {start, end});
         
         // Get the TimeRange property of the Event class and set the value
-        var durationProperty = typeof(Event).GetProperty("Duration");
-        if (durationProperty == null) throw new NullReferenceException("Duration property not found");
+        const string property = "Duration";
+
+        var durationProperty = typeof(Event).GetProperty(property);
+        if (durationProperty == null) throw new NullReferenceException($"{property} property not found");
         
         durationProperty.SetValue(_event, eventTimeRange);
         return this;
@@ -117,8 +124,10 @@ public class EventFactory
     public EventFactory WithStatus(EventStatus status)
     {
         // Get the Status property of the Event class and set the value
-        var statusProperty = typeof(Event).GetProperty("Status");
-        if (statusProperty == null) throw new NullReferenceException("Status property not found");
+        const string property = "Status";
+
+        var statusProperty = typeof(Event).GetProperty(property);
+        if (statusProperty == null) throw new NullReferenceException($"{property} property not found");
         
         statusProperty.SetValue(_event, status);
         return this;
@@ -132,10 +141,24 @@ public class EventFactory
     public EventFactory WithVisibility(EventVisibility visibility)
     {
         // Get the Visibility property of the Event class and set the value
-        var visibilityProperty = typeof(Event).GetProperty("Visibility");
-        if (visibilityProperty == null) throw new NullReferenceException("Visibility property not found");
+        const string property ="Visibility";
+
+        var visibilityProperty = typeof(Event).GetProperty(property);
+        if (visibilityProperty == null) throw new NullReferenceException($"{property} property not found");
         
         visibilityProperty.SetValue(_event, visibility);
+        return this;
+    }
+    
+    public EventFactory WithParticipants(params UserId[] guests)
+    {
+        // Get the Participants property of the Event class and set the value
+        const string property = "Participants";
+        
+        var participantsProperty = typeof(Event).GetProperty(property);
+        if (participantsProperty == null) throw new NullReferenceException($"{property} property not found");
+        
+        participantsProperty.SetValue(_event, guests.ToList());
         return this;
     }
     

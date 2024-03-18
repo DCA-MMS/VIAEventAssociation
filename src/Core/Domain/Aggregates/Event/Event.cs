@@ -19,7 +19,7 @@ public class Event
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
     public TimeRange? Duration { get; private set; }
-    public List<UserId> Participants { get; }
+    public List<UserId> Participants { get; private set; }
     public List<Invitation> Invitations { get; }
     
     // # Constructor
@@ -295,6 +295,11 @@ public class Event
         {
             errors.Add(EventRequestError.RequestToEventGuestIsAlreadyPartaking());
         }
+
+        if (Duration != null && Duration.Start < DateTime.Now)
+        {
+            errors.Add(EventRequestError.RequestToEventInThePast());
+        }
         
         if (errors.Count > 0)
         {
@@ -307,6 +312,11 @@ public class Event
     
     public Result RemoveGuest(UserId userId)
     {
+        if (Duration != null && Duration.Start < DateTime.Now)
+        {
+            return Result.Failure(EventCancelParticipation.CancelParticipationToEventInThePast());
+        }
+        
         Participants.Remove(userId);
         return Result.Success();
     }

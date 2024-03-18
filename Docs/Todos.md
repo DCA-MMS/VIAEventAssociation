@@ -23,5 +23,5 @@
 
 
 ## Marcus
-- Create last two fail missing fail scenarios
+- [x] Create last two fail missing fail scenarios
 - Create UseCase 16-20
