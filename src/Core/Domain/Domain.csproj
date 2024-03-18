@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>Domain</AssemblyName>
+        <RootNamespace>VIAEventAssociation.Core.Domain</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Aggregates\Event\Entities\" />
+        <Folder Include="Aggregates\Location\Values\" />
+        <Folder Include="Services\" />
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>UnitTests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Tools\OperationResult\OperationResult.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -6,7 +6,7 @@ classDiagram
     Event "1" --> "1" EventVisibility : Visibility
     Event "1" --> "1" EventStatus : Status
     Event "1" *--> "1" TimeRange : Duration
-    Event "1" *--> "1" Capacity : MaxGuest
+    Event "1" *--> "1" EventCapacity : Capacity
     Event "1" ..> "1" Location : Location
     Request "1" <--* "0..*" Event : Requests
     Invitation "1" <--* "0..*" Event : Invitations 
@@ -20,7 +20,7 @@ classDiagram
     %%Location
     Location "1" --> "1" LocationName : Name
     Location "1" --> "1" LocationType : Type
-    Location "1" --> "1" Capacity : Capacity
+    Location "1" --> "1" LocationCapacity : Capacity
     Location "1" *--> "0..*" Booking : Bookings
 
     %%Booking
@@ -33,12 +33,13 @@ classDiagram
     %%Request
     Request "1" --> "1" RequestStatus : Status
     Request "1" ..> "1" User : Guest
+    Request "1" --> "1" RequestReason : Reason
     
     %% Styling
 %%    style Event fill:#cdffb4
 %%    style Location fill:#cdffb4
+%%    style User fill:#cdffb4
 %%    style Request fill:#dae8fc
-%%    style User fill:#dae8fc
 %%    style Invitation fill:#dae8fc
 %%    style Booking fill:#dae8fc
 %%    style RequestReason fill:#ffffcc
@@ -46,7 +47,8 @@ classDiagram
 %%    style Email fill:#ffffcc
 %%    style EventTitle fill:#ffffcc
 %%    style EventDescription fill:#ffffcc
-%%    style Capacity fill:#ffffcc
+%%    style LocationCapacity fill:#ffffcc
+%%    style EventCapacity fill:#ffffcc
 %%    style TimeRange fill:#ffffcc
 %%    style LocationName fill:#ffffcc
 %%    style RequestStatus fill:#e0d0ff
@@ -65,27 +67,19 @@ classDiagram
         +TimeRange(start : DateTime, end : DateTime)
     }
 
-    class Capacity {
-        <<Value>>
-        +[get] Value : int
-        +Capacity(capacity : int)
-    }
-
     namespace EVENT {
         class Event {
             <<Aggregate>>
-            +[get] IsLocked : bool
-            +UpdateTitle(title : EventTitle)
-            +UpdateDescription(description : EventDescription)
-            +UpdateDuration(duration : TimeRange)
-            +SetLocation(location: Location)
-            +SetPublic()
-            +SetPrivate()
-            +SetMaxGuests(amount : Capacity)
-            +Ready()
+            +ChangeTitle(title : EventTitle)
+            +ChangeDescription(description : EventDescription)
+            +ChangeCapacity(amount : Capacity)
+            +ChangeDuration(duration : TimeRange)
+            +ChangeLocation(location: Location)
+            +MakePublic()
+            +MakePrivate()
+            +MakeReady()
             +Activate()
             +Cancel()
-            +Delete()
             +AddGuest(guest : User)
             +RemoveGuest(guest : User)
             +InviteGuest(guest : User)
@@ -117,6 +111,44 @@ classDiagram
             +Ready
             +Cancelled
         }
+
+        class EventCapacity {
+            <<Value>>
+            +[get] Value : int
+            +EventCapacity(capacity : int)
+        }
+
+        class Request {
+            <<Entity>>
+            +Approve()
+            +Decline()
+        }
+
+        class RequestStatus {
+            <<Enum>>
+            +Pending
+            +Accepted
+            +Rejected
+        }
+
+        class RequestReason {
+            <<Value>>
+            +[get] Value : string
+            +RequestReason(reason : string)
+        }
+
+        class Invitation {
+            <<Entity>>
+            +Accept()
+            +Decline()
+        }
+
+        class InvitationStatus {
+            <<Enum>>
+            +Pending
+            +Accepted
+            +Rejected
+        }
     }
     
     namespace LOCATION {
@@ -140,6 +172,12 @@ classDiagram
             +LocationName(name : string)
         }
 
+        class LocationCapacity {
+            <<Value>>
+            +[get] Value : int
+            +LocationCapacity(capacity : int)
+        }
+
         class Booking {
             <<Entity>>
         }
@@ -147,7 +185,7 @@ classDiagram
 
     namespace USER {
         class User {
-            <<Entity>>
+            <<Aggregate>>
         }
 
         class Email {
@@ -163,41 +201,5 @@ classDiagram
             +FullName(firstName : string, lastName : string)
         }
 
-    }
-    
-    namespace REQUEST {
-        class Request {
-            <<Entity>>
-            +Approve()
-            +Decline()
-        }
-
-        class RequestStatus {
-            <<Enum>>
-            +Pending
-            +Accepted
-            +Rejected
-        }
-
-        class RequestReason {
-            <<Value>>
-            +[get] Value : string
-            +RequestReason(reason : string)
-        }
-    }
-    
-    namespace INVITATION {
-        class Invitation {
-            <<Entity>>
-            +Accept()
-            +Decline()
-        }
-
-        class InvitationStatus {
-            <<Enum>>
-            +Pending
-            +Accepted
-            +Rejected
-        }   
     }
 ```
