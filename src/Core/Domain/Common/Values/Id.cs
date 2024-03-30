@@ -12,6 +12,6 @@ public class Id<T>
     // # Constructor
     protected Id()
     {
-        Value = new Guid(); 
+        Value = Guid.NewGuid(); 
     }
 }
