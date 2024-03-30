@@ -7,7 +7,7 @@ public class Id<T>
     /// <summary>
     /// The value of the Id
     /// </summary>
-    public Guid Value { get; private set; }
+    public Guid Value { get; protected set; }
 
     // # Constructor
     protected Id()

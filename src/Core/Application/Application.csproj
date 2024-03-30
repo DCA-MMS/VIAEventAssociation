@@ -7,10 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="AppEntry\Commands\User\" />
       <Folder Include="Features\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
       <ProjectReference Include="..\Tools\OperationResult\OperationResult.csproj" />
     </ItemGroup>
 

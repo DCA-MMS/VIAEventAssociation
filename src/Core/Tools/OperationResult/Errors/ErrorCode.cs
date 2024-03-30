@@ -2,6 +2,9 @@
 
 public enum ErrorCode
 {
+    // * GENERAL ERRORS
+    InvalidIdConversion = 0001,
+    
     // * USER ERRORS - EXAMPLES
     UserNotFound = 1000,
     UserAlreadyExists = 1001,
