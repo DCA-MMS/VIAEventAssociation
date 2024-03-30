@@ -25,7 +25,6 @@
 
     <ItemGroup>
       <Folder Include="Common\Factories\" />
-      <Folder Include="Fakes\" />
       <Folder Include="Features\Booking\" />
       <Folder Include="Features\Invitation\" />
       <Folder Include="Features\Locations\" />

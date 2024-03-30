@@ -4,6 +4,7 @@ public enum ErrorCode
 {
     // * GENERAL ERRORS
     InvalidIdConversion = 0001,
+    ItemNotFound = 0002,
     
     // * USER ERRORS - EXAMPLES
     UserNotFound = 1000,
@@ -28,7 +29,7 @@ public enum ErrorCode
     EmailMustEndWith = 1202,
     EmailWithInvalidCharacters = 1203,
     
-    // * EVENT ERRORS - EXAMPLES
+    // * EVENT ERRORS
     EventNotFound = 2000,
     EventAlreadyExists = 2001,
     EventIsNotActive = 2002,

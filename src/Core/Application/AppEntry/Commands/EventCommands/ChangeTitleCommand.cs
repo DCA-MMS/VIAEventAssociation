@@ -7,8 +7,8 @@ namespace Application.AppEntry.Commands.EventCommands;
 
 public class ChangeTitleCommand
 {
-    EventId Id { get; }
-    EventTitle Title { get; }
+    public EventId Id { get; }
+    public EventTitle Title { get; }
 
     private ChangeTitleCommand(EventId id, EventTitle title)
     {

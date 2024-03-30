@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="AppEntry\Commands\User\" />
-      <Folder Include="Features\" />
     </ItemGroup>
 
     <ItemGroup>
