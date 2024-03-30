@@ -7,13 +7,13 @@
   - [x] S2
   - [x] S3
   - [x] S4
-- [ ] UseCase2
+- [x] UseCase2
   - [x] S1
   - [x] S2
   - [x] F1
   - [x] F2
   - [x] F3
-  - [ ] F4
+  - [x] F4
   - [x] F5
   - [x] F6
 - [x] UseCase3
