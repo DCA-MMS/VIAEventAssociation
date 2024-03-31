@@ -6,7 +6,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Features.Event;
 
 [TestFixture]
-public class Usecase5
+public class MakePublicAggregateTests
 {
     
     // # S1 - Visibility can be set to Public, while status is Draft, Active, Ready
