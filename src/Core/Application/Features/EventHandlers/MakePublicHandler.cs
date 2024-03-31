@@ -7,15 +7,15 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionCommand>
+public class MakePublicHandler : ICommandHandler<MakePublicCommand>
 {
     private readonly IEventRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     
     // # Constructor
-    internal ChangeDescriptionHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
+    internal MakePublicHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
     
-    public async Task<Result> HandleAsync(ChangeDescriptionCommand command)
+    public async Task<Result> HandleAsync(MakePublicCommand command)
     {
         var @event = await _repository.GetByIdAsync(command.Id);
         
@@ -23,8 +23,8 @@ internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionComma
         {
             return Result.Failure(RepositoryError.ItemNotFound());
         }
-        
-        var result = @event.ChangeDescription(command.Description);
+
+        var result = @event.MakePublic();
         
         if (result.IsFailure)
         {

@@ -7,15 +7,15 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionCommand>
+internal class ChangeDurationHandler : ICommandHandler<ChangeDurationCommand>
 {
     private readonly IEventRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     
     // # Constructor
-    internal ChangeDescriptionHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-    
-    public async Task<Result> HandleAsync(ChangeDescriptionCommand command)
+    internal ChangeDurationHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
+
+    public async Task<Result> HandleAsync(ChangeDurationCommand command)
     {
         var @event = await _repository.GetByIdAsync(command.Id);
         
@@ -23,8 +23,8 @@ internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionComma
         {
             return Result.Failure(RepositoryError.ItemNotFound());
         }
-        
-        var result = @event.ChangeDescription(command.Description);
+
+        var result = @event.ChangeDuration(command.Duration.Start, command.Duration.End);
         
         if (result.IsFailure)
         {

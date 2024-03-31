@@ -30,7 +30,6 @@ public class ChangeDescriptionCommandTests
         Assert.That(description, Is.EqualTo(expected));
     }
     
-    
     // # F1
     [Test]
     public void Create_Command_With_Too_long_Description_Should_Fail()
@@ -50,5 +49,4 @@ public class ChangeDescriptionCommandTests
             Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventDescriptionError.IsTooLong().Code));
         });
     }
-    
 }
