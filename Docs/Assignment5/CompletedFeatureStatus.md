@@ -1,0 +1,151 @@
+﻿
+# Completed Feature Status
+
+### Must have:
+- [x] UseCase1
+  - [x] S1
+  - [x] S2
+  - [x] S3
+  - [x] S4
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase2
+  - [x] S1
+  - [x] S2
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [x] F4
+  - [x] F5
+  - [x] F6
+  - [x] Command
+  - [x] Handler
+- [x] UseCase3
+  - [x] S1
+  - [x] S2
+  - [x] S3
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [x] Command
+  - [x] Handler
+- [ ] UseCase4
+  - [x] S1
+  - [x] S2
+  - [x] S3
+  - [x] S4
+  - [x] S5
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [x] F4
+  - [x] F5
+  - [x] F6
+  - [x] F7
+  - [x] F8
+  - [x] F9
+  - [x] F10
+  - [ ] F11
+  - [x] Command
+  - [x] Handler
+- [x] UseCase5
+  - [x] S1
+  - [x] F1
+  - [x] Command
+  - [x] Handler
+- [x] UseCase6
+  - [x] S1
+  - [x] S2
+  - [x] F1
+  - [x] F2
+  - [ ] Command
+  - [ ] Handler
+- [ ] UseCase7
+  - [x] S1
+  - [x] S2
+  - [x] S3
+  - [x] F1
+  - [x] F2
+  - [ ] F3
+  - [x] F4
+  - [x] F5
+  - [ ] Command
+  - [ ] Handler
+- [ ] UseCase8
+  - [x] S1
+  - [ ] F1
+  - [x] F2
+  - [x] F3
+  - [x] F4
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase9
+  - [x] S1
+  - [x] S2
+  - [x] S3
+  - [x] F1
+  - [x] F2
+  - [ ] Command
+  - [ ] Handler
+- [ ] UseCase10
+  - [x] S1
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [x] F4
+  - [ ] F5
+  - [x] F6
+  - [x] F7
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase11
+  - [x] S1
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [x] F4
+  - [x] F5
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase12
+  - [x] S1
+  - [x] S2
+  - [x] F1
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase13
+  - [x] S1
+  - [x] F1
+  - [x] F2
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase14
+  - [x] S1
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [x] F4
+  - [ ] Command
+  - [ ] Handler
+- [x] UseCase15
+  - [x] S1
+  - [x] S2
+  - [x] F1
+  - [x] F2
+  - [x] F3
+  - [ ] Command
+  - [ ] Handler
+
+### Nice to have:
+- [ ] UseCase16
+- [ ] UseCase17
+- [ ] UseCase18
+- [ ] UseCase19
+- [ ] UseCase20
+
+### Could have:
+- [ ] UseCase21
+- [ ] UseCase22
+- [ ] UseCase23
+- [ ] UseCase24
+- [ ] UseCase25

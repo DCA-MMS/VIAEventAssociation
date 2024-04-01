@@ -12,7 +12,7 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event;
 public class Event
 {
     // - Attributes
-    public EventId Id { get; private set; }
+    public Id<Event> Id { get; private set; }
     public EventTitle Title { get; private set; }
     public EventDescription Description { get; private set; }
     public EventStatus Status { get; private set; }
@@ -26,7 +26,7 @@ public class Event
     private Event()
     {
         // * Set the default values
-        Id = new EventId();
+        Id = Id<Event>.Create();
         Title = Constants.DefaultEventTitle;
         Description = Constants.DefaultEventDescription;
         Status = Constants.DefaultEventStatus;

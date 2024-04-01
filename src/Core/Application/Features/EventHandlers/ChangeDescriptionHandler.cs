@@ -7,31 +7,31 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-internal class ChangeTitleHandler : ICommandHandler<ChangeTitleCommand>
+internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionCommand>
 {
     private readonly IEventRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     
-    internal ChangeTitleHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
+    // # Constructor
+    internal ChangeDescriptionHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
     
-    public async Task<Result> HandleAsync(ChangeTitleCommand command)
+    public async Task<Result> HandleAsync(ChangeDescriptionCommand command)
     {
         var @event = await _repository.GetByIdAsync(command.Id);
-
+        
         if (@event is null)
         {
             return Result.Failure(RepositoryError.ItemNotFound());
         }
-
-        var result = @event.ChangeTitle(command.Title);
-
+        
+        var result = @event.ChangeDescription(command.Description);
+        
         if (result.IsFailure)
         {
             return result;
         }
-
+        
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
-
     }
 }
