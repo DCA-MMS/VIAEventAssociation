@@ -315,8 +315,12 @@ public class Event
         {
             return Result.Failure(EventCancelParticipation.CancelParticipationToEventInThePast());
         }
-        
-        Participants.Remove(userId);
+
+        var userToRemove = Participants.FirstOrDefault(x => x.Value == userId.Value);
+        if (userToRemove != null) 
+        {
+            Participants.Remove(userToRemove);
+        }        
         return Result.Success();
     }
 
