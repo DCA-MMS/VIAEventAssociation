@@ -17,8 +17,7 @@ public class CreateEventHandler : ICommandHandler<CreateEventCommand>
     
     public async Task<Result> HandleAsync(CreateEventCommand command)
     {
-        var @event = EventFactory.Create()
-            .Build();
+        var @event = Event.Create();
         
         await _repository.AddAsync(@event);
         await _unitOfWork.SaveChangesAsync();
