@@ -1,4 +1,4 @@
-﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
@@ -7,11 +7,11 @@ namespace Application.AppEntry.Commands.EventCommands;
 
 public class ChangeDurationCommand
 {
-    public Id<Event> Id { get; }
+    public EventId Id { get; }
     public TimeRange Duration { get; }
     
     // # Constructor
-    private ChangeDurationCommand(Id<Event> id, TimeRange duration)
+    private ChangeDurationCommand(EventId id, TimeRange duration)
     {
         Id = id;
         Duration = duration;
@@ -19,8 +19,8 @@ public class ChangeDurationCommand
     
     public static Result<ChangeDurationCommand> Create(string id, DateTime start, DateTime end)
     {
-        // - Convert the string id to Id<Event>
-        var eventId = Id<Event>.FromString(id);
+        // - Convert the string id to EventId
+        var eventId = EventId.FromString(id);
         // - Convert the string start to Time
         var timeRange = TimeRange.Create(start, end);
         
