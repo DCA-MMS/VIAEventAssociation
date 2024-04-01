@@ -351,7 +351,7 @@ public class Event
     {
         var errors = new List<Error>();
         
-        var invitation = Invitations.FirstOrDefault(x => x.GuestId == userId);
+        var invitation = Invitations.FirstOrDefault(x => x.GuestId.Value == userId.Value);
         if (invitation == null)
         {
             errors.Add(EventInvitationError.InvitationAcceptToGuestNotInvited());
