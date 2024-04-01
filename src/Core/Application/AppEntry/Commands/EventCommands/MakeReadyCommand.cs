@@ -4,24 +4,24 @@ using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.AppEntry.Commands.EventCommands;
 
-internal class MakePrivateCommand
+public class MakeReadyCommand
 {
     public Id<Event> Id { get; }
     
-    private MakePrivateCommand(Id<Event> id)
+    private MakeReadyCommand(Id<Event> id)
     {
         Id = id;
     }
     
-    public static Result<MakePrivateCommand> Create(string id)
+    public static Result<MakeReadyCommand> Create(string id)
     {
         var eventIdResult = Id<Event>.FromString(id);
         
         if (eventIdResult.IsFailure)
         {
-            return Result<MakePrivateCommand>.Failure(eventIdResult.Errors.ToArray());
+            return Result<MakeReadyCommand>.Failure(eventIdResult.Errors.ToArray());
         }
         
-        return Result<MakePrivateCommand>.Success(new MakePrivateCommand(eventIdResult));
+        return Result<MakeReadyCommand>.Success(new MakeReadyCommand(eventIdResult));
     }
 }
