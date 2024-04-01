@@ -1,4 +1,6 @@
-﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
+﻿using Application.AppEntry.Commands.EventCommands;
+using Tests.Fakes;
+using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
@@ -6,39 +8,40 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Features.Event;
 
 [TestFixture]
-public class Usecase5
+public class MakePublicCommandTests
 {
+    private FakeEventRepository EventRepo { get; } = new();
     
     // # S1 - Visibility can be set to Public, while status is Draft, Active, Ready
     [Test]
     [TestCase(EventStatus.Draft)]
     [TestCase(EventStatus.Active)]
     [TestCase(EventStatus.Ready)]
-    public void VisibilityCanBeSetToPublicWhileStatusIsDraftActiveReady(EventStatus status)
+    public void Create_Command_To_Make_Event_Public(EventStatus status)
     {
         // Arrange
-        var expected = status;
         var @event = EventFactory.Create()
-            .WithStatus(expected)
+            .WithStatus(status)
             .Build();
+
+        EventRepo.AddAsync(@event);
+        Guid id = @event.Id;
         
         // Act
-        var result = @event.MakePublic();
+        var result = MakePublicCommand.Create(id.ToString());
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Visibility, Is.EqualTo(EventVisibility.Public));
-            Assert.That(@event.Status, Is.EqualTo(status));
         });
         
     }
     
-    // # F1  - Visibility can't be set to Public, while status is Cancelled
+    // # F1  - Visibility can't be set to Public, while status is Cancelled (Doesn't fail, since we want you to be able to make the command.)
     [Test]
-    public void VisibilityCantBeSetToPublicWhileStatusIsCancelled()
+    public void Create_Command_To_Make_Cancelled_Event_Public()
     {
         // Arrange
         const EventStatus expected = EventStatus.Cancelled;
@@ -46,15 +49,18 @@ public class Usecase5
             .WithStatus(expected)
             .Build();
         
+        EventRepo.AddAsync(@event);
+        Guid id = @event.Id;
+        
         // Act
-        var result = @event.MakePublic();        
+        var result = MakePublicCommand.Create(id.ToString());      
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
-            Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventVisibilityError.NotModifiable().Code));
+            Assert.That(result.IsFailure, Is.False);
         });
     }
+    
 }

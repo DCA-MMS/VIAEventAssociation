@@ -1,26 +1,30 @@
-﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
+using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.AppEntry.Commands.EventCommands;
 
 public class MakePublicCommand
 {
-    public EventId Id { get; }
+    public Id<Event> Id { get; }
     
-    private MakePublicCommand(EventId id)
+    // # Constructor
+    private MakePublicCommand(Id<Event> id)
     {
         Id = id;
     }
     
     public static Result<MakePublicCommand> Create(string id)
     {
-        var eventIdResult = EventId.FromString(id);
+        // - Convert the string id to Id<Event>
+        var eventId = Id<Event>.FromString(id);
         
-        if (eventIdResult.IsFailure)
-        {
-            return Result<MakePublicCommand>.Failure(eventIdResult.Errors.ToArray());
-        }
+        // ? If the conversion is successful, return a success result with the MakePublicCommand object
+        if (!eventId.IsFailure)
+            return Result<MakePublicCommand>.Success(new MakePublicCommand(eventId));
         
-        return Result<MakePublicCommand>.Success(new MakePublicCommand(eventIdResult));
+        // ! If the conversion failed, return a failure result with the errors
+        return Result<MakePublicCommand>.Failure(eventId.Errors.ToArray());
     }
+    
 }
