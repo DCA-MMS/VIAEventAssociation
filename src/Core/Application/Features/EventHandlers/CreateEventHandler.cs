@@ -2,7 +2,6 @@
 using Application.AppEntry.Interfaces;
 using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Common;
-using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.Features.EventHandlers;

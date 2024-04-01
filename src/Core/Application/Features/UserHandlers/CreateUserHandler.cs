@@ -1,6 +1,5 @@
 ﻿using Application.AppEntry.Commands.User;
 using Application.AppEntry.Interfaces;
-using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Common;
 using VIAEventAssociation.Core.Tools.OperationResult;
