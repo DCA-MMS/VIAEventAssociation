@@ -23,6 +23,6 @@ public class FakeEventRepository : IEventRepository
 
     public Task<Event?> GetByIdAsync(Id<Event> id)
     {
-        return Task.FromResult(Events.FirstOrDefault(e => e.Id == id));
+        return Task.FromResult(Events.FirstOrDefault(e => e.Id.Value == id.Value));
     }
 }
