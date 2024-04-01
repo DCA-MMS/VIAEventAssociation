@@ -12,7 +12,7 @@ internal class MakePrivateHandler : ICommandHandler<MakePrivateCommand>
     private readonly IEventRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     
-    internal MakePrivateHandler(IEventRepository repository, IUnitOfWork uow) => (this._repository, this._unitOfWork) = (repository, uow);
+    internal MakePrivateHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
     
     public async Task<Result> HandleAsync(MakePrivateCommand command)
     {
