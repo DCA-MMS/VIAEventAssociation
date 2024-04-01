@@ -31,6 +31,6 @@ public class Id<T>
         return Result<Id<T>>.Failure(IdError.InvalidIdConversion());
     }
     
-    // # Implicit conversion from `EventId` to `Guid`
+    // # Implicit conversion from `Id` to `Guid`
     public static implicit operator Guid(Id<T> id) => id.Value;
 }
