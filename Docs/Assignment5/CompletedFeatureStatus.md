@@ -105,36 +105,36 @@
   - [x] F3
   - [x] F4
   - [x] F5
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [x] UseCase12
   - [x] S1
   - [x] S2
   - [x] F1
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [x] UseCase13
   - [x] S1
   - [x] F1
   - [x] F2
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [x] UseCase14
   - [x] S1
   - [x] F1
   - [x] F2
   - [x] F3
   - [x] F4
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [x] UseCase15
   - [x] S1
   - [x] S2
   - [x] F1
   - [x] F2
   - [x] F3
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 
 ### Nice to have:
 - [ ] UseCase16

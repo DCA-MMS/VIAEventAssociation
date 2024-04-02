@@ -2,7 +2,6 @@
 using Application.AppEntry.Interfaces;
 using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Common;
-using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.Features.EventHandlers;
@@ -17,8 +16,7 @@ public class CreateEventHandler : ICommandHandler<CreateEventCommand>
     
     public async Task<Result> HandleAsync(CreateEventCommand command)
     {
-        var @event = EventFactory.Create()
-            .Build();
+        var @event = Event.Create();
         
         await _repository.AddAsync(@event);
         await _unitOfWork.SaveChangesAsync();
