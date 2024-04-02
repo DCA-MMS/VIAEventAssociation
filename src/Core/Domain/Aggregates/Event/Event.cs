@@ -315,8 +315,12 @@ public class Event
         {
             return Result.Failure(EventCancelParticipation.CancelParticipationToEventInThePast());
         }
-        
-        Participants.Remove(userId);
+
+        var userToRemove = Participants.FirstOrDefault(x => x.Value == userId.Value);
+        if (userToRemove != null) 
+        {
+            Participants.Remove(userToRemove);
+        }        
         return Result.Success();
     }
 
@@ -347,7 +351,7 @@ public class Event
     {
         var errors = new List<Error>();
         
-        var invitation = Invitations.FirstOrDefault(x => x.GuestId == userId);
+        var invitation = Invitations.FirstOrDefault(x => x.GuestId.Value == userId.Value);
         if (invitation == null)
         {
             errors.Add(EventInvitationError.InvitationAcceptToGuestNotInvited());
@@ -381,7 +385,7 @@ public class Event
     {
         var errors = new List<Error>();
         
-        var invitation = Invitations.FirstOrDefault(x => x.GuestId == userId);
+        var invitation = Invitations.FirstOrDefault(x => x.GuestId.Value == userId.Value);
         if (invitation == null)
         {
             errors.Add(EventInvitationError.InvitationDeclineToGuestNotInvited());

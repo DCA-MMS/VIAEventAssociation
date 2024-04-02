@@ -7,11 +7,14 @@ public class Id<T>
     /// <summary>
     /// The value of the Id
     /// </summary>
-    public Guid Value { get; private set; }
+    public Guid Value { get; private protected set; }
 
     // # Constructor
     protected Id()
     {
-        Value = new Guid(); 
+        Value = Guid.NewGuid(); 
     }
+    
+    // # Implicit conversion from `Id` to `Guid`
+    public static implicit operator Guid(Id<T> id) => id.Value;
 }

@@ -6,7 +6,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Features.Event;
 
 [TestFixture]
-public class Usecase4
+public class ChangeDurationAggregateTests
 {
     // - HELPERS
    

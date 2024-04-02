@@ -7,6 +7,8 @@
   - [x] S2
   - [x] S3
   - [x] S4
+  - [ ] Command
+  - [ ] Handler
 - [x] UseCase2
   - [x] S1
   - [x] S2
@@ -16,6 +18,8 @@
   - [x] F4
   - [x] F5
   - [x] F6
+  - [x] Command
+  - [x] Handler
 - [x] UseCase3
   - [x] S1
   - [x] S2
@@ -23,6 +27,8 @@
   - [x] F1
   - [x] F2
   - [x] F3
+  - [x] Command
+  - [x] Handler
 - [ ] UseCase4
   - [x] S1
   - [x] S2
@@ -40,14 +46,20 @@
   - [x] F9
   - [x] F10
   - [ ] F11
+  - [x] Command
+  - [x] Handler
 - [x] UseCase5
   - [x] S1
   - [x] F1
+  - [x] Command
+  - [x] Handler
 - [x] UseCase6
   - [x] S1
   - [x] S2
   - [x] F1
   - [x] F2
+  - [ ] Command
+  - [ ] Handler
 - [ ] UseCase7
   - [x] S1
   - [x] S2
@@ -57,18 +69,24 @@
   - [ ] F3
   - [x] F4
   - [x] F5
+  - [ ] Command
+  - [ ] Handler
 - [ ] UseCase8
   - [x] S1
   - [ ] F1
   - [x] F2
   - [x] F3
   - [x] F4
+  - [ ] Command
+  - [ ] Handler
 - [x] UseCase9
   - [x] S1
   - [x] S2
   - [x] S3
   - [x] F1
   - [x] F2
+  - [ ] Command
+  - [ ] Handler
 - [ ] UseCase10
   - [x] S1
   - [x] F1
@@ -78,6 +96,8 @@
   - [ ] F5
   - [x] F6
   - [x] F7
+  - [ ] Command
+  - [ ] Handler
 - [x] UseCase11
   - [x] S1
   - [x] F1
@@ -85,26 +105,36 @@
   - [x] F3
   - [x] F4
   - [x] F5
+  - [x] Command
+  - [x] Handler
 - [x] UseCase12
   - [x] S1
   - [x] S2
   - [x] F1
+  - [x] Command
+  - [x] Handler
 - [x] UseCase13
   - [x] S1
   - [x] F1
   - [x] F2
+  - [x] Command
+  - [x] Handler
 - [x] UseCase14
   - [x] S1
   - [x] F1
   - [x] F2
   - [x] F3
   - [x] F4
+  - [x] Command
+  - [x] Handler
 - [x] UseCase15
   - [x] S1
   - [x] S2
   - [x] F1
   - [x] F2
   - [x] F3
+  - [x] Command
+  - [x] Handler
 
 ### Nice to have:
 - [ ] UseCase16

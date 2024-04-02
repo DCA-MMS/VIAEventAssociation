@@ -6,7 +6,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Features.Event;
 
 [TestFixture]
-public class Usecase2
+public class ChangeTitleAggregateTests
 {
     // # S1
     [Test]
@@ -120,24 +120,24 @@ public class Usecase2
     }
     
     // # F4 - This test is not needed
-    /*[Test]
-    public void Given_Event_With_No_Title_Changing_Title_Should_Return_An_Error()
-    {
-        // Arrange
-        var @event = EventFactory
-            .Create()
-            .Build();
-        
-        // Act
-        var result = @event.ChangeTitle(null!);
-        Assert.Multiple(() =>
-        {
+     [Test]
+     public void Given_Event_With_No_Title_Changing_Title_Should_Return_An_Error()
+     {
+         // Arrange
+         var @event = EventFactory
+             .Create()
+             .Build();
+         
+         // Act
+         var result = @event.ChangeTitle(null!);
+         Assert.Multiple(() =>
+         {
 
-            // Assert
-            Assert.That(result.IsFailure, Is.True);
-            Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsEmpty().Code));
-        });
-    }*/
+             // Assert
+             Assert.That(result.IsFailure, Is.True);
+             Assert.That(result.Errors.ToList(), Has.Exactly(1).Matches<Error>(x => x.Code == EventTitleError.IsEmpty().Code));
+         });
+     }
 
     // # F5
     [Test]

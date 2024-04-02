@@ -3,7 +3,7 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Value
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC14_AcceptInvitation;
 
 public class Usecase14
 {
