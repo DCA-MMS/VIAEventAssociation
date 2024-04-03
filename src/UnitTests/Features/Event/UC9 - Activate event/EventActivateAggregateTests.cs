@@ -3,10 +3,10 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC9___Activate_event;
 
 [TestFixture]
-public class Usecase9
+public class EventActivateAggregateTests
 {
     // # S1
     [Test]
