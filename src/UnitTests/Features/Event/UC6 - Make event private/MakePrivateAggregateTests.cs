@@ -6,7 +6,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Features.Event.UC6___Make_event_private;
 
 [TestFixture]
-public class EventMakePrivateAggregateTests
+public class MakePrivateAggregateTests
 {
     
     [Test]
