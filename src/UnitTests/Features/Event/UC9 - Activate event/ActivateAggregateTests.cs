@@ -6,7 +6,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 namespace Tests.Features.Event.UC9___Activate_event;
 
 [TestFixture]
-public class EventActivateAggregateTests
+public class ActivateAggregateTests
 {
     // # S1
     [Test]
