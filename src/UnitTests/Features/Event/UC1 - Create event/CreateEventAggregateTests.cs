@@ -4,7 +4,7 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 namespace Tests.Features.Event.UC1___Create_event;
 
 [TestFixture]
-public class CreateAggregateTests
+public class CreateEventAggregateTests
 {
     // # S1
     [Test]
