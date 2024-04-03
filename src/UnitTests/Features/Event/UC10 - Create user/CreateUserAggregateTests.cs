@@ -5,7 +5,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
 namespace Tests.Features.Event.UC10___Create_user;
 
-public class UserCreateAggregateTests
+public class CreateUserAggregateTests
 {
     // # S1
     [Test]
