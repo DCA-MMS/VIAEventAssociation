@@ -4,7 +4,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Tests.Features.Event.UC12_RemoveGuest;
 
-public class Usecase12
+public class RemoveGuestAggregateTests
 {
     // # S1
     [Test]

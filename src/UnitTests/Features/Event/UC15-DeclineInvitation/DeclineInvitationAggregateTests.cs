@@ -5,7 +5,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Tests.Features.Event.UC15_DeclineInvitation;
 
-public class Usecase15
+public class DeclineInvitationAggregateTests
 {
     // # S1
     [Test]
