@@ -4,7 +4,7 @@ using Tests.Fakes;
 using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC5___Make_event_public;
 
 [TestFixture]
 public class MakePublicHandlerTests

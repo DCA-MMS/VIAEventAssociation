@@ -1,7 +1,7 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC1___Create_event;
 
 [TestFixture]
 public class CreateAggregateTests
