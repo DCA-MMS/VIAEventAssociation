@@ -5,7 +5,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
 namespace Tests.Features.Event.UC8___Make_event_ready;
 
-public class EventMakeReadyAggregateTests
+public class MakeReadyAggregateTests
 {
     // # S1
     [Test]
