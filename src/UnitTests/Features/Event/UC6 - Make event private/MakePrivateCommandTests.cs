@@ -10,16 +10,12 @@ public class MakePrivateCommandTests
 {
     private FakeEventRepository EventRepo { get; } = new();
     
-    // # S1 - Visibility can be set to Private, while status is Draft, Active, Ready
+    // # S1 - Command to make event private with valid id can be created
     [Test]
-    [TestCase(EventStatus.Draft)]
-    [TestCase(EventStatus.Active)]
-    [TestCase(EventStatus.Ready)]
-    public void Create_Command_To_Make_Event_Private(EventStatus status)
+    public void Create_Command_To_Make_Event_Private_With_Valid_Id()
     {
         // Arrange
         var @event = EventFactory.Create()
-            .WithStatus(status)
             .Build();
 
         EventRepo.AddAsync(@event);
@@ -37,27 +33,18 @@ public class MakePrivateCommandTests
         
     }
     
-    // # F1  - Visibility can't be set to Private, while status is Cancelled (Doesn't fail, since we want you to be able to make the command.)
+    // # F1  - Command to make event private with invalid id can't be created
     [Test]
-    public void Create_Command_To_Make_Cancelled_Event_Private()
+    public void Create_Command_To_Make_Event_Private_With_Invalid_Id()
     {
-        // Arrange
-        const EventStatus expected = EventStatus.Cancelled;
-        var @event = EventFactory.Create()
-            .WithStatus(expected)
-            .Build();
-        
-        EventRepo.AddAsync(@event);
-        Guid id = @event.Id;
-        
         // Act
-        var result = MakePrivateCommand.Create(id.ToString());      
+        var result = MakePrivateCommand.Create("Invalid GUID");      
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
-            Assert.That(result.IsFailure, Is.False);
+            Assert.That(result.IsFailure, Is.True);
         });
     }
 }
