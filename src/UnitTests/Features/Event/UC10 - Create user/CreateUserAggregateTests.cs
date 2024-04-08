@@ -3,9 +3,9 @@ using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.User;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC10___Create_user;
 
-public class UseCase10
+public class CreateUserAggregateTests
 {
     // # S1
     [Test]

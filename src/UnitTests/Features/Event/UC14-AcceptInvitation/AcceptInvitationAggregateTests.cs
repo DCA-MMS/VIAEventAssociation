@@ -5,7 +5,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Tests.Features.Event.UC14_AcceptInvitation;
 
-public class Usecase14
+public class AcceptInvitationAggregateTests
 {
     // # S1
     [Test]

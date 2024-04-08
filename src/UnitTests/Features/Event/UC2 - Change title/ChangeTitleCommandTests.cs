@@ -3,7 +3,7 @@ using Tests.Fakes;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC2___Change_title;
 
 [TestFixture]
 public class ChangeTitleCommandTests
