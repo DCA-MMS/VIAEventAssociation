@@ -1,4 +1,4 @@
-﻿namespace Logger;
+﻿namespace VIAEventAssociation.Core.Logger;
 
 public class FileLogger(string filePath) : ILogger
 {

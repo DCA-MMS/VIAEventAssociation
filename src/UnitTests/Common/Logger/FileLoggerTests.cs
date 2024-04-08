@@ -1,4 +1,4 @@
-﻿using Logger;
+﻿using VIAEventAssociation.Core.Logger;
 
 namespace Tests.Common.Logger;
 

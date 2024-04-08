@@ -1,5 +1,5 @@
 ﻿using Application.AppEntry.Dispatcher;
-using Logger;
+using VIAEventAssociation.Core.Logger;
 using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.AppEntry.Decorators;

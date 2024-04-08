@@ -1,4 +1,4 @@
-﻿namespace Logger;
+﻿namespace VIAEventAssociation.Core.Logger;
 
 public interface ILogger
 {
