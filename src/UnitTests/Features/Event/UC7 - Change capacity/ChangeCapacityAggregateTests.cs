@@ -3,10 +3,10 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC7___Change_capacity;
 
 [TestFixture]
-public class Usecase7
+public class ChangeCapacityAggregateTests
 {
     // # S1
     [Test]

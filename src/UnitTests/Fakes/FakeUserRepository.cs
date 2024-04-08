@@ -4,7 +4,7 @@ using VIAEventAssociation.Core.Domain.Common.Values;
 
 namespace Tests.Fakes;
 
-public class FakeUserRepository
+public class FakeUserRepository : IUserRepository
 {
     public List<User> Users { get; } =
     [

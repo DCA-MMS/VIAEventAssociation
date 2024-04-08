@@ -3,7 +3,7 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC3___Change_description;
 
 [TestFixture]
 public class ChangeDescriptionAggregateTests

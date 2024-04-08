@@ -6,7 +6,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Tests.Features.Event.UC11_AddGuest;
 
-public class Usecase11
+public class AddGuestAggregateTests
 {
     // # S1
     [Test]
