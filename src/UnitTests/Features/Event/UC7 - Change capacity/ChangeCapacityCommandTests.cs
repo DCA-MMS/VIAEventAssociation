@@ -3,30 +3,29 @@ using Tests.Fakes;
 using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 
-namespace Tests.Features.Event.UC5___Make_event_public;
+namespace Tests.Features.Event.UC7___Change_capacity;
 
 [TestFixture]
-public class MakePublicCommandTests
+public class ChangeCapacityCommandTests
 {
     private FakeEventRepository EventRepo { get; } = new();
     
-    // # S1 - Visibility can be set to Public, while status is Draft, Active, Ready
+    // # S1 - Command to change capacity with values 10, 15, 20 can be created
     [Test]
-    [TestCase(EventStatus.Draft)]
-    [TestCase(EventStatus.Active)]
-    [TestCase(EventStatus.Ready)]
-    public void Create_Command_To_Make_Event_Public(EventStatus status)
+    [TestCase(10)]
+    [TestCase(15)]
+    [TestCase(20)]
+    public void Create_Command_To_Change_Event_Capacity(int capacity)
     {
         // Arrange
         var @event = EventFactory.Create()
-            .WithStatus(status)
             .Build();
 
         EventRepo.AddAsync(@event);
         Guid id = @event.Id;
         
         // Act
-        var result = MakePublicCommand.Create(id.ToString());
+        var result = ChangeCapacityCommand.Create(id.ToString(), capacity);
         
         // Assert
         Assert.Multiple(() =>
@@ -37,28 +36,28 @@ public class MakePublicCommandTests
         
     }
     
-    // # F1  - Visibility can't be set to Public, while status is Cancelled (Doesn't fail, since we want you to be able to make the command.)
+    // # F1  - Command to change capacity with values 1, 3, 51 cannot be created
     [Test]
-    public void Create_Command_To_Make_Cancelled_Event_Public()
+    [TestCase(1)]
+    [TestCase(3)]
+    [TestCase(51)]
+    public void Create_Command_To_Change_Cancelled_Event_Capacity(int capacity)
     {
         // Arrange
-        const EventStatus expected = EventStatus.Cancelled;
         var @event = EventFactory.Create()
-            .WithStatus(expected)
             .Build();
         
         EventRepo.AddAsync(@event);
         Guid id = @event.Id;
         
         // Act
-        var result = MakePublicCommand.Create(id.ToString());      
+        var result = ChangeCapacityCommand.Create(id.ToString(), capacity);      
         
         // Assert
         Assert.Multiple(() =>
         {
             // Assert
-            Assert.That(result.IsFailure, Is.False);
+            Assert.That(result.IsFailure, Is.True);
         });
     }
-    
 }

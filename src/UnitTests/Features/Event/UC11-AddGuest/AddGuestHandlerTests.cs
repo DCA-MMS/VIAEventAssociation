@@ -4,9 +4,9 @@ using Tests.Common.Factories;
 using Tests.Fakes;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC12_RemoveGuest;
+namespace Tests.Features.Event.UC11_AddGuest;
 
-public class RemoveGuestHandlerTest
+public class AddGuestHandlerTests
 {
     private FakeEventRepository EventRepository { get; } = new();
     private FakeUserRepository UserRepository { get; } = new();
@@ -14,16 +14,15 @@ public class RemoveGuestHandlerTest
     
     // # S1
     [Test]
-    public async Task Create_RemoveGuestHandler_Success()
+    public async Task Create_AddGuestHandler_Success()
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEvent();
-        var user = UserRepository.Users.First();
-        @event.AddGuest(user.Id);    
         await EventRepository.AddAsync(@event);
+        var user = UserRepository.Users.First();
 
-        var command = RemoveGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
-        var handler = new RemoveGuestHandler(EventRepository, Uow);
+        var command = AddGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
+        var handler = new AddGuestHandler(EventRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -33,22 +32,22 @@ public class RemoveGuestHandlerTest
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Id.Value), Is.False);
+            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Id.Value), Is.True);
         });
     }
     
     // # F1
     [Test]
-    public async Task Create_RemoveGuestHandler_Fail()
+    public async Task Create_AddGuestHandler_Fail()
     {
         // Arrange
-        var @event = EventTestDataFactory.ActivePublicEventWithGuestAndStartTimeInPast();
+        var @event = EventTestDataFactory.PublicEvent();
             
         await EventRepository.AddAsync(@event);
-        var user = @event.Participants.First();
+        var user = UserRepository.Users.First();
 
-        var command = RemoveGuestCommand.Create(@event.Id.Value.ToString(), user.Value.ToString());
-        var handler = new RemoveGuestHandler(EventRepository, Uow);
+        var command = AddGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
+        var handler = new AddGuestHandler(EventRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -59,8 +58,9 @@ public class RemoveGuestHandlerTest
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Value), Is.True);
-            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.CancelParticipationToEventInThePast), Is.True);
+            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Id.Value), Is.False);
+            Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToEventThatIsNotActive), Is.True);
+
         });
     }
 }

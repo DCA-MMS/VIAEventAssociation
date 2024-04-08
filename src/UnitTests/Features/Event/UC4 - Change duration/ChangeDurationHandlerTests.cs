@@ -1,10 +1,9 @@
 ﻿using Application.AppEntry.Commands.EventCommands;
 using Application.Features.EventHandlers;
 using Tests.Fakes;
-using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC4___Change_duration;
 
 public class ChangeDurationHandlerTests
 {

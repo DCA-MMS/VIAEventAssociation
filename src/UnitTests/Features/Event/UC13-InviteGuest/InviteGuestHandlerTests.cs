@@ -7,7 +7,7 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Tests.Features.Event.UC13_InviteGuest;
 
-public class InviteGuestHandlerTest
+public class InviteGuestHandlerTests
 {
     private FakeEventRepository EventRepository { get; } = new();
     private FakeUserRepository UserRepository { get; } = new();

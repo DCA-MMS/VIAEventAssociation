@@ -2,7 +2,7 @@
 using Tests.Fakes;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC4___Change_duration;
 
 [TestFixture]
 public class ChangeDurationCommandTests

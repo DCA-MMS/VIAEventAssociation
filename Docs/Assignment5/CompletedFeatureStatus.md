@@ -58,8 +58,8 @@
   - [x] S2
   - [x] F1
   - [x] F2
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [ ] UseCase7
   - [x] S1
   - [x] S2
@@ -69,24 +69,24 @@
   - [ ] F3
   - [x] F4
   - [x] F5
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [ ] UseCase8
   - [x] S1
   - [ ] F1
   - [x] F2
   - [x] F3
   - [x] F4
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [x] UseCase9
   - [x] S1
   - [x] S2
   - [x] S3
   - [x] F1
   - [x] F2
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [ ] UseCase10
   - [x] S1
   - [x] F1
@@ -96,8 +96,8 @@
   - [ ] F5
   - [x] F6
   - [x] F7
-  - [ ] Command
-  - [ ] Handler
+  - [x] Command
+  - [x] Handler
 - [x] UseCase11
   - [x] S1
   - [x] F1

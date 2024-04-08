@@ -1,12 +1,11 @@
-﻿using System.Diagnostics;
-using VIAEventAssociation.Core.Domain.Aggregates.Event;
+﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors.Event;
 
-namespace Tests.Features.Event;
+namespace Tests.Features.Event.UC8___Make_event_ready;
 
-public class Usecase8
+public class MakeReadyAggregateTests
 {
     // # S1
     [Test]
