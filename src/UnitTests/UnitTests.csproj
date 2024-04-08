@@ -11,6 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
         <PackageReference Include="NUnit" Version="3.13.3"/>
         <PackageReference Include="NUnit3TestAdapter" Version="4.2.1"/>
@@ -25,9 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Common\Dispatcher\" />
       <Folder Include="Common\Factories\" />
-      <Folder Include="Fakes\CommandHandlers\UserHandlers\" />
       <Folder Include="Features\Booking\" />
       <Folder Include="Features\Invitation\" />
       <Folder Include="Features\Locations\" />

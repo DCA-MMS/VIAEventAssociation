@@ -4,12 +4,14 @@ using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Tests.Fakes.CommandHandlers.EventHandlers;
 
-public class FakeActivateHandler : ICommandHandler<ActivateCommand>
+public class FakeCreateEventHandler : ICommandHandler<CreateEventCommand>
 {
     public bool CommandWasHandled { get; private set; }
-    public Task<Result> HandleAsync(ActivateCommand command)
+    public int Calls { get; private set; }
+    public Task<Result> HandleAsync(CreateEventCommand command)
     {
         CommandWasHandled = true;
+        Calls++;
         return Task.FromResult(Result.Success());
     }
 }
