@@ -5,7 +5,7 @@ using Tests.Fakes;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC15_DeclineInvitation;
+namespace Tests.Features.Event.UC15___Decline_invitation;
 
 public class DeclineInvitationHandlerTests
 {

@@ -5,7 +5,7 @@ using Tests.Fakes;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC14_AcceptInvitation;
+namespace Tests.Features.Event.UC14___Accept_invitation;
 
 public class AcceptInvitationHandlerTests
 {

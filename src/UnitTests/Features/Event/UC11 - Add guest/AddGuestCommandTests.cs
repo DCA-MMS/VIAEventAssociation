@@ -1,23 +1,23 @@
 ﻿using Application.AppEntry.Commands.EventCommands;
 using Tests.Fakes;
 
-namespace Tests.Features.Event.UC12_RemoveGuest;
+namespace Tests.Features.Event.UC11___Add_guest;
 
-public class RemoveGuestCommandTests
+public class AddGuestCommandTests
 {
     private FakeEventRepository EventRepository { get; } = new();   
     private FakeUserRepository UserRepository { get; } = new();
-        
+    
     // # S1
     [Test]
-    public void Create_RemoveGuestCommand_Success()
+    public void Create_AddGuestCommand_Success()
     {
         // Arrange
         var @event = EventRepository.Events.First();
         var user = UserRepository.Users.First();
 
         // Act
-        var command = RemoveGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
+        var command = AddGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
       
         // Assert
         Assert.Multiple(() =>
