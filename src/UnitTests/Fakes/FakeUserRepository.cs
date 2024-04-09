@@ -14,9 +14,9 @@ public class FakeUserRepository : IUserRepository
         User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("BOBS@via.dk")),
     ];
 
-    public Task AddAsync(User entity)
+    public Task AddAsync(User aggregate)
     {
-        Users.Add(entity);
+        Users.Add(aggregate);
         return Task.CompletedTask;
     }
 

@@ -2,8 +2,8 @@
 
 namespace VIAEventAssociation.Core.Domain.Repositories;
 
-public interface IRepository<T>
+public interface IRepository<TAgg>
 {
-    Task AddAsync(T entity);
-    Task<T?> GetByIdAsync(Id<T> id);
+    Task AddAsync(TAgg aggregate);
+    Task<TAgg?> GetByIdAsync(Id<TAgg> id);
 }

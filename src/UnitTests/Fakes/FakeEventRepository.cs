@@ -15,9 +15,9 @@ public class FakeEventRepository : IEventRepository
         EventFactory.Create().WithTitle("Event 5").Build()
     ];
 
-    public Task AddAsync(Event entity)
+    public Task AddAsync(Event aggregate)
     {
-        Events.Add(entity);
+        Events.Add(aggregate);
         return Task.CompletedTask;
     }
 
