@@ -4,7 +4,7 @@ using Tests.Common.Factories;
 using Tests.Fakes;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC11_AddGuest;
+namespace Tests.Features.Event.UC11___Add_guest;
 
 public class AddGuestHandlerTests
 {

@@ -4,7 +4,7 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC13_InviteGuest;
+namespace Tests.Features.Event.UC13___Invite_guest;
 
 public class InviteGuestAggregateTests
 {

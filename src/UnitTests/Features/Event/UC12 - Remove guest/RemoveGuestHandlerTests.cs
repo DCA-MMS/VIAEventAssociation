@@ -4,7 +4,7 @@ using Tests.Common.Factories;
 using Tests.Fakes;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC12_RemoveGuest;
+namespace Tests.Features.Event.UC12___Remove_guest;
 
 public class RemoveGuestHandlerTests
 {

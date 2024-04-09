@@ -2,7 +2,7 @@
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Tests.Features.Event.UC12_RemoveGuest;
+namespace Tests.Features.Event.UC12___Remove_guest;
 
 public class RemoveGuestAggregateTests
 {

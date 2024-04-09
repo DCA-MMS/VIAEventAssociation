@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Core\Domain\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Core\Application\Application.csproj", "{DAA9C8B2-9EEB-4BC2-9579-D1C46C6C892A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "src\Core\Logger\Logger.csproj", "{0A62402C-C04C-4596-BA3D-7DA92D279C0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,7 @@ Global
 		{92C0C0B7-33DF-4421-B3EE-EB77DBEECA28} = {E77BCD78-0BC8-4721-AC36-740E0CA60C0D}
 		{B024A078-A4E2-48D6-A86B-29858688FA57} = {A2BCAED4-7D1D-4085-9D7A-8DDFCB9A72BB}
 		{DAA9C8B2-9EEB-4BC2-9579-D1C46C6C892A} = {A2BCAED4-7D1D-4085-9D7A-8DDFCB9A72BB}
+		{0A62402C-C04C-4596-BA3D-7DA92D279C0A} = {A2BCAED4-7D1D-4085-9D7A-8DDFCB9A72BB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9CB2484C-EE71-4767-A1DA-A1C11CFCAC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -56,5 +59,9 @@ Global
 		{DAA9C8B2-9EEB-4BC2-9579-D1C46C6C892A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAA9C8B2-9EEB-4BC2-9579-D1C46C6C892A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAA9C8B2-9EEB-4BC2-9579-D1C46C6C892A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A62402C-C04C-4596-BA3D-7DA92D279C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A62402C-C04C-4596-BA3D-7DA92D279C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A62402C-C04C-4596-BA3D-7DA92D279C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A62402C-C04C-4596-BA3D-7DA92D279C0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
