@@ -6,10 +6,8 @@ namespace VIAEventAssociation.Infrastructure.EfcDmPersistence.Configurations;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    private IEntityTypeConfiguration<User> _entityTypeConfigurationImplementation;
-    
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        _entityTypeConfigurationImplementation.Configure(builder);
+        
     }
 }

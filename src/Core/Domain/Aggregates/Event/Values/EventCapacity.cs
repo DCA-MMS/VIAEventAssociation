@@ -11,6 +11,9 @@ public class EventCapacity
 {
     private readonly int _value;
     
+    // EFC Constructor
+    private EventCapacity() {}
+    
     /// <summary>
     /// Private constructor for the <see cref="EventCapacity"/> class
     /// </summary>

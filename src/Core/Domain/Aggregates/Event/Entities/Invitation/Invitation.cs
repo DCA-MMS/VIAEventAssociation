@@ -10,6 +10,9 @@ public class Invitation
     public UserId GuestId { get; }
     public InvitationStatus Status { get; private set; }
 
+    // EFC Constructor
+    private Invitation() {}
+
     private Invitation(UserId guestId, InvitationStatus status)
     {
         Id = new InvitationId();

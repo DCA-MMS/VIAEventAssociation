@@ -8,7 +8,7 @@ public class DesignTimeContextFactory : IDesignTimeDbContextFactory<EfcDbContext
     public EfcDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<EfcDbContext>();
-        optionsBuilder.UseSqlite(@"Data Source=VEADatabase.db");
+        optionsBuilder.UseSqlite(@"Data Source = VEADatabase.db");
         return new EfcDbContext(optionsBuilder.Options);
     }
 }

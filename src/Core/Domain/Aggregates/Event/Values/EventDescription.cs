@@ -11,6 +11,9 @@ public class EventDescription
 {
     private readonly string _value;
     
+    // EFC Constructor
+    private EventDescription() {}
+    
     /// <summary>
     /// Private constructor for the <see cref="EventDescription"/> class
     /// </summary>

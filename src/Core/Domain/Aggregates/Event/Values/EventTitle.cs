@@ -10,6 +10,9 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 public class EventTitle
 {
     private readonly string _value;
+    
+    // EFC Constructor
+    private EventTitle() {}
 
     /// <summary>
     /// Private constructor for the <see cref="EventTitle"/> class
