@@ -17,5 +17,8 @@ public class EventId : Id<Event>
         }
         return Result<EventId>.Failure(IdError.InvalidIdConversion());
     }
+    
+    public static EventId FromGuid(Guid guid) => new() { Value = guid };
+    
     // No additional attributes
 }
