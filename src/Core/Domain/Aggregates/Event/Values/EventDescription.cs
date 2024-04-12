@@ -9,8 +9,8 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 /// </summary>
 public class EventDescription
 {
-    private readonly string _value;
-    
+    public string Value { get; }
+
     // EFC Constructor
     private EventDescription() {}
     
@@ -20,7 +20,7 @@ public class EventDescription
     /// <param name="value"></param>
     private EventDescription(string value)
     {      
-        _value = value;
+        Value = value;
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class EventDescription
     {
         if (obj is EventDescription description)
         {
-            return description._value == _value;
+            return description.Value == Value;
         }
 
         return false;
@@ -79,11 +79,11 @@ public class EventDescription
 
     public override int GetHashCode()
     {
-        return _value.GetHashCode();
+        return Value.GetHashCode();
     }
 
     /// <summary>
     /// Allows for the implicit conversion of a <see cref="EventDescription"/> to a <see cref="string"/>
     /// </summary>
-    public static implicit operator string(EventDescription description) => description._value;
+    public static implicit operator string(EventDescription description) => description.Value;
 }

@@ -15,6 +15,13 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
                 id => id.Value,
                 dbValue => EventId.FromGuid(dbValue)
             );
+        builder.ComplexProperty<EventDescription>(
+            "Description",
+            propBuilder =>
+            {
+                propBuilder.Property(ed => ed.Value).HasColumnName("Description");
+            }
+        );
         builder.ComplexProperty<EventCapacity>(
             "Capacity",
             propBuilder =>
