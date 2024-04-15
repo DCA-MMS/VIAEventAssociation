@@ -1,5 +1,6 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 
 namespace Tests.Values.Invitations;
@@ -7,7 +8,7 @@ namespace Tests.Values.Invitations;
 [TestFixture]
 public class InvitationTests
 {
-    private readonly UserId _userId = new ();
+    private readonly User _user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
     [Test, Category("Invitation")]
     [TestCase(InvitationStatus.Pending)]
@@ -16,13 +17,13 @@ public class InvitationTests
     public void Success_Create_Invitation(InvitationStatus status)
     {
         // Arrange
-        var invitation = Invitation.Create(_userId, status);
+        var invitation = Invitation.Create(_user, status);
 
         // Assert
         Assert.Multiple(() =>
         {
             Assert.That(invitation.IsFailure, Is.False);
-            Assert.That(invitation.Value.GuestId, Is.EqualTo(_userId));
+            Assert.That(invitation.Value.Guest, Is.EqualTo(_user));
             Assert.That(invitation.Value.Status, Is.EqualTo(status));
         });
     }
@@ -32,7 +33,7 @@ public class InvitationTests
     public void Success_Accept_Pending_Invitation(InvitationStatus status)
     {
         // Arrange
-        var invitation = Invitation.Create(_userId, status);
+        var invitation = Invitation.Create(_user, status);
 
         // Act
         var result = invitation.Value.Accept();
@@ -42,7 +43,7 @@ public class InvitationTests
         {
             Assert.That(invitation.IsFailure, Is.False);
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(invitation.Value.GuestId, Is.EqualTo(_userId));
+            Assert.That(invitation.Value.Guest, Is.EqualTo(_user));
             Assert.That(invitation.Value.Status, Is.EqualTo(InvitationStatus.Accepted));
         });
     }
@@ -52,7 +53,7 @@ public class InvitationTests
     public void Success_Decline_Pending_Invitation(InvitationStatus status)
     {
         // Arrange
-        var invitation = Invitation.Create(_userId, status);
+        var invitation = Invitation.Create(_user, status);
 
         // Act
         var result = invitation.Value.Decline();
@@ -62,7 +63,7 @@ public class InvitationTests
         {
             Assert.That(invitation.IsFailure, Is.False);
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(invitation.Value.GuestId, Is.EqualTo(_userId));
+            Assert.That(invitation.Value.Guest, Is.EqualTo(_user));
             Assert.That(invitation.Value.Status, Is.EqualTo(InvitationStatus.Rejected));
         });
     }

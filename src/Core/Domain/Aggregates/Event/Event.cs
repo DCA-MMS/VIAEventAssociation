@@ -1,6 +1,7 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Domain.Common.Values;
 using VIAEventAssociation.Core.Tools.OperationResult;
@@ -19,7 +20,7 @@ public class Event
     public EventVisibility Visibility { get; private set; }
     public EventCapacity Capacity { get; private set; }
     public TimeRange? Duration { get; private set; }
-    public List<UserId> Participants { get; private set; }
+    public List<User> Participants { get; private set; }
     public List<Invitation> Invitations { get; }
     
     // # Constructor
@@ -32,7 +33,7 @@ public class Event
         Status = Constants.DefaultEventStatus;
         Visibility = Constants.DefaultEventVisibility;
         Capacity = Constants.DefaultEventCapacity;
-        Participants = new List<UserId>();
+        Participants = new List<User>();
         Invitations = new List<Invitation>();
     }
     
@@ -271,7 +272,7 @@ public class Event
         return Result.Success();
     }
 
-    public Result AddGuest(UserId userId)
+    public Result AddGuest(User user)
     {
         var errors = new List<Error>();
         
@@ -290,7 +291,7 @@ public class Event
             errors.Add(EventRequestError.RequestToEventThatIsNotPublic());
         }
 
-        if (Participants.Contains(userId))
+        if (Participants.Contains(user))
         {
             errors.Add(EventRequestError.RequestToEventGuestIsAlreadyPartaking());
         }
@@ -305,18 +306,18 @@ public class Event
             return Result.Failure(errors.ToArray());
         }
         
-        Participants.Add(userId);
+        Participants.Add(user);
         return Result.Success();
     }
     
-    public Result RemoveGuest(UserId userId)
+    public Result RemoveGuest(User user)
     {
         if (Duration != null && Duration.Start < DateTime.Now)
         {
             return Result.Failure(EventCancelParticipation.CancelParticipationToEventInThePast());
         }
 
-        var userToRemove = Participants.FirstOrDefault(x => x.Value == userId.Value);
+        var userToRemove = Participants.FirstOrDefault(x => x.Id.Value == user.Id.Value);
         if (userToRemove != null) 
         {
             Participants.Remove(userToRemove);
@@ -324,7 +325,7 @@ public class Event
         return Result.Success();
     }
 
-    public Result InviteGuest(UserId userId)
+    public Result InviteGuest(User user)
     {
         var errors = new List<Error>();
 
@@ -343,15 +344,15 @@ public class Event
             return Result.Failure(errors.ToArray());
         }
         
-        Invitations.Add(Invitation.Create(userId, InvitationStatus.Pending));
+        Invitations.Add(Invitation.Create(user, InvitationStatus.Pending));
         return Result.Success();
     }
 
-    public Result AcceptInvitation(UserId userId)
+    public Result AcceptInvitation(User user)
     {
         var errors = new List<Error>();
         
-        var invitation = Invitations.FirstOrDefault(x => x.GuestId.Value == userId.Value);
+        var invitation = Invitations.FirstOrDefault(x => x.Guest.Id.Value == user.Id.Value);
         if (invitation == null)
         {
             errors.Add(EventInvitationError.InvitationAcceptToGuestNotInvited());
@@ -381,11 +382,11 @@ public class Event
         return Result.Success();
     }
     
-    public Result DeclineInvitation(UserId userId)
+    public Result DeclineInvitation(User user)
     {
         var errors = new List<Error>();
         
-        var invitation = Invitations.FirstOrDefault(x => x.GuestId.Value == userId.Value);
+        var invitation = Invitations.FirstOrDefault(x => x.Guest.Id.Value == user.Id.Value);
         if (invitation == null)
         {
             errors.Add(EventInvitationError.InvitationDeclineToGuestNotInvited());

@@ -1,5 +1,6 @@
 ﻿using Tests.Common.Factories;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
@@ -16,7 +17,7 @@ public class AcceptInvitationAggregateTests
         var invitation = @event.Invitations.First();
         
         // Act
-        var result = @event.AcceptInvitation(invitation.GuestId);
+        var result = @event.AcceptInvitation(invitation.Guest);
 
         // Assert
         Assert.Multiple(() =>
@@ -34,7 +35,7 @@ public class AcceptInvitationAggregateTests
         var @event = EventTestDataFactory.ActivePublicEvent();
         
         // Act
-        var result = @event.AcceptInvitation(new UserId());
+        var result = @event.AcceptInvitation(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
         
         // Assert
         Assert.Multiple(() =>
@@ -52,7 +53,7 @@ public class AcceptInvitationAggregateTests
         var @event = EventTestDataFactory.FullActivePublicEventWithPendingInvitation();
         var invitation = @event.Invitations.First();
         // Act
-        var result = @event.AcceptInvitation(invitation.GuestId);
+        var result = @event.AcceptInvitation(invitation.Guest);
         
         // Assert
         Assert.Multiple(() =>
@@ -70,7 +71,7 @@ public class AcceptInvitationAggregateTests
         var @event = EventTestDataFactory.CancelledPublicEventWithPendingInvitation();
         var invitation = @event.Invitations.First();
         // Act
-        var result = @event.AcceptInvitation(invitation.GuestId);
+        var result = @event.AcceptInvitation(invitation.Guest);
         
         // Assert
         Assert.Multiple(() =>
@@ -88,7 +89,7 @@ public class AcceptInvitationAggregateTests
         var @event = EventTestDataFactory.ReadyPublicEventWithPendingInvitation();
         var invitation = @event.Invitations.First();
         // Act
-        var result = @event.AcceptInvitation(invitation.GuestId);
+        var result = @event.AcceptInvitation(invitation.Guest);
         
         // Assert
         Assert.Multiple(() =>

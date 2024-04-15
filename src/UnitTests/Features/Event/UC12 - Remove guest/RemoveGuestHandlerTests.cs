@@ -19,11 +19,11 @@ public class RemoveGuestHandlerTests
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEvent();
         var user = UserRepository.Users.First();
-        @event.AddGuest(user.Id);    
+        @event.AddGuest(user);    
         await EventRepository.AddAsync(@event);
 
         var command = RemoveGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
-        var handler = new RemoveGuestHandler(EventRepository, Uow);
+        var handler = new RemoveGuestHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -33,7 +33,7 @@ public class RemoveGuestHandlerTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Id.Value), Is.False);
+            Assert.That(updatedEvent!.Participants.Any(u => u.Id.Value == user.Id.Value), Is.False);
         });
     }
     
@@ -46,9 +46,10 @@ public class RemoveGuestHandlerTests
             
         await EventRepository.AddAsync(@event);
         var user = @event.Participants.First();
+        await UserRepository.AddAsync(user);
 
-        var command = RemoveGuestCommand.Create(@event.Id.Value.ToString(), user.Value.ToString());
-        var handler = new RemoveGuestHandler(EventRepository, Uow);
+        var command = RemoveGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
+        var handler = new RemoveGuestHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -59,7 +60,7 @@ public class RemoveGuestHandlerTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Value), Is.True);
+            Assert.That(updatedEvent!.Participants.Any(u => u.Id.Value == user.Id.Value), Is.True);
             Assert.That(result.Errors.Any(x => x.Code == ErrorCode.CancelParticipationToEventInThePast), Is.True);
         });
     }
