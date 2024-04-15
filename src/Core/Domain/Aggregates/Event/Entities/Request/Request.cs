@@ -8,19 +8,19 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Request;
 public class Request
 {
     public RequestId Id { get; }
-    public UserId GuestId { get; }
+    public User Guest { get; }
     public RequestStatus Status { get; private set; }
 
-    private Request(UserId guestId, RequestStatus status)
+    private Request(User guest, RequestStatus status)
     {
         Id = new RequestId();
-        GuestId = guestId;
+        Guest = guest;
         Status = status;
     }
 
-    public static Result<Request> Create(UserId guestId, RequestStatus status)
+    public static Result<Request> Create(User guest, RequestStatus status)
     {
-        return Result<Request>.Success(new Request(guestId, status));
+        return Result<Request>.Success(new Request(guest, status));
     }
 
     public Result Approve()
