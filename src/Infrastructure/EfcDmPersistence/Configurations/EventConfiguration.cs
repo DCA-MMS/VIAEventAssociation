@@ -37,10 +37,11 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
                 propBuilder.Property(ec => ec.Value).HasColumnName("Capacity");
             }
         );
-        builder.OwnsOne<TimeRange>("Duration", t =>
+        builder.OwnsOne<TimeRange>("Duration", x =>
         {
-            t.Property(t => t.Start).HasColumnName("DurationStart");
-            t.Property(t => t.End).HasColumnName("DurationEnd");
+            x.Property(t => t.Start).HasColumnName("DurationStart");
+            x.Property(t => t.End).HasColumnName("DurationEnd");
         });
+        builder.HasMany(e => e.Participants);
     }
 }

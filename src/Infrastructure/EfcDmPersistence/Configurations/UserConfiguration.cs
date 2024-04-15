@@ -15,5 +15,18 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 id => id.Value,
                 dbValue => UserId.FromGuid(dbValue)
             );
+        builder.OwnsOne<FullName>("FullName", x =>
+        {
+            x.Property(fn => fn.FirstName).HasColumnName("FirstName");
+            x.Property(fn => fn.LastName).HasColumnName("LastName");
+        });
+        builder.ComplexProperty<Email>(
+            "Email",
+            propBuilder =>
+            {
+                propBuilder.Property(e => e.Value)
+                    .HasColumnName("Email");
+            }
+        );
     }
 }
