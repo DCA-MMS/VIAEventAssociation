@@ -21,9 +21,10 @@ public class AcceptInvitationHandlerTests
         var @event = EventTestDataFactory.ActivePublicEventWithPendingInvitation();
         await EventRepository.AddAsync(@event);
         var invitation = @event.Invitations.First();
+        await UserRepository.AddAsync(invitation.Guest);
 
-        var command = AcceptInvitationCommand.Create(@event.Id.Value.ToString(), invitation.GuestId.Value.ToString());
-        var handler = new AcceptInvitationHandler(EventRepository, Uow);
+        var command = AcceptInvitationCommand.Create(@event.Id.Value.ToString(), invitation.Guest.Id.Value.ToString());
+        var handler = new AcceptInvitationHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -32,10 +33,10 @@ public class AcceptInvitationHandlerTests
         // Assert
         Assert.Multiple(() =>
         {
-            var updatedInvitation = updatedEvent.Invitations.FirstOrDefault(x => x.Id == invitation.Id);
+            var updatedInvitation = updatedEvent!.Invitations.FirstOrDefault(x => x.Id == invitation.Id);
             
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(updatedInvitation.Status == InvitationStatus.Accepted, Is.True);
+            Assert.That(updatedInvitation!.Status == InvitationStatus.Accepted, Is.True);
         });
     }
     
@@ -49,7 +50,7 @@ public class AcceptInvitationHandlerTests
         var user = UserRepository.Users.First();
 
         var command = AcceptInvitationCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
-        var handler = new AcceptInvitationHandler(EventRepository, Uow);
+        var handler = new AcceptInvitationHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);

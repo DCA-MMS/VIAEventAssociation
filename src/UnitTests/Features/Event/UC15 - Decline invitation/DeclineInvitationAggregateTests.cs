@@ -1,5 +1,6 @@
 ﻿using Tests.Common.Factories;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
@@ -16,7 +17,7 @@ public class DeclineInvitationAggregateTests
         var invitation = @event.Invitations.First();
         
         // Act
-        var result = @event.DeclineInvitation(invitation.GuestId);
+        var result = @event.DeclineInvitation(invitation.Guest);
 
         // Assert
         Assert.Multiple(() =>
@@ -36,7 +37,7 @@ public class DeclineInvitationAggregateTests
         invitation.Accept();
         
         // Act
-        var result = @event.DeclineInvitation(invitation.GuestId);
+        var result = @event.DeclineInvitation(invitation.Guest);
 
         // Assert
         Assert.Multiple(() =>
@@ -54,7 +55,7 @@ public class DeclineInvitationAggregateTests
         var @event = EventTestDataFactory.ActivePublicEvent();
         
         // Act
-        var result = @event.DeclineInvitation(new UserId());
+        var result = @event.DeclineInvitation(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
 
         // Assert
         Assert.Multiple(() =>
@@ -72,7 +73,7 @@ public class DeclineInvitationAggregateTests
         var @event = EventTestDataFactory.CancelledPublicEventWithPendingInvitation();
         
         // Act
-        var result = @event.DeclineInvitation(new UserId());
+        var result = @event.DeclineInvitation(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
 
         // Assert
         Assert.Multiple(() =>
@@ -90,7 +91,7 @@ public class DeclineInvitationAggregateTests
         var @event = EventTestDataFactory.ReadyPublicEventWithPendingInvitation();
         
         // Act
-        var result = @event.DeclineInvitation(new UserId());
+        var result = @event.DeclineInvitation(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
 
         // Assert
         Assert.Multiple(() =>

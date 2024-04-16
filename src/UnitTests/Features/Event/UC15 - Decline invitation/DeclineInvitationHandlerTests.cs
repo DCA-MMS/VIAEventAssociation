@@ -21,9 +21,10 @@ public class DeclineInvitationHandlerTests
         var @event = EventTestDataFactory.ActivePublicEventWithPendingInvitation();
         await EventRepository.AddAsync(@event);
         var invitation = @event.Invitations.First();
+        await UserRepository.AddAsync(invitation.Guest);
 
-        var command = DeclineInvitationCommand.Create(@event.Id.Value.ToString(), invitation.GuestId.Value.ToString());
-        var handler = new DeclineInvitationHandler(EventRepository, Uow);
+        var command = DeclineInvitationCommand.Create(@event.Id.Value.ToString(), invitation.Guest.Id.Value.ToString());
+        var handler = new DeclineInvitationHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -32,10 +33,10 @@ public class DeclineInvitationHandlerTests
         // Assert
         Assert.Multiple(() =>
         {
-            var updatedInvitation = updatedEvent.Invitations.FirstOrDefault(x => x.Id == invitation.Id);
+            var updatedInvitation = updatedEvent!.Invitations.FirstOrDefault(x => x.Id == invitation.Id);
             
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(updatedInvitation.Status == InvitationStatus.Rejected, Is.True);
+            Assert.That(updatedInvitation!.Status, Is.EqualTo(InvitationStatus.Rejected));
         });
     }
     
@@ -49,7 +50,7 @@ public class DeclineInvitationHandlerTests
         var user = UserRepository.Users.First();
 
         var command = DeclineInvitationCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
-        var handler = new DeclineInvitationHandler(EventRepository, Uow);
+        var handler = new DeclineInvitationHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);

@@ -22,7 +22,7 @@ public class AddGuestHandlerTests
         var user = UserRepository.Users.First();
 
         var command = AddGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
-        var handler = new AddGuestHandler(EventRepository, Uow);
+        var handler = new AddGuestHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -32,7 +32,7 @@ public class AddGuestHandlerTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Id.Value), Is.True);
+            Assert.That(updatedEvent!.Participants.Any(u => u.Id.Value == user.Id.Value), Is.True);
         });
     }
     
@@ -47,7 +47,7 @@ public class AddGuestHandlerTests
         var user = UserRepository.Users.First();
 
         var command = AddGuestCommand.Create(@event.Id.Value.ToString(), user.Id.Value.ToString());
-        var handler = new AddGuestHandler(EventRepository, Uow);
+        var handler = new AddGuestHandler(EventRepository, UserRepository, Uow);
         
         // Act
         var result = await handler.HandleAsync(command);
@@ -58,9 +58,8 @@ public class AddGuestHandlerTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.True);
-            Assert.That(updatedEvent.Participants.Any(id => id.Value == user.Id.Value), Is.False);
+            Assert.That(updatedEvent!.Participants.Any(u => u.Id.Value == user.Id.Value), Is.False);
             Assert.That(result.Errors.Any(x => x.Code == ErrorCode.RequestToEventThatIsNotActive), Is.True);
-
         });
     }
 }

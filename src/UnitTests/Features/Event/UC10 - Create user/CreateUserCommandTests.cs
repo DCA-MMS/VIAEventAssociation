@@ -1,4 +1,4 @@
-﻿using Application.AppEntry.Commands.User;
+﻿using Application.AppEntry.Commands.UserCommands;
 using Tests.Fakes;
 
 namespace Tests.Features.Event.UC10___Create_user;

@@ -1,4 +1,5 @@
 ﻿using Tests.Common.Factories;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
@@ -12,17 +13,17 @@ public class RemoveGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEvent();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        @event.AddGuest(userId);
-        var result = @event.RemoveGuest(userId);
+        @event.AddGuest(user);
+        var result = @event.RemoveGuest(user);
 
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Participants, Does.Not.Contain(userId));
+            Assert.That(@event.Participants, Does.Not.Contain(user));
         });
     }
     
@@ -32,10 +33,10 @@ public class RemoveGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEvent();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        var result = @event.RemoveGuest(userId);
+        var result = @event.RemoveGuest(user);
 
         Assert.Multiple(() =>
         {
@@ -50,10 +51,10 @@ public class RemoveGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEventWithGuestAndStartTimeInPast();
-        var userId = @event.Participants.First();
+        var user = @event.Participants.First();
 
         // Act
-        var result = @event.RemoveGuest(userId);
+        var result = @event.RemoveGuest(user);
 
         Assert.Multiple(() =>
         {

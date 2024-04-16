@@ -14,4 +14,6 @@ public class UserId : Id<User>
         }
         return Result<UserId>.Failure(IdError.InvalidIdConversion());
     }
+    
+    public static UserId FromGuid(Guid guid) => new() { Value = guid };
 }

@@ -1,5 +1,6 @@
 ﻿using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 
 namespace Tests.Common.Factories;
@@ -42,7 +43,7 @@ public static class EventTestDataFactory
     {
         var publicEvent = ActivePublicEvent();
 
-        publicEvent.InviteGuest(new UserId());
+        publicEvent.InviteGuest(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
 
         return publicEvent;
     }
@@ -79,7 +80,7 @@ public static class EventTestDataFactory
 
         return EventFactory.Create().WithVisibility(EventVisibility.Public)
             .WithTimeRange(yesterday.AddHours(8), yesterday.AddHours(12)).WithStatus(EventStatus.Active)
-            .WithParticipants(new UserId()).Build();
+            .WithParticipants(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value).Build();
     }
     
     public static Event FullActivePublicEvent()
@@ -88,7 +89,7 @@ public static class EventTestDataFactory
         
         for (var i = 0; i < @event.Capacity; i++)
         {
-            @event.AddGuest(new UserId());
+            @event.AddGuest(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
         }
 
         return @event;
@@ -98,11 +99,11 @@ public static class EventTestDataFactory
     {
         var @event = ActivePublicEvent();
         
-        @event.InviteGuest(new UserId());
+        @event.InviteGuest(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
 
         for (var i = 0; i < @event.Capacity; i++)
         {
-            @event.AddGuest(new UserId());
+            @event.AddGuest(User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value);
         }        
         
         return @event;

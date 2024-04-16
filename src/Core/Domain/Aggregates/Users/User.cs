@@ -8,6 +8,9 @@ public class User
     public UserId Id { get; }
     public FullName FullName { get; }
     public Email Email { get; }
+    
+    // EFC Constructor
+    private User() {}
 
     private User(UserId id, FullName fullName, Email email)
     {
