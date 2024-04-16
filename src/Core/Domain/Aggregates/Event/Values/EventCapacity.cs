@@ -9,14 +9,17 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 /// </summary>
 public class EventCapacity
 {
-    private readonly int _value;
+    public int Value { get; }
+
+    // EFC Constructor
+    private EventCapacity() {}
     
     /// <summary>
     /// Private constructor for the <see cref="EventCapacity"/> class
     /// </summary>
     private EventCapacity(int value)
     {
-        _value = value;
+        Value = value;
     }
 
     /// <summary>
@@ -75,7 +78,7 @@ public class EventCapacity
     {
         if (obj is EventCapacity capacity)
         {
-            return capacity._value == _value;
+            return capacity.Value == Value;
         }
 
         return false;
@@ -83,12 +86,12 @@ public class EventCapacity
     
     public override int GetHashCode()
     {
-        return _value.GetHashCode();
+        return Value.GetHashCode();
     }
 
     /// <summary>
     /// Allows implicit conversion from <see cref="EventCapacity"/> to <see cref="int"/>
     /// </summary>
     /// <returns></returns>
-    public static implicit operator int(EventCapacity capacity) => capacity._value;
+    public static implicit operator int(EventCapacity capacity) => capacity.Value;
 }

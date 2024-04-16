@@ -4,5 +4,5 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.V
 
 public class InvitationId : Id<Invitation>
 {
-    
+    public static InvitationId FromGuid(Guid guid) => new() { Value = guid };
 }

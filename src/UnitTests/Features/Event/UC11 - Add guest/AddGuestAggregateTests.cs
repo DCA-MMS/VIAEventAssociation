@@ -1,6 +1,7 @@
 ﻿using Tests.Common.Factories;
 using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
@@ -14,16 +15,16 @@ public class AddGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEvent();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        var result = @event.AddGuest(userId);
+        var result = @event.AddGuest(user);
 
         Assert.Multiple(() =>
         {
             // Assert
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(@event.Participants.Any(x => x == userId), Is.True);
+            Assert.That(@event.Participants.Any(x => x.Id == user.Id), Is.True);
         });
     }
     
@@ -36,10 +37,10 @@ public class AddGuestAggregateTests
     {
         // Arrange
         var @event = EventFactory.Create().WithStatus(status).Build();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        var result = @event.AddGuest(userId);
+        var result = @event.AddGuest(user);
 
         Assert.Multiple(() =>
         {
@@ -55,10 +56,10 @@ public class AddGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.FullActivePublicEvent();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        var result = @event.AddGuest(userId);
+        var result = @event.AddGuest(user);
 
         Assert.Multiple(() =>
         {
@@ -74,10 +75,10 @@ public class AddGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEventWithStartTimeInPast();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        var result = @event.AddGuest(userId);
+        var result = @event.AddGuest(user);
 
         Assert.Multiple(() =>
         {
@@ -94,10 +95,10 @@ public class AddGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.PrivateEvent();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        var result = @event.AddGuest(userId);
+        var result = @event.AddGuest(user);
 
         Assert.Multiple(() =>
         {
@@ -113,11 +114,11 @@ public class AddGuestAggregateTests
     {
         // Arrange
         var @event = EventTestDataFactory.ActivePublicEvent();
-        var userId = new UserId();
+        var user = User.Create(FullName.Create("Bob", "Bobsen"), Email.Create("bob@via.dk")).Value;
 
         // Act
-        @event.AddGuest(userId);
-        var result = @event.AddGuest(userId);
+        @event.AddGuest(user);
+        var result = @event.AddGuest(user);
 
         Assert.Multiple(() =>
         {

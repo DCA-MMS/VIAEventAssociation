@@ -9,7 +9,10 @@ namespace VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 /// </summary>
 public class EventTitle
 {
-    private readonly string _value;
+    public string Value { get; }
+
+    // EFC Constructor
+    private EventTitle() {}
 
     /// <summary>
     /// Private constructor for the <see cref="EventTitle"/> class
@@ -17,7 +20,7 @@ public class EventTitle
     /// <param name="value"></param>
     private EventTitle(string value)
     {
-        _value = value;
+        Value = value;
     }
 
     /// <summary>
@@ -80,7 +83,7 @@ public class EventTitle
     {
         if (obj is EventTitle title)
         {
-            return title._value == _value;
+            return title.Value == Value;
         }
 
         return false;
@@ -88,11 +91,11 @@ public class EventTitle
 
     public override int GetHashCode()
     {
-        return _value.GetHashCode();
+        return Value.GetHashCode();
     }
 
     /// <summary>
     /// Allows implicit conversion from <see cref="EventTitle"/> to <see cref="string"/>
     /// </summary>
-    public static implicit operator string(EventTitle title) => title._value;
+    public static implicit operator string(EventTitle title) => title.Value;
 }

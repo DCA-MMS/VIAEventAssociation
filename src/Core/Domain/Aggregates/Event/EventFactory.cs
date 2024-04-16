@@ -1,5 +1,6 @@
 using System.Reflection;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Aggregates.Users.Values;
 using VIAEventAssociation.Core.Domain.Common.Values;
 
@@ -150,7 +151,7 @@ public class EventFactory
         return this;
     }
     
-    public EventFactory WithParticipants(params UserId[] guests)
+    public EventFactory WithParticipants(params User[] guests)
     {
         // Get the Participants property of the Event class and set the value
         const string property = "Participants";

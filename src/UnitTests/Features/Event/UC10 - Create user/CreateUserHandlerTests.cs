@@ -1,5 +1,5 @@
 ﻿using Application.AppEntry.Commands.EventCommands;
-using Application.AppEntry.Commands.User;
+using Application.AppEntry.Commands.UserCommands;
 using Application.Features.EventHandlers;
 using Application.Features.UserHandlers;
 using Tests.Fakes;

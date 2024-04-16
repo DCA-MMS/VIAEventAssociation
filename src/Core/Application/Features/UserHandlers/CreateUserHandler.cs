@@ -1,4 +1,4 @@
-﻿using Application.AppEntry.Commands.User;
+﻿using Application.AppEntry.Commands.UserCommands;
 using Application.AppEntry.Interfaces;
 using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Common;

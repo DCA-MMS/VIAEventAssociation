@@ -2,7 +2,7 @@
 using VIAEventAssociation.Core.Tools.OperationResult;
 using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
-namespace Application.AppEntry.Commands.User;
+namespace Application.AppEntry.Commands.UserCommands;
 
 public class CreateUserCommand
 {
