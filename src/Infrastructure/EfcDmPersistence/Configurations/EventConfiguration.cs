@@ -42,6 +42,6 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
             x.Property(t => t.Start).HasColumnName("DurationStart");
             x.Property(t => t.End).HasColumnName("DurationEnd");
         });
-        builder.HasMany(e => e.Participants);
+        builder.HasMany(e => e.Participants).WithMany();
     }
 }
