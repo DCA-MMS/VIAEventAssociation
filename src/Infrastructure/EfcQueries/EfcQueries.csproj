@@ -16,4 +16,9 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\QueryContracts\QueryContracts.csproj" />
+      <ProjectReference Include="..\EfcDmPersistence\EfcDmPersistence.csproj" />
+    </ItemGroup>
+
 </Project>
