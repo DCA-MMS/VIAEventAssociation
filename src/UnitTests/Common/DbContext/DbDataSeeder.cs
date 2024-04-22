@@ -17,9 +17,7 @@ public class DbDataSeeder
 
     public static VeadatabaseContext SetUpReadContext()
     {
-        Console.WriteLine("test");
-        Console.WriteLine(Assembly.GetExecutingAssembly().Location);
-        var testDbName = "Test" + Guid.NewGuid() + ".db";
+        var testDbName = "Test.db";
         DbContextOptionsBuilder<VeadatabaseContext> optionsBuilder = new();
         optionsBuilder.UseSqlite($"Data Source = {testDbName}");
         VeadatabaseContext context = new(optionsBuilder.Options);
