@@ -7,4 +7,12 @@
         <RootNamespace>VIAEventAssociation.Core.QueryContracts</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="QueryHandler\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Tools\OperationResult\OperationResult.csproj" />
+    </ItemGroup>
+
 </Project>
