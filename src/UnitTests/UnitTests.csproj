@@ -23,6 +23,8 @@
       <ProjectReference Include="..\Core\Application\Application.csproj" />
       <ProjectReference Include="..\Core\Domain\Domain.csproj" />
       <ProjectReference Include="..\Core\Tools\OperationResult\OperationResult.csproj" />
+      <ProjectReference Include="..\Infrastructure\EfcDmPersistence\EfcDmPersistence.csproj" />
+      <ProjectReference Include="..\Infrastructure\EfcQueries\EfcQueries.csproj" />
     </ItemGroup>
 
     <ItemGroup>
