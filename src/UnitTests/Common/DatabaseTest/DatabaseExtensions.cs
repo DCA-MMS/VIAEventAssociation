@@ -9,6 +9,13 @@ public static class DatabaseExtensions
     {
         context.Users.AddRange(UserSeedFactory.CreateUsers());
         context.SaveChanges();
+        
+        context.Events.AddRange(EventSeedFactory.CreateEvents());
+        context.SaveChanges();
+        
+        ParticipationsSeedFactory.Seed(context);
+        context.SaveChanges();
+        
         return context;
     }
 }
