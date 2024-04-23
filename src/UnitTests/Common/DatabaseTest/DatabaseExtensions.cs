@@ -1,4 +1,5 @@
-﻿using VIAEventAssociation.Infrastructure.EfcQueries;
+﻿using Tests.Common.DatabaseTest.SeedFactories;
+using VIAEventAssociation.Infrastructure.EfcQueries;
 using VIAEventAssociation.Infrastructure.EfcQueries.SeedFactories;
 
 namespace Tests.Common.DBContext;
@@ -14,6 +15,9 @@ public static class DatabaseExtensions
         context.SaveChanges();
         
         ParticipationsSeedFactory.Seed(context);
+        context.SaveChanges();
+        
+        InvitationsSeedFactory.Seed(context);
         context.SaveChanges();
         
         return context;

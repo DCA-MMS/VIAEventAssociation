@@ -819,19 +819,9 @@ public class ParticipationsSeedFactory
        // Add participations to event
        foreach (var participant in participations)
        {
-         if (context.Users.ToList().Count <= 0)
-         {
-           throw new Exception("No users in DB?");
-         }
-         
          var user = context.Users.Single(u => u.Id == participant.GuestId);
-         if (@event != null)
-         { 
-           user.Events.Add(@event);
-         }
-         else throw new Exception("Event not found");
+         user.Events.Add(@event);
        }
-      
     }
 
     public static void Seed(VeadatabaseContext context)

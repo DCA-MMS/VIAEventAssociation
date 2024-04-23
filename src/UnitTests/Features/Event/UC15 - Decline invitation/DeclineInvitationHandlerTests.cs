@@ -36,7 +36,7 @@ public class DeclineInvitationHandlerTests
             var updatedInvitation = updatedEvent!.Invitations.FirstOrDefault(x => x.Id == invitation.Id);
             
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(updatedInvitation!.Status, Is.EqualTo(InvitationStatus.Rejected));
+            Assert.That(updatedInvitation!.Status, Is.EqualTo(InvitationStatus.Declined));
         });
     }
     
