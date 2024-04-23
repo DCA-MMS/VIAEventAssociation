@@ -1,8 +1,7 @@
 ﻿using Tests.Common.DatabaseTest.SeedFactories;
-using VIAEventAssociation.Infrastructure.EfcQueries;
-using VIAEventAssociation.Infrastructure.EfcQueries.SeedFactories;
+using VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
-namespace Tests.Common.DBContext;
+namespace Tests.Common.DatabaseTest;
 
 public static class DatabaseExtensions
 {

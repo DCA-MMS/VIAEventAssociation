@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
+using VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
-namespace VIAEventAssociation.Infrastructure.EfcQueries.SeedFactories;
+namespace Tests.Common.DatabaseTest.SeedFactories;
 
 public class ParticipationsSeedFactory
 {

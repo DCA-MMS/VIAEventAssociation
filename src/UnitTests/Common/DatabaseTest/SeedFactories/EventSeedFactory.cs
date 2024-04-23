@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
-using VIAEventAssociation.Core.Domain.Common.Values;
+using VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
-namespace VIAEventAssociation.Infrastructure.EfcQueries.SeedFactories;
+namespace Tests.Common.DatabaseTest.SeedFactories;
 
 public static class EventSeedFactory
 {

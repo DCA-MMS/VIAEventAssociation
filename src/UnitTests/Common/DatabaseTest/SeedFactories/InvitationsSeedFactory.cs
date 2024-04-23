@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using VIAEventAssociation.Core.Domain.Aggregates.Event.Entities.Invitation.Values;
 using VIAEventAssociation.Infrastructure.EfcQueries;
+using VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
 namespace Tests.Common.DatabaseTest.SeedFactories;
 

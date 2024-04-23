@@ -1,10 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using VIAEventAssociation.Infrastructure.EfcQueries;
+﻿using Microsoft.EntityFrameworkCore;
+using VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
-namespace Tests.Common.DBContext;
+namespace Tests.Common.DatabaseTest;
 
 public class DbDataSeeder
 {
