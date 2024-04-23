@@ -23,7 +23,7 @@ public class DeclineInvitationAggregateTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(invitation.Status == InvitationStatus.Rejected, Is.True);
+            Assert.That(invitation.Status == InvitationStatus.Declined, Is.True);
         });
     }
     
@@ -43,7 +43,7 @@ public class DeclineInvitationAggregateTests
         Assert.Multiple(() =>
         {
             Assert.That(result.IsFailure, Is.False);
-            Assert.That(invitation.Status == InvitationStatus.Rejected, Is.True);
+            Assert.That(invitation.Status == InvitationStatus.Declined, Is.True);
         });
     }
     

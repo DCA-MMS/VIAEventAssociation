@@ -12,7 +12,7 @@ public class InvitationTests
 
     [Test, Category("Invitation")]
     [TestCase(InvitationStatus.Pending)]
-    [TestCase(InvitationStatus.Rejected)]
+    [TestCase(InvitationStatus.Declined)]
     [TestCase(InvitationStatus.Accepted)]
     public void Success_Create_Invitation(InvitationStatus status)
     {
@@ -64,7 +64,7 @@ public class InvitationTests
             Assert.That(invitation.IsFailure, Is.False);
             Assert.That(result.IsFailure, Is.False);
             Assert.That(invitation.Value.Guest, Is.EqualTo(_user));
-            Assert.That(invitation.Value.Status, Is.EqualTo(InvitationStatus.Rejected));
+            Assert.That(invitation.Value.Status, Is.EqualTo(InvitationStatus.Declined));
         });
     }
 }
