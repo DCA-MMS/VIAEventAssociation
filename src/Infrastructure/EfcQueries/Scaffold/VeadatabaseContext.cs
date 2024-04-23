@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace VIAEventAssociation.Infrastructure.EfcQueries;
+namespace VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
 public partial class VeadatabaseContext : DbContext
 {
