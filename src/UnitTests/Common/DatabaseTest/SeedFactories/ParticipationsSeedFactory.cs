@@ -810,7 +810,7 @@ public class ParticipationsSeedFactory
         return JsonSerializer.Deserialize<List<TempParticipation>>(ParticipationsAsJson);
     }
 
-    public static void AddParticipationsToEvents(VeadatabaseContext context, string eventId)
+    private static void AddParticipationsToEvents(VeadatabaseContext context, string eventId)
     {
        var participations = GetParticipations()!.Where(p => p.EventId == eventId).ToList();
       

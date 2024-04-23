@@ -359,7 +359,7 @@ public static class UserSeedFactory
 	                                  ]
 	                                  """;
 
-	public static List<User> CreateUsers()
+	private static List<User> CreateUsers()
 	{
 		List<TmpUser> userTmps = JsonSerializer.Deserialize<List<TmpUser>>(UserAsJson)!;
 
@@ -371,6 +371,12 @@ public static class UserSeedFactory
 			Email = x.Email,
 			Avatar = x.Avatar
 		}).ToList();
+	}
+	
+	public static void Seed(VeadatabaseContext context)
+	{
+		var users = CreateUsers();
+		context.Users.AddRange(users);
 	}
 
 	private record TmpUser(string Id, string FirstName, string LastName, string Email, string Avatar);

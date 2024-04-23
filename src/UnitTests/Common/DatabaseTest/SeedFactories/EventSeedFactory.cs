@@ -320,7 +320,7 @@ public static class EventSeedFactory
                                      """;
     
     
-    public static List<Event> CreateEvents()
+    private static List<Event> CreateEvents()
     {
         var tempEvents = JsonSerializer.Deserialize<List<TempEvent>>(EventAsJson)!;
         
@@ -337,5 +337,11 @@ public static class EventSeedFactory
         }).ToList();
     }
 
+    public static void Seed(VeadatabaseContext context)
+    {
+        var events = CreateEvents();
+        context.Events.AddRange(events);
+    }
+    
     private record TempEvent(string Id, string Title, string Description, string Status, string Visibility, string Start, string End, int MaxGuests, string LocationId);
 }

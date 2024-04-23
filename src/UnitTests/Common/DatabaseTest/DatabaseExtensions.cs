@@ -7,10 +7,10 @@ public static class DatabaseExtensions
 {
     public static VeadatabaseContext Seed(this VeadatabaseContext context)
     {
-        context.Users.AddRange(UserSeedFactory.CreateUsers());
+        UserSeedFactory.Seed(context);
         context.SaveChanges();
         
-        context.Events.AddRange(EventSeedFactory.CreateEvents());
+        EventSeedFactory.Seed(context);
         context.SaveChanges();
         
         ParticipationsSeedFactory.Seed(context);
