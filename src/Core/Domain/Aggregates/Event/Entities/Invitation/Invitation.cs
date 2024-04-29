@@ -34,7 +34,7 @@ public class Invitation
     
     public Result Decline()
     {
-        Status = InvitationStatus.Rejected;
+        Status = InvitationStatus.Declined;
         return Result.Success();
     }
 }

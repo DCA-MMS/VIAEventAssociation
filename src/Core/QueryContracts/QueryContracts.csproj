@@ -4,13 +4,15 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>VIAEventAssociation.Core.QueryContracts</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Assignment3\" />
-      <Folder Include="Assignment6\" />
-      <Folder Include="Assignment7\" />
-      <Folder Include="Assignment8\" />
+      <Folder Include="QueryHandler\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Tools\OperationResult\OperationResult.csproj" />
     </ItemGroup>
 
 </Project>
