@@ -17,4 +17,9 @@
       <ProjectReference Include="..\Core\Application\Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Endpoints\Events\" />
+      <Folder Include="Endpoints\Users\" />
+    </ItemGroup>
+
 </Project>
