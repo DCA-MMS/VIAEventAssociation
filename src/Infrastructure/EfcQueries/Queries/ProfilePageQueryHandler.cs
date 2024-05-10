@@ -14,13 +14,13 @@ public class ProfilePageQueryHandler(VeadatabaseContext context) : IQueryHandler
         var userId = query.UserId;
         var now = DateTime.Now;
 
-        // First, get the user's basic profile information
+        // #1: Fetch the user profile
         var userProfile = await context.Users
             .Where(u => u.Id == userId)
             .Select(u => new UserProfilePage.User($"{u.FirstName} {u.LastName}", u.Email, u.Avatar))
             .SingleOrDefaultAsync();
 
-        // Fetch all events that the user is a participant of, then we'll filter in-memory for upcoming and past
+        // #2: Fetch all events that the user is participating in
         var userEvents = await context.Events
             .Where(e => e.Participants.Any(p => p.Id == userId))
             .Select(e => new
@@ -33,7 +33,7 @@ public class ProfilePageQueryHandler(VeadatabaseContext context) : IQueryHandler
             })
             .ToListAsync();
         
-        // Filter and project upcoming events
+        // #3: Fetch the upcoming events and project them
         var upcomingEventsProjection = userEvents
             .Where(e => DateTime.Parse(e.DurationStart!) >= now) // Direct DateTime comparison
             .OrderBy(e => e.DurationStart)
@@ -46,7 +46,7 @@ public class ProfilePageQueryHandler(VeadatabaseContext context) : IQueryHandler
             ))
             .ToList();
 
-        // Filter and project past events
+        // #4: Fetch the past events and project them
         var pastEventsProjection = userEvents
             .Where(e => DateTime.Parse(e.DurationEnd!) < now) // Ensure these are past
             .OrderByDescending(e => e.DurationStart)
@@ -56,12 +56,12 @@ public class ProfilePageQueryHandler(VeadatabaseContext context) : IQueryHandler
             ))
             .ToList();
 
-        // Get the number of invitations
+        // #5: Fetch the number of invitations the user has
         var numberOfInvitations = await context.Events
             .SelectMany(e => e.Invitations)
             .CountAsync(i => i.GuestId == userId); // Assuming InviteeId is the correct FK to user in Invitations
 
-        // Combine everything into the final result object
+        // #6: Return the answer
         var result = new
         {
             User = userProfile,
@@ -69,6 +69,7 @@ public class ProfilePageQueryHandler(VeadatabaseContext context) : IQueryHandler
             PastEvents = pastEventsProjection,
             NumberOfInvitations = numberOfInvitations
         };
+        
         
         return new UserProfilePage.Answer(result.User!, result.UpcomingEvents.Count, result.NumberOfInvitations, result.UpcomingEvents, result.PastEvents);
     }
