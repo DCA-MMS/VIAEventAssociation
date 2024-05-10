@@ -1,4 +1,11 @@
 using Application.Extensions;
+using Microsoft.EntityFrameworkCore;
+using VIAEventAssociation.Core.Domain.Aggregates.Event;
+using VIAEventAssociation.Core.Domain.Aggregates.Users;
+using VIAEventAssociation.Core.Domain.Common;
+using VIAEventAssociation.Core.Domain.Repositories;
+using VIAEventAssociation.Infrastructure.EfcDmPersistence;
+using VIAEventAssociation.Infrastructure.EfcDmPersistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +18,14 @@ builder.Services.AddControllers();
 
 builder.Services.RegisterHandlers();
 builder.Services.RegisterDispatcher();
+
+//TODO: Find out where to move this logic
+builder.Services.AddDbContext<DbContext, EfcDbContext>(optionsBuilder =>
+    optionsBuilder.UseSqlite(@"Data Source = ../Infrastructure/EfcDmPersistence/VEADatabase.db"));
+builder.Services.AddScoped<IUnitOfWork, EfcUnitOfWork>();
+builder.Services.AddScoped<IEventRepository, EfcEventRepository>();
+builder.Services.AddScoped<IUserRepository, EfcUserRepository>();
+
 
 var app = builder.Build();
 
