@@ -21,6 +21,8 @@ public class CreateEventHandler : ICommandHandler<CreateEventCommand>
         await _repository.AddAsync(@event);
         await _unitOfWork.SaveChangesAsync();
         
+        command.Id = @event.Id;
+        
         return Result.Success();
     }
 }
