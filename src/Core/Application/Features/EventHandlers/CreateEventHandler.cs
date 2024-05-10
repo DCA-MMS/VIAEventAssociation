@@ -6,20 +6,14 @@ using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.Features.EventHandlers;
 
-public class CreateEventHandler : ICommandHandler<CreateEventCommand>
+internal class CreateEventHandler(IEventRepository repository, IUnitOfWork uow) : ICommandHandler<CreateEventCommand>
 {
-    private readonly IEventRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    
-    // # Constructor
-    internal CreateEventHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-    
     public async Task<Result> HandleAsync(CreateEventCommand command)
     {
         var @event = Event.Create();
         
-        await _repository.AddAsync(@event);
-        await _unitOfWork.SaveChangesAsync();
+        await repository.AddAsync(@event);
+        await uow.SaveChangesAsync();
         
         command.Id = @event.Id;
         

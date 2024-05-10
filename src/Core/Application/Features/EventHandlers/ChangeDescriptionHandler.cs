@@ -7,17 +7,12 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionCommand>
+internal class ChangeDescriptionHandler(IEventRepository repository, IUnitOfWork uow)
+    : ICommandHandler<ChangeDescriptionCommand>
 {
-    private readonly IEventRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    
-    // # Constructor
-    internal ChangeDescriptionHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-    
     public async Task<Result> HandleAsync(ChangeDescriptionCommand command)
     {
-        var @event = await _repository.GetByIdAsync(command.Id);
+        var @event = await repository.GetByIdAsync(command.Id);
         
         if (@event is null)
         {
@@ -31,7 +26,7 @@ internal class ChangeDescriptionHandler : ICommandHandler<ChangeDescriptionComma
             return result;
         }
         
-        await _unitOfWork.SaveChangesAsync();
+        await uow.SaveChangesAsync();
         return Result.Success();
     }
 }

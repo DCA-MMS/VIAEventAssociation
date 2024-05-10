@@ -6,13 +6,8 @@ using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.Features.UserHandlers;
 
-public class CreateUserHandler : ICommandHandler<CreateUserCommand>
+internal class CreateUserHandler(IUserRepository repository, IUnitOfWork uow) : ICommandHandler<CreateUserCommand>
 {
-    private readonly IUserRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    
-    internal CreateUserHandler(IUserRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-    
     public async Task<Result> HandleAsync(CreateUserCommand command)
     {
         var userResult = User.Create(command.FullName, command.Email);
@@ -22,8 +17,8 @@ public class CreateUserHandler : ICommandHandler<CreateUserCommand>
             return Result.Failure(userResult.Errors.ToArray());
         }
         
-        await _repository.AddAsync(userResult.Value);
-        await _unitOfWork.SaveChangesAsync();
+        await repository.AddAsync(userResult.Value);
+        await uow.SaveChangesAsync();
         
         return Result.Success();
     }

@@ -7,16 +7,12 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-public class ChangeCapacityHandler : ICommandHandler<ChangeCapacityCommand>
+internal class ChangeCapacityHandler(IEventRepository repository, IUnitOfWork uow)
+    : ICommandHandler<ChangeCapacityCommand>
 {
-    private readonly IEventRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    
-    internal ChangeCapacityHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-    
     public async Task<Result> HandleAsync(ChangeCapacityCommand command)
     {
-        var @event = await _repository.GetByIdAsync(command.Id);
+        var @event = await repository.GetByIdAsync(command.Id);
         
         if (@event == null)
         {
@@ -30,7 +26,7 @@ public class ChangeCapacityHandler : ICommandHandler<ChangeCapacityCommand>
             return result;
         }
         
-        await _unitOfWork.SaveChangesAsync();
+        await uow.SaveChangesAsync();
         return Result.Success();
     }
 }
