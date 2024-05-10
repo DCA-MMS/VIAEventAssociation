@@ -6,11 +6,15 @@ namespace VIAEventAssociation.Infrastructure.EfcDmPersistence.Repositories;
 
 public class EfcEventRepository(DbContext dbContext) : EfcRepositoryBase<Event>(dbContext), IEventRepository
 {
-    public override Task<Event?> GetByIdAsync(Id<Event> id)
+    private readonly DbContext _dbContext = dbContext;
+
+    public override async Task<Event?> GetByIdAsync(Id<Event> id)
     {
-        return dbContext.Set<Event>()
+        var list = await _dbContext.Set<Event>()
             .Include(e => e.Invitations)
             .Include(e => e.Participants)
-            .FirstOrDefaultAsync(e => e.Id.Value == id.Value);
+            .Where(e => e.Id.Value == id.Value)
+            .ToListAsync();
+        return list.First();
     }
 }
