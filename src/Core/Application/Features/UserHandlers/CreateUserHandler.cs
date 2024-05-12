@@ -20,6 +20,8 @@ internal class CreateUserHandler(IUserRepository repository, IUnitOfWork uow) : 
         await repository.AddAsync(userResult.Value);
         await uow.SaveChangesAsync();
         
+        command.Id = userResult.Value.Id;
+        
         return Result.Success();
     }
 }
