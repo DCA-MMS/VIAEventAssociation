@@ -11,10 +11,15 @@ public class CreateUserEndpoint(ICommandDispatcher dispatcher) : ApiEndpoint.Wit
     [HttpPost("users/create")]
     public override async Task<ActionResult<CreateUserResponse>> HandleAsync(CreateUserRequest request)
     {
-        CreateUserCommand cmd = CreateUserCommand.Create(request.UserBody.FirstName, request.UserBody.LastName, request.UserBody.Email);
-        Result result = await dispatcher.DispatchAsync(cmd);
+        Result<CreateUserCommand> cmdResult = CreateUserCommand.Create(request.UserBody.FirstName, request.UserBody.LastName, request.UserBody.Email);
+        if (cmdResult.IsFailure)
+        {
+            return BadRequest(cmdResult.Errors);
+        }
+        
+        Result result = await dispatcher.DispatchAsync(cmdResult.Value);
         return !result.IsFailure 
-            ? Ok(new CreateUserResponse(cmd.Id.Value.ToString())) 
+            ? Ok(new CreateUserResponse(cmdResult.Value.Id.Value.ToString())) 
             : BadRequest(result.Errors);
     }
 }
