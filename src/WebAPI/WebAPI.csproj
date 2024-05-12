@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <InvariantGlobalization>true</InvariantGlobalization>
+        <InvariantGlobalization>false</InvariantGlobalization>
         <RootNamespace>ViaEventAssociation.Presentation.WebAPI</RootNamespace>
     </PropertyGroup>
 
@@ -16,10 +16,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Core\Application\Application.csproj" />
       <ProjectReference Include="..\Infrastructure\EfcDmPersistence\EfcDmPersistence.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Endpoints\Users\" />
     </ItemGroup>
 
 </Project>
