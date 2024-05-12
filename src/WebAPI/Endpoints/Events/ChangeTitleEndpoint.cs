@@ -6,7 +6,7 @@ using ViaEventAssociation.Presentation.WebAPI.Endpoints.Common;
 
 namespace ViaEventAssociation.Presentation.WebAPI.Endpoints.Events;
 
-public class ChangeTitle(ICommandDispatcher dispatcher) : ApiEndpoint.WithRequest<ChangeTitleRequest>.WithoutResponse
+public class ChangeTitleEndpoint(ICommandDispatcher dispatcher) : ApiEndpoint.WithRequest<ChangeTitleRequest>.WithoutResponse
 {
     [HttpPost("events/{Id}/change-title")]
     public override async Task<ActionResult> HandleAsync(ChangeTitleRequest request)

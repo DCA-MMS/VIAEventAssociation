@@ -6,7 +6,7 @@ using ViaEventAssociation.Presentation.WebAPI.Endpoints.Common;
 
 namespace ViaEventAssociation.Presentation.WebAPI.Endpoints.Events;
 
-public class Create (ICommandDispatcher dispatcher) : ApiEndpoint.WithoutRequest.WithResponse<CreateEventResponse>
+public class CreateEventEndpoint (ICommandDispatcher dispatcher) : ApiEndpoint.WithoutRequest.WithResponse<CreateEventResponse>
 {
     [HttpPost("events/create")]
     public override async Task<ActionResult<CreateEventResponse>> HandleAsync()
