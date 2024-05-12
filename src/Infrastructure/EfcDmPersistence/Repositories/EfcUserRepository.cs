@@ -9,6 +9,6 @@ public class EfcUserRepository(EfcDbContext dbContext) : EfcRepositoryBase<User>
 
     public override async Task<User?> GetByIdAsync(Id<User> id)
     {
-        return await dbContext.Set<User>().FirstOrDefaultAsync(u => u.Id.Value == id.Value);
+        return await dbContext.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
     }
 }

@@ -10,11 +10,15 @@ public class EfcEventRepository(DbContext dbContext) : EfcRepositoryBase<Event>(
 
     public override async Task<Event?> GetByIdAsync(Id<Event> id)
     {
-        var list = await _dbContext.Set<Event>()
-            .Include(e => e.Invitations)
-            .Include(e => e.Participants)
-            .Where(e => e.Id.Value == id.Value)
-            .ToListAsync();
-        return list.First();
+        var @event = await _dbContext.Set<Event>()
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (@event != null)
+        {
+            _dbContext.Entry(@event).Collection(x => x.Invitations).Load();
+            _dbContext.Entry(@event).Collection(x => x.Participants).Load();
+        }
+
+        return @event;
     }
 }
