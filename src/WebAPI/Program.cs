@@ -4,8 +4,16 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event;
 using VIAEventAssociation.Core.Domain.Aggregates.Users;
 using VIAEventAssociation.Core.Domain.Common;
 using VIAEventAssociation.Core.Domain.Repositories;
+using VIAEventAssociation.Core.QueryContracts.Contract;
+using VIAEventAssociation.Core.QueryContracts.Queries;
+using VIAEventAssociation.Core.QueryContracts.QueryDispatching;
+using ViaEventAssociation.Core.Tools.ObjectMapper.Implementations;
+using ViaEventAssociation.Core.Tools.ObjectMapper.Interfaces;
 using VIAEventAssociation.Infrastructure.EfcDmPersistence;
 using VIAEventAssociation.Infrastructure.EfcDmPersistence.Repositories;
+using VIAEventAssociation.Infrastructure.EfcQueries.Queries;
+using ViaEventAssociation.Presentation.WebAPI.Endpoints.Queries;
+using ViaEventAssociation.Presentation.WebAPI.MappingConfigurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +24,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-builder.Services.RegisterHandlers();
-builder.Services.RegisterDispatcher();
+builder.Services.RegisterCommandHandlers();
+builder.Services.RegisterCommandDispatcher();
 
 //TODO: Find out where to move this logic
 builder.Services.AddDbContext<DbContext, EfcDbContext>(optionsBuilder =>
@@ -25,6 +33,18 @@ builder.Services.AddDbContext<DbContext, EfcDbContext>(optionsBuilder =>
 builder.Services.AddScoped<IUnitOfWork, EfcUnitOfWork>();
 builder.Services.AddScoped<IEventRepository, EfcEventRepository>();
 builder.Services.AddScoped<IUserRepository, EfcUserRepository>();
+
+//TODO: Find out where to move this logic
+builder.Services.AddScoped<IMapper, ObjectMapper>();
+builder.Services.AddScoped<IMappingConfig<EventEditingOverview.Answer, EventEditingOverviewResponse>, EventEditingOverviewResponseMapper>();
+
+//TODO: Find out where to move this logic
+builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+builder.Services
+    .AddScoped<IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>,
+        EventEditingOverviewQueryHandler>();
+
+
 
 
 var app = builder.Build();

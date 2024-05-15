@@ -15,7 +15,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Core\Application\Application.csproj" />
+      <ProjectReference Include="..\Core\QueryContracts\QueryContracts.csproj" />
+      <ProjectReference Include="..\Core\Tools\ObjectMapper\ObjectMapper.csproj" />
       <ProjectReference Include="..\Infrastructure\EfcDmPersistence\EfcDmPersistence.csproj" />
+      <ProjectReference Include="..\Infrastructure\EfcQueries\EfcQueries.csproj" />
     </ItemGroup>
 
 </Project>
