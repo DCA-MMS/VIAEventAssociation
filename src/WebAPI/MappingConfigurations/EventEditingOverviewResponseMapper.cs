@@ -6,12 +6,12 @@ namespace ViaEventAssociation.Presentation.WebAPI.MappingConfigurations;
 
 public class EventEditingOverviewResponseMapper : IMappingConfig<EventEditingOverview.Answer, EventEditingOverviewResponse>
 {
-    public EventEditingOverviewResponse Map(EventEditingOverview.Answer source)
+    public EventEditingOverviewResponse Map(EventEditingOverview.Answer input)
     {
         return new EventEditingOverviewResponse(
-            Drafts: source.Drafts.Select(e => new Event(e.Id, e.Title)).ToList(),
-            Ready: source.Ready.Select(e => new Event(e.Id, e.Title)).ToList(),
-            Cancelled: source.Cancelled.Select(e => new Event(e.Id, e.Title)).ToList()
+            Drafts: input.Drafts.Select(e => new Event(e.Id, e.Title)).ToList(),
+            Ready: input.Ready.Select(e => new Event(e.Id, e.Title)).ToList(),
+            Cancelled: input.Cancelled.Select(e => new Event(e.Id, e.Title)).ToList()
         );
     }
 }

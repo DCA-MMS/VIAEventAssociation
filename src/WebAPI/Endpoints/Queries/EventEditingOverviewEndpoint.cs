@@ -19,8 +19,5 @@ public class EventEditingOverviewEndpoint(IQueryDispatcher queryDispatcher, IMap
     }
 }
 
-public record EventEditingOverviewResponse(
-    List<Event> Drafts,
-    List<Event> Ready,
-    List<Event> Cancelled);
+public record EventEditingOverviewResponse(List<Event> Drafts, List<Event> Ready, List<Event> Cancelled);
 public record Event(string Id, string Title);

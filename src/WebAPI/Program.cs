@@ -37,12 +37,15 @@ builder.Services.AddScoped<IUserRepository, EfcUserRepository>();
 //TODO: Find out where to move this logic
 builder.Services.AddScoped<IMapper, ObjectMapper>();
 builder.Services.AddScoped<IMappingConfig<EventEditingOverview.Answer, EventEditingOverviewResponse>, EventEditingOverviewResponseMapper>();
+builder.Services.AddScoped<IMappingConfig<ProfilePageRequest, UserProfilePage.Query>, ProfilePageQueryMapper>();
+builder.Services.AddScoped<IMappingConfig<UserProfilePage.Answer, ProfilePageResponse>, ProfilePageResponseMapper>();
 
 //TODO: Find out where to move this logic
 builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 builder.Services
     .AddScoped<IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>,
         EventEditingOverviewQueryHandler>();
+builder.Services.AddScoped<IQueryHandler<UserProfilePage.Query, UserProfilePage.Answer>, ProfilePageQueryHandler>();
 
 
 
