@@ -10,7 +10,7 @@ namespace Application.Extensions;
 
 public static class ApplicationExtensions
 {
-    public static void RegisterHandlers(this IServiceCollection services)
+    public static void RegisterCommandHandlers(this IServiceCollection services)
     {
         services.AddScoped<ICommandHandler<CreateEventCommand>, CreateEventHandler>();
         services.AddScoped<ICommandHandler<ChangeTitleCommand>, ChangeTitleHandler>();
@@ -29,7 +29,7 @@ public static class ApplicationExtensions
         services.AddScoped<ICommandHandler<CreateUserCommand>, CreateUserHandler>();
     }
     
-    public static void RegisterDispatcher(this IServiceCollection services)
+    public static void RegisterCommandDispatcher(this IServiceCollection services)
     {
         services.AddScoped<ICommandDispatcher, CommandDispatcher>();
     }
