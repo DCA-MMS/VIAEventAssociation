@@ -39,6 +39,8 @@ builder.Services.AddScoped<IMapper, ObjectMapper>();
 builder.Services.AddScoped<IMappingConfig<EventEditingOverview.Answer, EventEditingOverviewResponse>, EventEditingOverviewResponseMapper>();
 builder.Services.AddScoped<IMappingConfig<ProfilePageRequest, UserProfilePage.Query>, ProfilePageQueryMapper>();
 builder.Services.AddScoped<IMappingConfig<UserProfilePage.Answer, ProfilePageResponse>, ProfilePageResponseMapper>();
+builder.Services.AddScoped<IMappingConfig<UpcomingEventsPageRequest, UpcomingEventsPage.Query>, UpcomingEventsPageQueryMapper>();
+builder.Services.AddScoped<IMappingConfig<UpcomingEventsPage.Answer, UpcomingEventsPageResponse>, UpcomingEventsPageResponseMapper>();
 
 //TODO: Find out where to move this logic
 builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
@@ -46,6 +48,8 @@ builder.Services
     .AddScoped<IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>,
         EventEditingOverviewQueryHandler>();
 builder.Services.AddScoped<IQueryHandler<UserProfilePage.Query, UserProfilePage.Answer>, ProfilePageQueryHandler>();
+builder.Services
+    .AddScoped<IQueryHandler<UpcomingEventsPage.Query, UpcomingEventsPage.Answer>, UpcomingEventsPageQueryHandler>();
 
 
 
