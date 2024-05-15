@@ -10,27 +10,27 @@ public class EventEditingOverviewQueryHandler(EfcDbContext context) : IQueryHand
 {
     public async Task<EventEditingOverview.Answer> HandleAsync(EventEditingOverview.Query query)
     {
-        var result = await context.Events
+        var drafts = await context.Events
             .Where(e => e.Status == EventStatus.Draft)
-            .Select(e => new
-            {
-                Drafts = context.Events.Where(e => e.Status == EventStatus.Draft)
-                    .Select(e => new EventEditingOverview.Event(
-                        e.Id.Value.ToString(),
-                        e.Title
-                    )).ToList(),
-                Ready = context.Events.Where(e => e.Status == EventStatus.Ready)
-                    .Select(e => new EventEditingOverview.Event(
-                        e.Id.Value.ToString(),
-                        e.Title
-                    )).ToList(),
-                Cancelled = context.Events.Where(e => e.Status == EventStatus.Cancelled)
-                    .Select(e => new EventEditingOverview.Event(
-                        e.Id.Value.ToString(),
-                        e.Title
-                    )).ToList(),
-            }).SingleAsync();
-        
-        return new EventEditingOverview.Answer(result.Drafts, result.Ready, result.Cancelled);
+            .Select(e => new EventEditingOverview.Event(
+                e.Id.Value.ToString(),
+                e.Title
+            )).ToListAsync();
+
+        var ready = await context.Events
+            .Where(e => e.Status == EventStatus.Ready)
+            .Select(e => new EventEditingOverview.Event(
+                e.Id.Value.ToString(),
+                e.Title
+            )).ToListAsync();
+
+        var cancelled = await context.Events
+            .Where(e => e.Status == EventStatus.Cancelled)
+            .Select(e => new EventEditingOverview.Event(
+                e.Id.Value.ToString(),
+                e.Title
+            )).ToListAsync();
+
+        return new EventEditingOverview.Answer(drafts, ready, cancelled);
     }
 }

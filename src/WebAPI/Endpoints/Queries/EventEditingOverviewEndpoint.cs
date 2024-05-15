@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using VIAEventAssociation.Core.QueryContracts.Queries;
 using VIAEventAssociation.Core.QueryContracts.QueryDispatching;
 using ViaEventAssociation.Core.Tools.ObjectMapper.Interfaces;
@@ -19,6 +20,7 @@ public class EventEditingOverviewEndpoint(IQueryDispatcher queryDispatcher, IMap
 }
 
 public record EventEditingOverviewResponse(
-    List<(string Id, string Title)> Drafts,
-    List<(string Id, string Title)> Ready,
-    List<(string Id, string Title)> Cancelled);
+    List<Event> Drafts,
+    List<Event> Ready,
+    List<Event> Cancelled);
+public record Event(string Id, string Title);

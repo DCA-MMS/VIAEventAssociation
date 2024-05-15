@@ -9,9 +9,9 @@ public class EventEditingOverviewResponseMapper : IMappingConfig<EventEditingOve
     public EventEditingOverviewResponse Map(EventEditingOverview.Answer source)
     {
         return new EventEditingOverviewResponse(
-            Drafts: source.Drafts.Select(e => (e.Id, e.Title)).ToList(),
-            Ready: source.Ready.Select(e => (e.Id, e.Title)).ToList(),
-            Cancelled: source.Cancelled.Select(e => (e.Id, e.Title)).ToList()
+            Drafts: source.Drafts.Select(e => new Event(e.Id, e.Title)).ToList(),
+            Ready: source.Ready.Select(e => new Event(e.Id, e.Title)).ToList(),
+            Cancelled: source.Cancelled.Select(e => new Event(e.Id, e.Title)).ToList()
         );
     }
 }
