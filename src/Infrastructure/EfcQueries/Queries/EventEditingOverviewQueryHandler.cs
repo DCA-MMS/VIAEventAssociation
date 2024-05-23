@@ -3,34 +3,39 @@ using VIAEventAssociation.Core.Domain.Aggregates.Event.Values;
 using VIAEventAssociation.Core.QueryContracts.Contract;
 using VIAEventAssociation.Core.QueryContracts.Queries;
 using VIAEventAssociation.Infrastructure.EfcDmPersistence;
+using VIAEventAssociation.Infrastructure.EfcQueries.Scaffold;
 
 namespace VIAEventAssociation.Infrastructure.EfcQueries.Queries;
 
-public class EventEditingOverviewQueryHandler(EfcDbContext context) : IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>
+public class EventEditingOverviewQueryHandler(VeadatabaseContext context) : IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>
 {
     public async Task<EventEditingOverview.Answer> HandleAsync(EventEditingOverview.Query query)
     {
-        var result = await context.Events
-            .Where(e => e.Status == EventStatus.Draft)
-            .Select(e => new
-            {
-                Drafts = context.Events.Where(e => e.Status == EventStatus.Draft)
-                    .Select(e => new EventEditingOverview.Event(
-                        e.Id.Value.ToString(),
-                        e.Title
-                    )).ToList(),
-                Ready = context.Events.Where(e => e.Status == EventStatus.Ready)
-                    .Select(e => new EventEditingOverview.Event(
-                        e.Id.Value.ToString(),
-                        e.Title
-                    )).ToList(),
-                Cancelled = context.Events.Where(e => e.Status == EventStatus.Cancelled)
-                    .Select(e => new EventEditingOverview.Event(
-                        e.Id.Value.ToString(),
-                        e.Title
-                    )).ToList(),
-            }).SingleAsync();
+        // #1: Fetch all events that are in draft status
+        var eventDrafts = await context.Events
+            .Where(e => e.Status == (int) EventStatus.Draft)
+            .Select(e => new EventEditingOverview.Event(
+                e.Id,
+                e.Title
+            )).ToListAsync();
         
-        return new EventEditingOverview.Answer(result.Drafts, result.Ready, result.Cancelled);
+        // #2: Fetch all events that are ready
+        var readyEvents = await context.Events
+            .Where(e => e.Status == (int) EventStatus.Ready)
+            .Select(e => new EventEditingOverview.Event(
+                e.Id,
+                e.Title
+            )).ToListAsync();
+        
+        // #3: Fetch all events that are cancelled
+        var cancelledEvents = await context.Events
+            .Where(e => e.Status == (int) EventStatus.Cancelled)
+            .Select(e => new EventEditingOverview.Event(
+                e.Id,
+                e.Title
+            )).ToListAsync();
+        
+        // #4: Return the answer
+        return new EventEditingOverview.Answer(eventDrafts, readyEvents, cancelledEvents);
     }
 }
