@@ -27,6 +27,7 @@ public class FullName
             return Result<FullName>.Failure(errors.ToArray());
         }
         
+        //This will crash the WebAPI if InvariantGlobalization is set to true (which is the default) in WebAPI.csproj
         var textInfo = new CultureInfo("en-US", false).TextInfo;
 
         // Convert to title case

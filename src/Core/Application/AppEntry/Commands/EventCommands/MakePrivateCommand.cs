@@ -3,7 +3,7 @@ using VIAEventAssociation.Core.Tools.OperationResult;
 
 namespace Application.AppEntry.Commands.EventCommands;
 
-internal class MakePrivateCommand
+public class MakePrivateCommand
 {
     public EventId Id { get; }
     

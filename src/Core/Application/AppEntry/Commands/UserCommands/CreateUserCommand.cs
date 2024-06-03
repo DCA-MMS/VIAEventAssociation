@@ -6,6 +6,7 @@ namespace Application.AppEntry.Commands.UserCommands;
 
 public class CreateUserCommand
 {
+    public UserId Id { get; set; }
     public FullName FullName { get; }
     public Email Email { get; }
     

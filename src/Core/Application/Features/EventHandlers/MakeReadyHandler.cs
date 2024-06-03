@@ -7,16 +7,11 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-public class MakeReadyHandler : ICommandHandler<MakeReadyCommand>
+internal class MakeReadyHandler(IEventRepository repository, IUnitOfWork uow) : ICommandHandler<MakeReadyCommand>
 {
-    private readonly IEventRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    
-    internal MakeReadyHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-    
     public async Task<Result> HandleAsync(MakeReadyCommand command)
     {
-        var @event = await _repository.GetByIdAsync(command.Id);
+        var @event = await repository.GetByIdAsync(command.Id);
         
         if (@event == null)
         {
@@ -30,7 +25,7 @@ public class MakeReadyHandler : ICommandHandler<MakeReadyCommand>
             return result;
         }
         
-        await _unitOfWork.SaveChangesAsync();
+        await uow.SaveChangesAsync();
         return Result.Success();
     }
 }

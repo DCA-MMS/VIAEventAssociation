@@ -7,17 +7,12 @@ using VIAEventAssociation.Core.Tools.OperationResult.Errors;
 
 namespace Application.Features.EventHandlers;
 
-internal class ChangeDurationHandler : ICommandHandler<ChangeDurationCommand>
+internal class ChangeDurationHandler(IEventRepository repository, IUnitOfWork uow)
+    : ICommandHandler<ChangeDurationCommand>
 {
-    private readonly IEventRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    
-    // # Constructor
-    internal ChangeDurationHandler(IEventRepository repository, IUnitOfWork uow) => (_repository, _unitOfWork) = (repository, uow);
-
     public async Task<Result> HandleAsync(ChangeDurationCommand command)
     {
-        var @event = await _repository.GetByIdAsync(command.Id);
+        var @event = await repository.GetByIdAsync(command.Id);
         
         if (@event is null)
         {
@@ -31,7 +26,7 @@ internal class ChangeDurationHandler : ICommandHandler<ChangeDurationCommand>
             return result;
         }
         
-        await _unitOfWork.SaveChangesAsync();
+        await uow.SaveChangesAsync();
         return Result.Success();
     }
 }
