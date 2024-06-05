@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\WebAPI\WebAPI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMapper", "src\Core\Tools\ObjectMapper\ObjectMapper.csproj", "{A035FD64-3B09-49A8-8B2D-D9ACBC403B7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "src\IntegrationTests\IntegrationTests.csproj", "{33E2684F-EE27-488C-9127-7AE7B3162704}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,7 @@ Global
 		{42E2AB7B-57E5-4F51-ADB0-49890457CFD0} = {F3E61B9B-63CA-4A50-A281-79C97FF68ED9}
 		{16AD3661-AB73-4CCC-B263-E1CF88BA8DC8} = {42E2AB7B-57E5-4F51-ADB0-49890457CFD0}
 		{A035FD64-3B09-49A8-8B2D-D9ACBC403B7A} = {F0718032-2E48-4832-BE12-C91C3E69D254}
+		{33E2684F-EE27-488C-9127-7AE7B3162704} = {E77BCD78-0BC8-4721-AC36-740E0CA60C0D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9CB2484C-EE71-4767-A1DA-A1C11CFCAC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -104,5 +107,9 @@ Global
 		{A035FD64-3B09-49A8-8B2D-D9ACBC403B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A035FD64-3B09-49A8-8B2D-D9ACBC403B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A035FD64-3B09-49A8-8B2D-D9ACBC403B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E2684F-EE27-488C-9127-7AE7B3162704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E2684F-EE27-488C-9127-7AE7B3162704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E2684F-EE27-488C-9127-7AE7B3162704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E2684F-EE27-488C-9127-7AE7B3162704}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

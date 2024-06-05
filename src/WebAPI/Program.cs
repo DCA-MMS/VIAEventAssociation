@@ -45,14 +45,11 @@ builder.Services.AddScoped<IMappingConfig<ViewSingleEventRequest, ViewSingleEven
 builder.Services.AddScoped<IMappingConfig<ViewSingleEvent.Answer, ViewSingleEventResponse>, ViewSingleEventResponseMapper>();
 
 //TODO: Find out where to move this logic
-builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
-builder.Services
-    .AddScoped<IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>,
-        EventEditingOverviewQueryHandler>();
-builder.Services.AddScoped<IQueryHandler<UserProfilePage.Query, UserProfilePage.Answer>, ProfilePageQueryHandler>();
-builder.Services
-    .AddScoped<IQueryHandler<UpcomingEventsPage.Query, UpcomingEventsPage.Answer>, UpcomingEventsPageQueryHandler>();
-builder.Services.AddScoped<IQueryHandler<ViewSingleEvent.Query, ViewSingleEvent.Answer>, ViewSingleEventQueryHandler>();
+//builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+//builder.Services.AddScoped<IQueryHandler<EventEditingOverview.Query, EventEditingOverview.Answer>, EventEditingOverviewQueryHandler>();
+//builder.Services.AddScoped<IQueryHandler<UserProfilePage.Query, UserProfilePage.Answer>, ProfilePageQueryHandler>();
+//builder.Services.AddScoped<IQueryHandler<UpcomingEventsPage.Query, UpcomingEventsPage.Answer>, UpcomingEventsPageQueryHandler>();
+//builder.Services.AddScoped<IQueryHandler<ViewSingleEvent.Query, ViewSingleEvent.Answer>, ViewSingleEventQueryHandler>();
 
 
 
